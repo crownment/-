@@ -1265,7 +1265,30 @@
 
 <div class="bg">
   <video id="backgroundVideo" loop playsinline preload="auto">
-    <source src="./background.mp4" type="video/mp4">
+    <source id="backgroundSource" src="./background.mp4" type="video/mp4">
+  <script>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const videoParam = params.get("video");
+      if (!videoParam) return;
+
+      const source = document.getElementById("backgroundSource");
+      const videoName = videoParam.trim();
+      if (!videoName) return;
+
+      const ext = videoName.split(".").pop().toLowerCase();
+      const mimeTypes = {
+        mp4: "video/mp4",
+        mov: "video/quicktime",
+        webm: "video/webm",
+        ogv: "video/ogg"
+      };
+
+      source.src = "./" + videoName;
+      source.type = mimeTypes[ext] || "video/*";
+      document.getElementById("backgroundVideo").load();
+    })();
+  </script>
   </video>
 </div>
 
