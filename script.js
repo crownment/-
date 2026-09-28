@@ -154,7 +154,7 @@ function revealButtons() {
 }
 
 async function enterSite() {
-  if (!canClick || entered) {
+  if (entered) {
     return;
   }
 
