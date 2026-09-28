@@ -47,6 +47,19 @@ const cursorGlow = $("#cursorGlow");
 const profileName = $("#profileName");
 const volumeSlider = $("#volumeSlider");
 
+
+const pageTransition = $("#pageTransition");
+
+function runPageTransition(){
+  if(!pageTransition) return Promise.resolve();
+  pageTransition.classList.add("active");
+  return new Promise(resolve => setTimeout(resolve, 430));
+}
+
+window.addEventListener("pageshow", () => {
+  if(pageTransition) pageTransition.classList.remove("active");
+});
+
 const text = "click to enter";
 
 let index = 0;
