@@ -12,8 +12,6 @@ if (isMobile) {
     volumeControl.remove();
   }
 
-  const volumeWarningIntro = $("#volumeWarningIntro");
-
   if (volumeWarningIntro) {
     volumeWarningIntro.style.display = "block";
   }
@@ -46,6 +44,7 @@ const cursor = $("#cursor");
 const cursorGlow = $("#cursorGlow");
 const profileName = $("#profileName");
 const volumeSlider = $("#volumeSlider");
+const volumeWarningIntro = $("#volumeWarningIntro");
 
 
 const pageTransition = $("#pageTransition");
@@ -1497,18 +1496,3 @@ pfpViewerImage.addEventListener(
   }
 );
 
-if (isMobile) {
-  document
-    .querySelectorAll("*")
-    .forEach(el => {
-      if (
-        el.children.length === 0 &&
-        /you may need to lower your volume/i.test(
-          el.textContent || ""
-        )
-      ) {
-        el.style.display =
-          "block";
-      }
-    });
-}
