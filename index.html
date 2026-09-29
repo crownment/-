@@ -59,6 +59,22 @@
       pointer-events: none;
     }
 
+    /* On portrait phones, rotate the landscape video so the entire frame stays visible. */
+    @media (max-width: 500px) and (orientation: portrait) {
+      #backgroundVideo {
+        width: 100vh;
+        height: 100vw;
+        min-width: 0;
+        min-height: 0;
+        left: 50%;
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        object-fit: contain;
+        transform: translate(-50%, -50%) rotate(90deg);
+      }
+    }
+
     .shade {
       position: fixed;
       inset: 0;
