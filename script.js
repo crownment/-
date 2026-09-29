@@ -5,18 +5,6 @@ const isMobile =
   /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
   window.innerWidth <= 768;
 
-if (isMobile) {
-  const volumeControl = $("#volumeControlSection");
-
-  if (volumeControl) {
-    volumeControl.remove();
-  }
-
-  if (volumeWarningIntro) {
-    volumeWarningIntro.style.display = "block";
-  }
-}
-
 const viewCount = $("#viewCount");
 
 fetch("https://countapi.mileshilliard.com/api/v1/hit/risk_unique_site_views")
@@ -45,6 +33,17 @@ const cursorGlow = $("#cursorGlow");
 const profileName = $("#profileName");
 const volumeSlider = $("#volumeSlider");
 const volumeWarningIntro = $("#volumeWarningIntro");
+if (isMobile) {
+  const volumeControl = $("#volumeControlSection");
+
+  if (volumeControl) {
+    volumeControl.remove();
+  }
+
+  if (volumeWarningIntro) {
+    volumeWarningIntro.style.display = "block";
+  }
+}
 
 
 const pageTransition = $("#pageTransition");
