@@ -58,7 +58,7 @@ window.addEventListener("pageshow", () => {
   if(pageTransition) pageTransition.classList.remove("active");
 });
 
-const text = "click anywhere";
+const text = "click anywhere to enter";
 
 let index = 0;
 let entered = false;
