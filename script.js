@@ -576,11 +576,11 @@ function renderDiscordBadges(publicFlags) {
   const currentBadges = [
     [
       "Discord Nitro",
-      "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/svg/nitro.svg"
+      "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/png/nitro.png"
     ],
     [
       "Game Variety",
-      "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/svg/game_variety_adventurer.svg"
+      "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/png/game_variety_adventurer.png"
     ]
   ];
 
