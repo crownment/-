@@ -548,6 +548,41 @@ const dcModalUsername =
 const dcCopyToast =
   $("#dcCopyToast");
 
+
+const dcModalBadges = $("#dcModalBadges");
+
+const DISCORD_BADGE_DEFS = [
+  [1 << 0, "Discord Staff", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Staff/Staff.svg"],
+  [1 << 1, "Partnered Server Owner", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Partner/Partner.svg"],
+  [1 << 2, "HypeSquad Events", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad/Hypesquad.svg"],
+  [1 << 3, "Bug Hunter Level 1", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Bug_Hunter_Level_1/Bug_Hunter_Level_1.svg"],
+  [1 << 6, "HypeSquad Bravery", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad_Online_House_1/Hypesquad_Online_House_1.svg"],
+  [1 << 7, "HypeSquad Brilliance", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad_Online_House_2/Hypesquad_Online_House_2.svg"],
+  [1 << 8, "HypeSquad Balance", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad_Online_House_3/Hypesquad_Online_House_3.svg"],
+  [1 << 9, "Early Supporter", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Premium_Early_Supporter/Premium_Early_Supporter.svg"],
+  [1 << 14, "Bug Hunter Level 2", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Bug_Hunter_Level_2/Bug_Hunter_Level_2.svg"],
+  [1 << 17, "Early Verified Bot Developer", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Verified_Developer/Verified_Developer.svg"],
+  [1 << 18, "Certified Moderator", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Certified_Moderator/Certified_Moderator.svg"],
+  [1 << 22, "Active Developer", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Active_Developer/Active_Developer.svg"]
+];
+
+function renderDiscordBadges(publicFlags) {
+  if (!dcModalBadges) return;
+  const flags = Number(publicFlags) || 0;
+  dcModalBadges.replaceChildren();
+  DISCORD_BADGE_DEFS.forEach(([flag, name, icon]) => {
+    if ((flags & flag) !== 0) {
+      const img = document.createElement("img");
+      img.className = "dc-badge";
+      img.src = icon;
+      img.alt = "";
+      img.title = name;
+      img.loading = "lazy";
+      dcModalBadges.appendChild(img);
+    }
+  });
+}
+
 discordLinkBtn.addEventListener(
   "click",
   () => {
