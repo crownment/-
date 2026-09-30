@@ -571,16 +571,16 @@ function renderDiscordBadges(publicFlags) {
 
   dcModalBadges.replaceChildren();
 
-  // These are the two current profile badges shown on the Discord profile:
-  // Completed a Quest + Orbs Apprentice.
+  // Current profile badges shown on the user's Discord profile:
+  // Discord Nitro + Game Variety.
   const currentBadges = [
     [
-      "Completed a Quest",
-      "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/svg/complete_a_quest.svg"
+      "Discord Nitro",
+      "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/svg/nitro.svg"
     ],
     [
-      "Orbs Apprentice",
-      "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/svg/orbs_apprentice.svg"
+      "Game Variety",
+      "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/svg/game_variety_adventurer.svg"
     ]
   ];
 
