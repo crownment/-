@@ -568,8 +568,34 @@ const DISCORD_BADGE_DEFS = [
 
 function renderDiscordBadges(publicFlags) {
   if (!dcModalBadges) return;
-  const flags = Number(publicFlags) || 0;
+
   dcModalBadges.replaceChildren();
+
+  // These are the two current profile badges shown on the Discord profile:
+  // Completed a Quest + Orbs Apprentice.
+  const currentBadges = [
+    [
+      "Completed a Quest",
+      "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/svg/complete_a_quest.svg"
+    ],
+    [
+      "Orbs Apprentice",
+      "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/svg/orbs_apprentice.svg"
+    ]
+  ];
+
+  currentBadges.forEach(([name, icon]) => {
+    const img = document.createElement("img");
+    img.className = "dc-badge";
+    img.src = icon;
+    img.alt = "";
+    img.title = name;
+    img.loading = "lazy";
+    dcModalBadges.appendChild(img);
+  });
+
+  // Keep support for any legacy public flags too.
+  const flags = Number(publicFlags) || 0;
   DISCORD_BADGE_DEFS.forEach(([flag, name, icon]) => {
     if ((flags & flag) !== 0) {
       const img = document.createElement("img");
