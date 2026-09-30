@@ -889,6 +889,28 @@
       transform: translateZ(25px) scale(1.02);
     }
 
+    .dc-badges {
+      display:inline-flex;
+      align-items:center;
+      gap:4px;
+      flex-wrap:nowrap;
+      max-width:150px;
+      transform:translateZ(25px);
+    }
+    .dc-badge {
+      width:18px;
+      height:18px;
+      object-fit:contain;
+      display:block;
+      flex-shrink:0;
+      filter:drop-shadow(0 1px 3px rgba(0,0,0,.35));
+      cursor:help;
+    }
+    @media(max-width:500px){
+      .dc-badges{gap:3px;max-width:120px}
+      .dc-badge{width:17px;height:17px}
+    }
+
     .dc-modal-status-text,
     .tg-modal-status-text,
     .rbx-modal-status-text {
@@ -1430,6 +1452,7 @@
       <div class="dc-modal-username" id="dcModalUsername">
         Loading...
       </div>
+      <div class="dc-badges" id="dcModalBadges" aria-label="Discord profile badges"></div>
     </div>
 
     <div class="dc-modal-status-text" id="dcModalStatusText">
