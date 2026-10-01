@@ -52,6 +52,7 @@ function updateMobileOnlyIntroUI() {
 }
 
 updateMobileOnlyIntroUI();
+
 window.addEventListener(
   "resize",
   updateMobileOnlyIntroUI
@@ -77,6 +78,11 @@ window.addEventListener("pageshow", () => {
   }
 });
 
+
+/* =========================================================
+   INTRO / CLICK TO ENTER
+   ========================================================= */
+
 const text = "click anywhere to enter";
 
 let index = 0;
@@ -84,9 +90,8 @@ let entered = false;
 
 /*
  * IMPORTANT:
- * The user cannot enter the site until the
- * entire "click anywhere to enter" text
- * has finished typing.
+ * This stays false until every character of
+ * "click anywhere to enter" has been displayed.
  */
 let canEnter = false;
 
@@ -114,6 +119,9 @@ function startIntroSequence() {
 
           setTimeout(() => {
             typeWrap.classList.add("visible");
+
+            // Start typing only after the
+            // previous intro text has finished.
             typeText();
           }, 600);
         }, 1600);
@@ -127,24 +135,30 @@ function typeText() {
     return;
   }
 
-  if (index >= text.length) {
-    /*
-     * Only after every character has been
-     * displayed can the intro be clicked.
-     */
-    canEnter = true;
+  /*
+   * Keep typing until every character has
+   * actually been added to the element.
+   */
+  if (index < text.length) {
+    typing.textContent =
+      text.substring(0, index + 1);
+
+    index++;
+
+    setTimeout(
+      typeText,
+      65 + Math.random() * 55
+    );
+
     return;
   }
 
-  typing.textContent =
-    text.substring(0, index + 1);
-
-  index++;
-
-  setTimeout(
-    typeText,
-    65 + Math.random() * 55
-  );
+  /*
+   * The COMPLETE text is now visible.
+   * Only from this point onward can the
+   * user enter the site.
+   */
+  canEnter = true;
 }
 
 function typeProfileName(name, done) {
@@ -201,11 +215,23 @@ function revealButtons() {
 }
 
 function enterSite() {
+  /*
+   * Hard safety check.
+   *
+   * Even if enterSite() gets called from somewhere else,
+   * it will refuse to enter until typing has completed.
+   */
   if (entered || !canEnter) {
     return;
   }
 
   entered = true;
+
+  /*
+   * Disable intro entry immediately after
+   * the first valid interaction.
+   */
+  canEnter = false;
 
   if (intro) {
     intro.classList.add("hidden");
@@ -249,26 +275,28 @@ function enterSite() {
 
 function handleIntroEnter(event) {
   /*
-   * Prevent entering until the typing
-   * animation has completely finished.
+   * Before the typing animation is complete,
+   * EVERY pointer interaction is ignored.
    */
-  if (entered || !canEnter) {
-    if (event) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+  if (!canEnter || entered) {
+    event.preventDefault();
+    event.stopPropagation();
 
     return;
   }
 
-  if (event) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
+  event.preventDefault();
+  event.stopPropagation();
 
   enterSite();
 }
 
+/*
+ * Use one pointer event instead of separately
+ * listening for pointerdown + click + touchstart.
+ *
+ * This prevents duplicate entry events on phones.
+ */
 if (intro) {
   intro.addEventListener(
     "pointerdown",
@@ -277,20 +305,12 @@ if (intro) {
       passive: false
     }
   );
-
-  intro.addEventListener(
-    "click",
-    handleIntroEnter
-  );
-
-  intro.addEventListener(
-    "touchstart",
-    handleIntroEnter,
-    {
-      passive: false
-    }
-  );
 }
+
+
+/* =========================================================
+   CUSTOM CURSOR
+   ========================================================= */
 
 let mouseX =
   window.innerWidth / 2;
@@ -392,6 +412,11 @@ $$(
   );
 });
 
+
+/* =========================================================
+   VOLUME
+   ========================================================= */
+
 if (volumeSlider && video) {
   volumeSlider.addEventListener(
     "input",
@@ -401,6 +426,11 @@ if (volumeSlider && video) {
     }
   );
 }
+
+
+/* =========================================================
+   REDIRECT CONFIRMATION
+   ========================================================= */
 
 const confirmOverlay =
   $("#confirmOverlay");
@@ -666,6 +696,11 @@ if (confirmOverlay) {
   );
 }
 
+
+/* =========================================================
+   COPY USERNAME
+   ========================================================= */
+
 function copyUsername(
   text,
   toast
@@ -698,6 +733,11 @@ function copyUsername(
     })
     .catch(() => {});
 }
+
+
+/* =========================================================
+   DISCORD
+   ========================================================= */
 
 const DISCORD_ID =
   "1547303503213367297";
@@ -862,6 +902,7 @@ if (
     "click",
     () => {
       fetchDiscordStatus();
+
       dcModal.classList.add(
         "visible"
       );
@@ -1122,6 +1163,11 @@ async function fetchDiscordStatus() {
   } catch (_) {}
 }
 
+
+/* =========================================================
+   TELEGRAM
+   ========================================================= */
+
 const telegramLinkBtn =
   $("#telegramLinkBtn");
 
@@ -1221,6 +1267,11 @@ if (tgModalUsername) {
     }
   );
 }
+
+
+/* =========================================================
+   ROBLOX
+   ========================================================= */
 
 const ROBLOX_USER_ID =
   "7626940077";
@@ -1417,6 +1468,11 @@ if (rbxAddBtn) {
   );
 }
 
+
+/* =========================================================
+   CUSTOM CONTEXT MENU
+   ========================================================= */
+
 const customCtxMenu =
   $("#customCtxMenu");
 
@@ -1511,6 +1567,11 @@ if (ctxReloadPage) {
     }
   );
 }
+
+
+/* =========================================================
+   CARD TILT
+   ========================================================= */
 
 function setupTilt(
   selector,
@@ -1680,6 +1741,11 @@ setupTilt(
   14,
   1.02
 );
+
+
+/* =========================================================
+   PROFILE PICTURE VIEWER
+   ========================================================= */
 
 const pfpViewer =
   document.getElementById(
@@ -1930,5 +1996,10 @@ if (pfpViewerImage) {
     }
   );
 }
+
+
+/* =========================================================
+   START
+   ========================================================= */
 
 startIntroSequence();
