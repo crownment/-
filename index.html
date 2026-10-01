@@ -226,13 +226,15 @@
 
     .enter-text {
       display: block;
-      width: max-content;
-      max-width: calc(100vw - 40px);
+      width: auto;
+      max-width: 90vw;
       font-size: 17px;
       letter-spacing: .8px;
       color: rgba(255,255,255,.9);
       white-space: nowrap;
       overflow: visible;
+      word-break: normal;
+      overflow-wrap: normal;
       opacity: 0;
       filter: blur(7px);
       transform: translateY(8px) scale(.98);
@@ -256,8 +258,17 @@
       display: none;
     }
 
+    @media (max-width: 768px) {
+      .volume-warning-intro {
+        display: block;
+      }
+    }
+
     .typing {
       display: inline-block;
+      white-space: nowrap;
+      word-break: normal;
+      overflow-wrap: normal;
     }
 
     .typing::after {
