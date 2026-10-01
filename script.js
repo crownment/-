@@ -33,18 +33,25 @@ const cursorGlow = $("#cursorGlow");
 const profileName = $("#profileName");
 const volumeSlider = $("#volumeSlider");
 const volumeWarningIntro = $("#volumeWarningIntro");
-if (isMobile) {
+
+function updateMobileOnlyIntroUI() {
+  const mobile =
+    /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+    window.matchMedia("(max-width: 768px)").matches;
+
   const volumeControl = $("#volumeControlSection");
 
   if (volumeControl) {
-    volumeControl.remove();
+    volumeControl.style.display = mobile ? "none" : "";
   }
 
   if (volumeWarningIntro) {
-    volumeWarningIntro.style.display = "block";
+    volumeWarningIntro.style.display = mobile ? "block" : "none";
   }
 }
 
+updateMobileOnlyIntroUI();
+window.addEventListener("resize", updateMobileOnlyIntroUI);
 
 const pageTransition = $("#pageTransition");
 
@@ -186,17 +193,23 @@ async function enterSite() {
 }
 
 function handleIntroEnter(event) {
-  if (entered || !canClick) {
+  if (entered) {
     return;
   }
 
-  event.preventDefault();
-  event.stopPropagation();
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   enterSite();
 }
 
+// The whole intro is the entry target. It works before, during, or after
+// the typing animation and accepts mouse, pointer, and touch input.
+intro.addEventListener("pointerup", handleIntroEnter, { passive: false });
 intro.addEventListener("click", handleIntroEnter);
-typeWrap.addEventListener("click", handleIntroEnter);
+intro.addEventListener("touchend", handleIntroEnter, { passive: false });
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
