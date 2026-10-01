@@ -46,12 +46,16 @@ function updateMobileOnlyIntroUI() {
   }
 
   if (volumeWarningIntro) {
-    volumeWarningIntro.style.display = mobile ? "block" : "none";
+    volumeWarningIntro.style.display =
+      mobile ? "block" : "none";
   }
 }
 
 updateMobileOnlyIntroUI();
-window.addEventListener("resize", updateMobileOnlyIntroUI);
+window.addEventListener(
+  "resize",
+  updateMobileOnlyIntroUI
+);
 
 const pageTransition = $("#pageTransition");
 
@@ -78,8 +82,21 @@ const text = "click anywhere to enter";
 let index = 0;
 let entered = false;
 
+/*
+ * IMPORTANT:
+ * The user cannot enter the site until the
+ * entire "click anywhere to enter" text
+ * has finished typing.
+ */
+let canEnter = false;
+
 function startIntroSequence() {
-  if (!fadeText1 || !fadeText2 || !typeWrap || !typing) {
+  if (
+    !fadeText1 ||
+    !fadeText2 ||
+    !typeWrap ||
+    !typing
+  ) {
     return;
   }
 
@@ -111,10 +128,17 @@ function typeText() {
   }
 
   if (index >= text.length) {
+    /*
+     * Only after every character has been
+     * displayed can the intro be clicked.
+     */
+    canEnter = true;
     return;
   }
 
-  typing.textContent = text.substring(0, index + 1);
+  typing.textContent =
+    text.substring(0, index + 1);
+
   index++;
 
   setTimeout(
@@ -128,16 +152,20 @@ function typeProfileName(name, done) {
     if (done) {
       done();
     }
+
     return;
   }
 
   let i = 0;
 
-  profileName.classList.add("typing-active");
+  profileName.classList.add(
+    "typing-active"
+  );
 
   function step() {
     if (i <= name.length) {
-      profileName.textContent = name.substring(0, i++);
+      profileName.textContent =
+        name.substring(0, i++);
 
       setTimeout(
         step,
@@ -147,7 +175,9 @@ function typeProfileName(name, done) {
       return;
     }
 
-    profileName.classList.remove("typing-active");
+    profileName.classList.remove(
+      "typing-active"
+    );
 
     if (done) {
       done();
@@ -163,13 +193,15 @@ function revealButtons() {
 
   items.forEach((item, i) => {
     setTimeout(() => {
-      item.classList.add("item-visible");
+      item.classList.add(
+        "item-visible"
+      );
     }, i * 110);
   });
 }
 
 function enterSite() {
-  if (entered) {
+  if (entered || !canEnter) {
     return;
   }
 
@@ -187,7 +219,8 @@ function enterSite() {
         ? Number(volumeSlider.value)
         : 1;
 
-      const playPromise = video.play();
+      const playPromise =
+        video.play();
 
       if (
         playPromise &&
@@ -206,13 +239,25 @@ function enterSite() {
     card.classList.add("visible");
 
     setTimeout(() => {
-      typeProfileName("risk", revealButtons);
+      typeProfileName(
+        "risk",
+        revealButtons
+      );
     }, 250);
   }, 150);
 }
 
 function handleIntroEnter(event) {
-  if (entered) {
+  /*
+   * Prevent entering until the typing
+   * animation has completely finished.
+   */
+  if (entered || !canEnter) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
     return;
   }
 
@@ -247,14 +292,23 @@ if (intro) {
   );
 }
 
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
+let mouseX =
+  window.innerWidth / 2;
 
-let cursorX = window.innerWidth / 2;
-let cursorY = window.innerHeight / 2;
+let mouseY =
+  window.innerHeight / 2;
 
-let glowX = window.innerWidth / 2;
-let glowY = window.innerHeight / 2;
+let cursorX =
+  window.innerWidth / 2;
+
+let cursorY =
+  window.innerHeight / 2;
+
+let glowX =
+  window.innerWidth / 2;
+
+let glowY =
+  window.innerHeight / 2;
 
 document.addEventListener(
   "mousemove",
@@ -439,13 +493,18 @@ function triggerRedirectPrompt(
   pendingIcon = icon || "";
 
   confirmBox.style.opacity = "1";
-  confirmBox.style.pointerEvents = "auto";
+  confirmBox.style.pointerEvents =
+    "auto";
 
   if (redirectWrapper) {
-    redirectWrapper.classList.remove("visible");
+    redirectWrapper.classList.remove(
+      "visible"
+    );
   }
 
-  confirmOverlay.classList.add("visible");
+  confirmOverlay.classList.add(
+    "visible"
+  );
 }
 
 $$("a.link").forEach(link => {
@@ -461,8 +520,12 @@ $$("a.link").forEach(link => {
 
       triggerRedirectPrompt(
         link.href,
-        link.getAttribute("data-name"),
-        link.getAttribute("data-icon")
+        link.getAttribute(
+          "data-name"
+        ),
+        link.getAttribute(
+          "data-icon"
+        )
       );
     }
   );
@@ -481,22 +544,28 @@ function resetConfirmationState() {
   currentCountdown = 3;
 
   if (redirectWrapper) {
-    redirectWrapper.classList.remove("visible");
+    redirectWrapper.classList.remove(
+      "visible"
+    );
   }
 
   if (confirmOverlay) {
-    confirmOverlay.classList.remove("visible");
+    confirmOverlay.classList.remove(
+      "visible"
+    );
   }
 
   if (redirectIcon) {
     redirectIcon.src = "";
-    redirectIcon.style.display = "none";
+    redirectIcon.style.display =
+      "none";
   }
 
   if (confirmBox) {
     setTimeout(() => {
       confirmBox.style.opacity = "1";
-      confirmBox.style.pointerEvents = "auto";
+      confirmBox.style.pointerEvents =
+        "auto";
     }, 200);
   }
 }
@@ -534,7 +603,8 @@ if (continueButton) {
 
       if (confirmBox) {
         confirmBox.style.opacity = "0";
-        confirmBox.style.pointerEvents = "none";
+        confirmBox.style.pointerEvents =
+          "none";
       }
 
       currentCountdown = 3;
@@ -555,7 +625,9 @@ if (continueButton) {
       }
 
       if (redirectWrapper) {
-        redirectWrapper.classList.add("visible");
+        redirectWrapper.classList.add(
+          "visible"
+        );
       }
 
       countdownInterval =
@@ -609,15 +681,22 @@ function copyUsername(
     return;
   }
 
-  navigator.clipboard.writeText(
-    text.replace(/^@/, "")
-  ).then(() => {
-    toast.classList.add("show");
+  navigator.clipboard
+    .writeText(
+      text.replace(/^@/, "")
+    )
+    .then(() => {
+      toast.classList.add(
+        "show"
+      );
 
-    setTimeout(() => {
-      toast.classList.remove("show");
-    }, 1800);
-  }).catch(() => {});
+      setTimeout(() => {
+        toast.classList.remove(
+          "show"
+        );
+      }, 1800);
+    })
+    .catch(() => {});
 }
 
 const DISCORD_ID =
@@ -645,21 +724,71 @@ const dcModalBadges =
   $("#dcModalBadges");
 
 const DISCORD_BADGE_DEFS = [
-  [1 << 0, "Discord Staff", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Staff/Staff.svg"],
-  [1 << 1, "Partnered Server Owner", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Partner/Partner.svg"],
-  [1 << 2, "HypeSquad Events", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad/Hypesquad.svg"],
-  [1 << 3, "Bug Hunter Level 1", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Bug_Hunter_Level_1/Bug_Hunter_Level_1.svg"],
-  [1 << 6, "HypeSquad Bravery", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad_Online_House_1/Hypesquad_Online_House_1.svg"],
-  [1 << 7, "HypeSquad Brilliance", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad_Online_House_2/Hypesquad_Online_House_2.svg"],
-  [1 << 8, "HypeSquad Balance", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad_Online_House_3/Hypesquad_Online_House_3.svg"],
-  [1 << 9, "Early Supporter", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Premium_Early_Supporter/Premium_Early_Supporter.svg"],
-  [1 << 14, "Bug Hunter Level 2", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Bug_Hunter_Level_2/Bug_Hunter_Level_2.svg"],
-  [1 << 17, "Early Verified Bot Developer", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Verified_Developer/Verified_Developer.svg"],
-  [1 << 18, "Certified Moderator", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Certified_Moderator/Certified_Moderator.svg"],
-  [1 << 22, "Active Developer", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Active_Developer/Active_Developer.svg"]
+  [
+    1 << 0,
+    "Discord Staff",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Staff/Staff.svg"
+  ],
+  [
+    1 << 1,
+    "Partnered Server Owner",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Partner/Partner.svg"
+  ],
+  [
+    1 << 2,
+    "HypeSquad Events",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad/Hypesquad.svg"
+  ],
+  [
+    1 << 3,
+    "Bug Hunter Level 1",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Bug_Hunter_Level_1/Bug_Hunter_Level_1.svg"
+  ],
+  [
+    1 << 6,
+    "HypeSquad Bravery",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad_Online_House_1/Hypesquad_Online_House_1.svg"
+  ],
+  [
+    1 << 7,
+    "HypeSquad Brilliance",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad_Online_House_2/Hypesquad_Online_House_2.svg"
+  ],
+  [
+    1 << 8,
+    "HypeSquad Balance",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Hypesquad_Online_House_3/Hypesquad_Online_House_3.svg"
+  ],
+  [
+    1 << 9,
+    "Early Supporter",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Premium_Early_Supporter/Premium_Early_Supporter.svg"
+  ],
+  [
+    1 << 14,
+    "Bug Hunter Level 2",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Bug_Hunter_Level_2/Bug_Hunter_Level_2.svg"
+  ],
+  [
+    1 << 17,
+    "Early Verified Bot Developer",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Verified_Developer/Verified_Developer.svg"
+  ],
+  [
+    1 << 18,
+    "Certified Moderator",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Certified_Moderator/Certified_Moderator.svg"
+  ],
+  [
+    1 << 22,
+    "Active Developer",
+    "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Active_Developer/Active_Developer.svg"
+  ]
 ];
 
-function renderDiscordBadges(publicFlags) {
+function renderDiscordBadges(
+  publicFlags
+) {
   if (!dcModalBadges) {
     return;
   }
@@ -677,18 +806,26 @@ function renderDiscordBadges(publicFlags) {
     ]
   ];
 
-  currentBadges.forEach(([name, icon]) => {
-    const img =
-      document.createElement("img");
+  currentBadges.forEach(
+    ([name, icon]) => {
+      const img =
+        document.createElement(
+          "img"
+        );
 
-    img.className = "dc-badge";
-    img.src = icon;
-    img.alt = "";
-    img.title = name;
-    img.loading = "lazy";
+      img.className =
+        "dc-badge";
 
-    dcModalBadges.appendChild(img);
-  });
+      img.src = icon;
+      img.alt = "";
+      img.title = name;
+      img.loading = "lazy";
+
+      dcModalBadges.appendChild(
+        img
+      );
+    }
+  );
 
   const flags =
     Number(publicFlags) || 0;
@@ -697,35 +834,51 @@ function renderDiscordBadges(publicFlags) {
     ([flag, name, icon]) => {
       if ((flags & flag) !== 0) {
         const img =
-          document.createElement("img");
+          document.createElement(
+            "img"
+          );
 
-        img.className = "dc-badge";
+        img.className =
+          "dc-badge";
+
         img.src = icon;
         img.alt = "";
         img.title = name;
         img.loading = "lazy";
 
-        dcModalBadges.appendChild(img);
+        dcModalBadges.appendChild(
+          img
+        );
       }
     }
   );
 }
 
-if (discordLinkBtn && dcModal) {
+if (
+  discordLinkBtn &&
+  dcModal
+) {
   discordLinkBtn.addEventListener(
     "click",
     () => {
       fetchDiscordStatus();
-      dcModal.classList.add("visible");
+      dcModal.classList.add(
+        "visible"
+      );
     }
   );
 }
 
-if (dcModalClose && dcModal) {
+if (
+  dcModalClose &&
+  dcModal
+) {
   dcModalClose.addEventListener(
     "click",
     () => {
-      dcModal.classList.remove("visible");
+      dcModal.classList.remove(
+        "visible"
+      );
     }
   );
 }
@@ -734,8 +887,12 @@ if (dcModal) {
   dcModal.addEventListener(
     "click",
     event => {
-      if (event.target === dcModal) {
-        dcModal.classList.remove("visible");
+      if (
+        event.target === dcModal
+      ) {
+        dcModal.classList.remove(
+          "visible"
+        );
       }
     }
   );
@@ -746,14 +903,22 @@ if (dcAddBtn) {
     "click",
     () => {
       if (dcModal) {
-        dcModal.classList.remove("visible");
+        dcModal.classList.remove(
+          "visible"
+        );
       }
 
       if (discordLinkBtn) {
         triggerRedirectPrompt(
-          discordLinkBtn.getAttribute("data-href"),
-          discordLinkBtn.getAttribute("data-name"),
-          discordLinkBtn.getAttribute("data-icon")
+          discordLinkBtn.getAttribute(
+            "data-href"
+          ),
+          discordLinkBtn.getAttribute(
+            "data-name"
+          ),
+          discordLinkBtn.getAttribute(
+            "data-icon"
+          )
         );
       }
     }
@@ -845,7 +1010,9 @@ async function fetchDiscordStatus() {
       data.spotify
     ) {
       if (actIcon) {
-        actIcon.style.display = "block";
+        actIcon.style.display =
+          "block";
+
         actIcon.src =
           data.spotify.album_art_url;
       }
@@ -856,7 +1023,9 @@ async function fetchDiscordStatus() {
       }
 
       if (actDesc) {
-        actDesc.style.display = "block";
+        actDesc.style.display =
+          "block";
+
         actDesc.textContent =
           `by ${data.spotify.artist}`;
       }
@@ -874,20 +1043,29 @@ async function fetchDiscordStatus() {
         ) ||
         data.activities[0];
 
-      if (act && act.name) {
+      if (
+        act &&
+        act.name
+      ) {
         if (actName) {
           actName.textContent =
             act.name;
         }
 
         if (actDesc) {
-          if (act.details || act.state) {
-            actDesc.style.display = "block";
+          if (
+            act.details ||
+            act.state
+          ) {
+            actDesc.style.display =
+              "block";
+
             actDesc.textContent =
               act.details ||
               act.state;
           } else {
-            actDesc.style.display = "none";
+            actDesc.style.display =
+              "none";
           }
         }
 
@@ -896,7 +1074,8 @@ async function fetchDiscordStatus() {
           act.assets &&
           act.assets.large_image
         ) {
-          actIcon.style.display = "block";
+          actIcon.style.display =
+            "block";
 
           if (
             act.assets.large_image.startsWith(
@@ -904,15 +1083,22 @@ async function fetchDiscordStatus() {
             )
           ) {
             actIcon.src =
-              `https://i.scdn.co/image/${act.assets.large_image.replace("spotify:", "")}`;
-          } else if (act.application_id) {
+              `https://i.scdn.co/image/${act.assets.large_image.replace(
+                "spotify:",
+                ""
+              )}`;
+          } else if (
+            act.application_id
+          ) {
             actIcon.src =
               `https://cdn.discordapp.com/app-assets/${act.application_id}/${act.assets.large_image}.png`;
           } else {
-            actIcon.style.display = "none";
+            actIcon.style.display =
+              "none";
           }
         } else if (actIcon) {
-          actIcon.style.display = "none";
+          actIcon.style.display =
+            "none";
         }
 
         return;
@@ -920,7 +1106,8 @@ async function fetchDiscordStatus() {
     }
 
     if (actIcon) {
-      actIcon.style.display = "none";
+      actIcon.style.display =
+        "none";
     }
 
     if (actName) {
@@ -929,7 +1116,8 @@ async function fetchDiscordStatus() {
     }
 
     if (actDesc) {
-      actDesc.style.display = "none";
+      actDesc.style.display =
+        "none";
     }
   } catch (_) {}
 }
@@ -952,20 +1140,30 @@ const tgModalUsername =
 const tgCopyToast =
   $("#tgCopyToast");
 
-if (telegramLinkBtn && tgModal) {
+if (
+  telegramLinkBtn &&
+  tgModal
+) {
   telegramLinkBtn.addEventListener(
     "click",
     () => {
-      tgModal.classList.add("visible");
+      tgModal.classList.add(
+        "visible"
+      );
     }
   );
 }
 
-if (tgModalClose && tgModal) {
+if (
+  tgModalClose &&
+  tgModal
+) {
   tgModalClose.addEventListener(
     "click",
     () => {
-      tgModal.classList.remove("visible");
+      tgModal.classList.remove(
+        "visible"
+      );
     }
   );
 }
@@ -974,8 +1172,12 @@ if (tgModal) {
   tgModal.addEventListener(
     "click",
     event => {
-      if (event.target === tgModal) {
-        tgModal.classList.remove("visible");
+      if (
+        event.target === tgModal
+      ) {
+        tgModal.classList.remove(
+          "visible"
+        );
       }
     }
   );
@@ -986,14 +1188,22 @@ if (tgAddBtn) {
     "click",
     () => {
       if (tgModal) {
-        tgModal.classList.remove("visible");
+        tgModal.classList.remove(
+          "visible"
+        );
       }
 
       if (telegramLinkBtn) {
         triggerRedirectPrompt(
-          telegramLinkBtn.getAttribute("data-href"),
-          telegramLinkBtn.getAttribute("data-name"),
-          telegramLinkBtn.getAttribute("data-icon")
+          telegramLinkBtn.getAttribute(
+            "data-href"
+          ),
+          telegramLinkBtn.getAttribute(
+            "data-name"
+          ),
+          telegramLinkBtn.getAttribute(
+            "data-icon"
+          )
         );
       }
     }
@@ -1054,9 +1264,14 @@ if (
   isMobile &&
   rbxModalClose
 ) {
-  rbxModalClose.style.top = "10px";
-  rbxModalClose.style.right = "10px";
-  rbxModalClose.style.zIndex = "20";
+  rbxModalClose.style.top =
+    "10px";
+
+  rbxModalClose.style.right =
+    "10px";
+
+  rbxModalClose.style.zIndex =
+    "20";
 }
 
 async function loadRobloxData() {
@@ -1070,8 +1285,11 @@ async function loadRobloxData() {
     return;
   }
 
-  rbxFollowersCount.textContent = "…";
-  rbxFriendsCount.textContent = "…";
+  rbxFollowersCount.textContent =
+    "…";
+
+  rbxFriendsCount.textContent =
+    "…";
 
   try {
     const response =
@@ -1107,15 +1325,16 @@ async function loadRobloxData() {
         : "@80vcv";
 
     rbxFollowersCount.textContent =
-      typeof data.followers === "number"
+      typeof data.followers ===
+      "number"
         ? data.followers.toLocaleString()
         : "N/A";
 
     rbxFriendsCount.textContent =
-      typeof data.friends === "number"
+      typeof data.friends ===
+      "number"
         ? data.friends.toLocaleString()
         : "N/A";
-
   } catch (error) {
     console.error(
       "Roblox Worker error:",
@@ -1137,7 +1356,10 @@ if (
   robloxLinkBtn.addEventListener(
     "click",
     () => {
-      rbxModal.classList.add("visible");
+      rbxModal.classList.add(
+        "visible"
+      );
+
       loadRobloxData();
     }
   );
@@ -1150,7 +1372,9 @@ if (
   rbxModalClose.addEventListener(
     "click",
     () => {
-      rbxModal.classList.remove("visible");
+      rbxModal.classList.remove(
+        "visible"
+      );
     }
   );
 }
@@ -1159,8 +1383,12 @@ if (rbxModal) {
   rbxModal.addEventListener(
     "click",
     event => {
-      if (event.target === rbxModal) {
-        rbxModal.classList.remove("visible");
+      if (
+        event.target === rbxModal
+      ) {
+        rbxModal.classList.remove(
+          "visible"
+        );
       }
     }
   );
@@ -1171,14 +1399,18 @@ if (rbxAddBtn) {
     "click",
     () => {
       if (rbxModal) {
-        rbxModal.classList.remove("visible");
+        rbxModal.classList.remove(
+          "visible"
+        );
       }
 
       triggerRedirectPrompt(
         ROBLOX_PROFILE_URL,
         "Roblox",
         robloxLinkBtn
-          ? robloxLinkBtn.getAttribute("data-icon")
+          ? robloxLinkBtn.getAttribute(
+              "data-icon"
+            )
           : ""
       );
     }
@@ -1228,7 +1460,9 @@ if (customCtxMenu) {
             : "Pause Audio";
       }
 
-      customCtxMenu.classList.add("visible");
+      customCtxMenu.classList.add(
+        "visible"
+      );
     }
   );
 
@@ -1291,7 +1525,9 @@ function setupTilt(
   }
 
   const glare =
-    el.querySelector(".card-glare");
+    el.querySelector(
+      ".card-glare"
+    );
 
   let targetX = 0;
   let targetY = 0;
@@ -1337,11 +1573,13 @@ function setupTilt(
         x * maxTilt;
 
       const insideX =
-        (event.clientX - rect.left) /
+        (event.clientX -
+          rect.left) /
         rect.width;
 
       const insideY =
-        (event.clientY - rect.top) /
+        (event.clientY -
+          rect.top) /
         rect.height;
 
       if (
@@ -1353,16 +1591,22 @@ function setupTilt(
         hovered = true;
 
         if (glare) {
-          glare.style.opacity = "1";
+          glare.style.opacity =
+            "1";
 
           glare.style.background =
-            `radial-gradient(circle at ${insideX * 100}% ${insideY * 100}%, rgba(255, 255, 255, 0.28), transparent 60%)`;
+            `radial-gradient(circle at ${
+              insideX * 100
+            }% ${
+              insideY * 100
+            }%, rgba(255, 255, 255, 0.28), transparent 60%)`;
         }
       } else {
         hovered = false;
 
         if (glare) {
-          glare.style.opacity = "0";
+          glare.style.opacity =
+            "0";
         }
       }
     }
@@ -1376,17 +1620,20 @@ function setupTilt(
       hovered = false;
 
       if (glare) {
-        glare.style.opacity = "0";
+        glare.style.opacity =
+          "0";
       }
     }
   );
 
   function update() {
     currentX +=
-      (targetX - currentX) * 0.12;
+      (targetX - currentX) *
+      0.12;
 
     currentY +=
-      (targetY - currentY) * 0.12;
+      (targetY - currentY) *
+      0.12;
 
     if (entered) {
       const s =
@@ -1395,10 +1642,16 @@ function setupTilt(
           : 1;
 
       el.style.transform =
-        `rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) scale3d(${s}, ${s}, 1)`;
+        `rotateX(${currentX.toFixed(
+          2
+        )}deg) rotateY(${currentY.toFixed(
+          2
+        )}deg) scale3d(${s}, ${s}, 1)`;
     }
 
-    requestAnimationFrame(update);
+    requestAnimationFrame(
+      update
+    );
   }
 
   update();
@@ -1474,7 +1727,10 @@ function openPfpViewer(img) {
 }
 
 function closePfpViewer() {
-  if (!pfpViewer || !pfpViewerImage) {
+  if (
+    !pfpViewer ||
+    !pfpViewerImage
+  ) {
     return;
   }
 
@@ -1492,14 +1748,18 @@ function closePfpViewer() {
   "rbxAvatarWrap"
 ].forEach(id => {
   const el =
-    document.getElementById(id);
+    document.getElementById(
+      id
+    );
 
   if (el) {
     el.addEventListener(
       "click",
       event => {
         const img =
-          el.querySelector("img");
+          el.querySelector(
+            "img"
+          );
 
         if (img) {
           event.stopPropagation();
@@ -1522,7 +1782,9 @@ if (pfpViewer) {
   pfpViewer.addEventListener(
     "click",
     event => {
-      if (event.target === pfpViewer) {
+      if (
+        event.target === pfpViewer
+      ) {
         closePfpViewer();
       }
     }
@@ -1660,7 +1922,9 @@ if (pfpViewerImage) {
   pfpViewerImage.addEventListener(
     "touchend",
     event => {
-      if (event.touches.length < 2) {
+      if (
+        event.touches.length < 2
+      ) {
         pfpStartDistance = 0;
       }
     }
