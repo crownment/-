@@ -158,44 +158,40 @@ function revealButtons() {
   });
 }
 
-async function enterSite() {
-  if (entered) {
-    return;
-  }
+function enterSite() {
+  if (entered) return;
 
   entered = true;
 
-  try {
-    video.muted = false;
-
-    if (volumeSlider) {
-      video.volume =
-        Number(volumeSlider.value);
-    } else {
-      video.volume = 1;
-    }
-
-    await video.play();
-  } catch (_) {}
-
+  // Hide the intro immediately. Do not wait for video.play(), because
+  // an unsupported/slow video must never block the entry transition.
   intro.classList.add("hidden");
+
+  try {
+    if (video) {
+      video.muted = false;
+      video.volume = volumeSlider
+        ? Number(volumeSlider.value)
+        : 1;
+
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {});
+      }
+    }
+  } catch (_) {}
 
   setTimeout(() => {
     card.classList.add("visible");
 
     setTimeout(() => {
-      typeProfileName(
-        "risk",
-        revealButtons
-      );
+      typeProfileName("risk", revealButtons);
     }, 250);
   }, 150);
 }
 
 function handleIntroEnter(event) {
-  if (entered) {
-    return;
-  }
+  if (entered) return;
 
   if (event) {
     event.preventDefault();
@@ -205,11 +201,9 @@ function handleIntroEnter(event) {
   enterSite();
 }
 
-// The whole intro is the entry target. It works before, during, or after
-// the typing animation and accepts mouse, pointer, and touch input.
-intro.addEventListener("pointerup", handleIntroEnter, { passive: false });
-intro.addEventListener("click", handleIntroEnter);
-intro.addEventListener("touchend", handleIntroEnter, { passive: false });
+// Use pointerdown as the single entry event. It fires reliably for both
+// mouse and touch and does not depend on the typing animation finishing.
+intro.addEventListener("pointerdown", handleIntroEnter, { passive: false });
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
