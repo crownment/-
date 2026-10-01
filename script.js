@@ -185,10 +185,18 @@ async function enterSite() {
   }, 150);
 }
 
-document.addEventListener(
-  "click",
-  enterSite
-);
+function handleIntroEnter(event) {
+  if (entered || !canClick) {
+    return;
+  }
+
+  event.preventDefault();
+  event.stopPropagation();
+  enterSite();
+}
+
+intro.addEventListener("click", handleIntroEnter);
+typeWrap.addEventListener("click", handleIntroEnter);
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
