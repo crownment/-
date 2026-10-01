@@ -156,6 +156,8 @@
       position: fixed;
       inset: 0;
       z-index: 10000;
+      pointer-events: auto;
+      cursor: none !important;
       display: grid;
       place-items: center;
       background: rgba(0,0,0,.15);
@@ -223,10 +225,14 @@
     }
 
     .enter-text {
+      display: block;
+      width: max-content;
+      max-width: calc(100vw - 40px);
       font-size: 17px;
       letter-spacing: .8px;
       color: rgba(255,255,255,.9);
       white-space: nowrap;
+      overflow: visible;
       opacity: 0;
       filter: blur(7px);
       transform: translateY(8px) scale(.98);
