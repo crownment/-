@@ -55,23 +55,34 @@ window.addEventListener("resize", updateMobileOnlyIntroUI);
 
 const pageTransition = $("#pageTransition");
 
-function runPageTransition(){
-  if(!pageTransition) return Promise.resolve();
+function runPageTransition() {
+  if (!pageTransition) {
+    return Promise.resolve();
+  }
+
   pageTransition.classList.add("active");
-  return new Promise(resolve => setTimeout(resolve, 430));
+
+  return new Promise(resolve => {
+    setTimeout(resolve, 430);
+  });
 }
 
 window.addEventListener("pageshow", () => {
-  if(pageTransition) pageTransition.classList.remove("active");
+  if (pageTransition) {
+    pageTransition.classList.remove("active");
+  }
 });
 
 const text = "click anywhere to enter";
 
 let index = 0;
 let entered = false;
-let canClick = false;
 
 function startIntroSequence() {
+  if (!fadeText1 || !fadeText2 || !typeWrap || !typing) {
+    return;
+  }
+
   setTimeout(() => {
     fadeText1.classList.add("active");
 
@@ -94,17 +105,16 @@ function startIntroSequence() {
   }, 400);
 }
 
-startIntroSequence();
-
 function typeText() {
-  if (index >= text.length) {
-    canClick = true;
+  if (!typing) {
     return;
   }
 
-  typing.textContent =
-    text.substring(0, index + 1);
+  if (index >= text.length) {
+    return;
+  }
 
+  typing.textContent = text.substring(0, index + 1);
   index++;
 
   setTimeout(
@@ -114,16 +124,20 @@ function typeText() {
 }
 
 function typeProfileName(name, done) {
+  if (!profileName) {
+    if (done) {
+      done();
+    }
+    return;
+  }
+
   let i = 0;
 
-  profileName.classList.add(
-    "typing-active"
-  );
+  profileName.classList.add("typing-active");
 
   function step() {
     if (i <= name.length) {
-      profileName.textContent =
-        name.substring(0, i++);
+      profileName.textContent = name.substring(0, i++);
 
       setTimeout(
         step,
@@ -133,9 +147,7 @@ function typeProfileName(name, done) {
       return;
     }
 
-    profileName.classList.remove(
-      "typing-active"
-    );
+    profileName.classList.remove("typing-active");
 
     if (done) {
       done();
@@ -151,37 +163,46 @@ function revealButtons() {
 
   items.forEach((item, i) => {
     setTimeout(() => {
-      item.classList.add(
-        "item-visible"
-      );
+      item.classList.add("item-visible");
     }, i * 110);
   });
 }
 
 function enterSite() {
-  if (entered) return;
+  if (entered) {
+    return;
+  }
 
   entered = true;
 
-  // Hide the intro immediately. Do not wait for video.play(), because
-  // an unsupported/slow video must never block the entry transition.
-  intro.classList.add("hidden");
+  if (intro) {
+    intro.classList.add("hidden");
+  }
 
-  try {
-    if (video) {
+  if (video) {
+    try {
       video.muted = false;
+
       video.volume = volumeSlider
         ? Number(volumeSlider.value)
         : 1;
 
       const playPromise = video.play();
-      if (playPromise && typeof playPromise.catch === "function") {
+
+      if (
+        playPromise &&
+        typeof playPromise.catch === "function"
+      ) {
         playPromise.catch(() => {});
       }
-    }
-  } catch (_) {}
+    } catch (_) {}
+  }
 
   setTimeout(() => {
+    if (!card) {
+      return;
+    }
+
     card.classList.add("visible");
 
     setTimeout(() => {
@@ -191,7 +212,9 @@ function enterSite() {
 }
 
 function handleIntroEnter(event) {
-  if (entered) return;
+  if (entered) {
+    return;
+  }
 
   if (event) {
     event.preventDefault();
@@ -201,9 +224,28 @@ function handleIntroEnter(event) {
   enterSite();
 }
 
-// Use pointerdown as the single entry event. It fires reliably for both
-// mouse and touch and does not depend on the typing animation finishing.
-intro.addEventListener("pointerdown", handleIntroEnter, { passive: false });
+if (intro) {
+  intro.addEventListener(
+    "pointerdown",
+    handleIntroEnter,
+    {
+      passive: false
+    }
+  );
+
+  intro.addEventListener(
+    "click",
+    handleIntroEnter
+  );
+
+  intro.addEventListener(
+    "touchstart",
+    handleIntroEnter,
+    {
+      passive: false
+    }
+  );
+}
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
@@ -229,23 +271,27 @@ function animateCursor() {
   cursorY +=
     (mouseY - cursorY) * 0.35;
 
-  cursor.style.left =
-    cursorX + "px";
-
-  cursor.style.top =
-    cursorY + "px";
-
   glowX +=
     (mouseX - glowX) * 0.12;
 
   glowY +=
     (mouseY - glowY) * 0.12;
 
-  cursorGlow.style.left =
-    glowX + "px";
+  if (cursor) {
+    cursor.style.left =
+      cursorX + "px";
 
-  cursorGlow.style.top =
-    glowY + "px";
+    cursor.style.top =
+      cursorY + "px";
+  }
+
+  if (cursorGlow) {
+    cursorGlow.style.left =
+      glowX + "px";
+
+    cursorGlow.style.top =
+      glowY + "px";
+  }
 
   requestAnimationFrame(
     animateCursor
@@ -264,6 +310,10 @@ $$(
   el.addEventListener(
     "mouseenter",
     () => {
+      if (!cursor) {
+        return;
+      }
+
       cursor.style.width = "24px";
       cursor.style.height = "24px";
 
@@ -275,6 +325,10 @@ $$(
   el.addEventListener(
     "mouseleave",
     () => {
+      if (!cursor) {
+        return;
+      }
+
       cursor.style.width = "20px";
       cursor.style.height = "20px";
 
@@ -284,7 +338,7 @@ $$(
   );
 });
 
-if (volumeSlider) {
+if (volumeSlider && video) {
   volumeSlider.addEventListener(
     "input",
     () => {
@@ -330,7 +384,7 @@ function getOptimizedUrl(
   url,
   name
 ) {
-  if (!isMobile) {
+  if (!isMobile || !url) {
     return url;
   }
 
@@ -371,25 +425,27 @@ function triggerRedirectPrompt(
   name,
   icon
 ) {
+  if (!confirmOverlay || !confirmBox) {
+    return;
+  }
+
   pendingUrl =
     getOptimizedUrl(
       url,
       name
     );
 
-  pendingName = name;
+  pendingName = name || "";
   pendingIcon = icon || "";
 
   confirmBox.style.opacity = "1";
   confirmBox.style.pointerEvents = "auto";
 
-  redirectWrapper.classList.remove(
-    "visible"
-  );
+  if (redirectWrapper) {
+    redirectWrapper.classList.remove("visible");
+  }
 
-  confirmOverlay.classList.add(
-    "visible"
-  );
+  confirmOverlay.classList.add("visible");
 }
 
 $$("a.link").forEach(link => {
@@ -401,6 +457,7 @@ $$("a.link").forEach(link => {
       }
 
       event.preventDefault();
+      event.stopPropagation();
 
       triggerRedirectPrompt(
         link.href,
@@ -423,121 +480,142 @@ function resetConfirmationState() {
 
   currentCountdown = 3;
 
-  redirectWrapper.classList.remove(
-    "visible"
-  );
+  if (redirectWrapper) {
+    redirectWrapper.classList.remove("visible");
+  }
 
-  confirmOverlay.classList.remove(
-    "visible"
-  );
+  if (confirmOverlay) {
+    confirmOverlay.classList.remove("visible");
+  }
 
   if (redirectIcon) {
     redirectIcon.src = "";
+    redirectIcon.style.display = "none";
   }
 
-  setTimeout(() => {
-    confirmBox.style.opacity = "1";
-    confirmBox.style.pointerEvents =
-      "auto";
-  }, 200);
+  if (confirmBox) {
+    setTimeout(() => {
+      confirmBox.style.opacity = "1";
+      confirmBox.style.pointerEvents = "auto";
+    }, 200);
+  }
 }
 
-cancelButton.addEventListener(
-  "click",
-  () => {
-    if (!isRedirecting) {
-      resetConfirmationState();
+if (cancelButton) {
+  cancelButton.addEventListener(
+    "click",
+    () => {
+      if (!isRedirecting) {
+        resetConfirmationState();
+      }
     }
-  }
-);
+  );
+}
 
-redirectCancelBtn.addEventListener(
-  "click",
-  resetConfirmationState
-);
+if (redirectCancelBtn) {
+  redirectCancelBtn.addEventListener(
+    "click",
+    resetConfirmationState
+  );
+}
 
-continueButton.addEventListener(
-  "click",
-  () => {
-    if (
-      !pendingUrl ||
-      isRedirecting
-    ) {
-      return;
+if (continueButton) {
+  continueButton.addEventListener(
+    "click",
+    () => {
+      if (
+        !pendingUrl ||
+        isRedirecting
+      ) {
+        return;
+      }
+
+      isRedirecting = true;
+
+      if (confirmBox) {
+        confirmBox.style.opacity = "0";
+        confirmBox.style.pointerEvents = "none";
+      }
+
+      currentCountdown = 3;
+
+      if (redirectIcon) {
+        redirectIcon.src =
+          pendingIcon || "";
+
+        redirectIcon.style.display =
+          pendingIcon
+            ? "block"
+            : "none";
+      }
+
+      if (redirectText) {
+        redirectText.textContent =
+          `Redirecting to ${pendingName} in ${currentCountdown}...`;
+      }
+
+      if (redirectWrapper) {
+        redirectWrapper.classList.add("visible");
+      }
+
+      countdownInterval =
+        setInterval(() => {
+          currentCountdown--;
+
+          if (currentCountdown > 0) {
+            if (redirectText) {
+              redirectText.textContent =
+                `Redirecting to ${pendingName} in ${currentCountdown}...`;
+            }
+          } else {
+            clearInterval(
+              countdownInterval
+            );
+
+            window.location.href =
+              pendingUrl;
+          }
+        }, 1000);
     }
+  );
+}
 
-    isRedirecting = true;
-
-    confirmBox.style.opacity = "0";
-    confirmBox.style.pointerEvents =
-      "none";
-
-    currentCountdown = 3;
-
-    if (redirectIcon) {
-      redirectIcon.src =
-        pendingIcon || "";
-      redirectIcon.style.display =
-        pendingIcon ? "block" : "none";
+if (confirmOverlay) {
+  confirmOverlay.addEventListener(
+    "click",
+    event => {
+      if (
+        event.target === confirmOverlay &&
+        !isRedirecting
+      ) {
+        resetConfirmationState();
+      }
     }
-
-    redirectText.textContent =
-      `Redirecting to ${pendingName} in ${currentCountdown}...`;
-
-    redirectWrapper.classList.add(
-      "visible"
-    );
-
-    countdownInterval =
-      setInterval(() => {
-        currentCountdown--;
-
-        if (currentCountdown > 0) {
-          redirectText.textContent =
-            `Redirecting to ${pendingName} in ${currentCountdown}...`;
-        } else {
-          clearInterval(
-            countdownInterval
-          );
-
-          window.location.href =
-            pendingUrl;
-        }
-      }, 1000);
-  }
-);
-
-confirmOverlay.addEventListener(
-  "click",
-  event => {
-    if (
-      event.target === confirmOverlay &&
-      !isRedirecting
-    ) {
-      resetConfirmationState();
-    }
-  }
-);
+  );
+}
 
 function copyUsername(
   text,
   toast
 ) {
-  if (!text) {
+  if (!text || !toast) {
+    return;
+  }
+
+  if (
+    !navigator.clipboard ||
+    !navigator.clipboard.writeText
+  ) {
     return;
   }
 
   navigator.clipboard.writeText(
     text.replace(/^@/, "")
   ).then(() => {
-    toast.classList.add(
-      "show"
-    );
+    toast.classList.add("show");
 
     setTimeout(() => {
-      toast.classList.remove(
-        "show"
-      );
+      toast.classList.remove("show");
     }, 1800);
   }).catch(() => {});
 }
@@ -563,8 +641,8 @@ const dcModalUsername =
 const dcCopyToast =
   $("#dcCopyToast");
 
-
-const dcModalBadges = $("#dcModalBadges");
+const dcModalBadges =
+  $("#dcModalBadges");
 
 const DISCORD_BADGE_DEFS = [
   [1 << 0, "Discord Staff", "https://raw.githubusercontent.com/Mateo-tem/Discord-Flags-and-Badges/main/User%20Flags/Staff/Staff.svg"],
@@ -582,12 +660,12 @@ const DISCORD_BADGE_DEFS = [
 ];
 
 function renderDiscordBadges(publicFlags) {
-  if (!dcModalBadges) return;
+  if (!dcModalBadges) {
+    return;
+  }
 
   dcModalBadges.replaceChildren();
 
-  // Current profile badges shown on the user's Discord profile:
-  // Discord Nitro + Game Variety.
   const currentBadges = [
     [
       "Discord Nitro",
@@ -600,93 +678,99 @@ function renderDiscordBadges(publicFlags) {
   ];
 
   currentBadges.forEach(([name, icon]) => {
-    const img = document.createElement("img");
+    const img =
+      document.createElement("img");
+
     img.className = "dc-badge";
     img.src = icon;
     img.alt = "";
     img.title = name;
     img.loading = "lazy";
+
     dcModalBadges.appendChild(img);
   });
 
-  // Keep support for any legacy public flags too.
-  const flags = Number(publicFlags) || 0;
-  DISCORD_BADGE_DEFS.forEach(([flag, name, icon]) => {
-    if ((flags & flag) !== 0) {
-      const img = document.createElement("img");
-      img.className = "dc-badge";
-      img.src = icon;
-      img.alt = "";
-      img.title = name;
-      img.loading = "lazy";
-      dcModalBadges.appendChild(img);
+  const flags =
+    Number(publicFlags) || 0;
+
+  DISCORD_BADGE_DEFS.forEach(
+    ([flag, name, icon]) => {
+      if ((flags & flag) !== 0) {
+        const img =
+          document.createElement("img");
+
+        img.className = "dc-badge";
+        img.src = icon;
+        img.alt = "";
+        img.title = name;
+        img.loading = "lazy";
+
+        dcModalBadges.appendChild(img);
+      }
     }
-  });
+  );
 }
 
-discordLinkBtn.addEventListener(
-  "click",
-  () => {
-    fetchDiscordStatus();
+if (discordLinkBtn && dcModal) {
+  discordLinkBtn.addEventListener(
+    "click",
+    () => {
+      fetchDiscordStatus();
+      dcModal.classList.add("visible");
+    }
+  );
+}
 
-    dcModal.classList.add(
-      "visible"
-    );
-  }
-);
+if (dcModalClose && dcModal) {
+  dcModalClose.addEventListener(
+    "click",
+    () => {
+      dcModal.classList.remove("visible");
+    }
+  );
+}
 
-dcModalClose.addEventListener(
-  "click",
-  () => {
-    dcModal.classList.remove(
-      "visible"
-    );
-  }
-);
+if (dcModal) {
+  dcModal.addEventListener(
+    "click",
+    event => {
+      if (event.target === dcModal) {
+        dcModal.classList.remove("visible");
+      }
+    }
+  );
+}
 
-dcModal.addEventListener(
-  "click",
-  event => {
-    if (
-      event.target === dcModal
-    ) {
-      dcModal.classList.remove(
-        "visible"
+if (dcAddBtn) {
+  dcAddBtn.addEventListener(
+    "click",
+    () => {
+      if (dcModal) {
+        dcModal.classList.remove("visible");
+      }
+
+      if (discordLinkBtn) {
+        triggerRedirectPrompt(
+          discordLinkBtn.getAttribute("data-href"),
+          discordLinkBtn.getAttribute("data-name"),
+          discordLinkBtn.getAttribute("data-icon")
+        );
+      }
+    }
+  );
+}
+
+if (dcModalUsername) {
+  dcModalUsername.addEventListener(
+    "click",
+    () => {
+      copyUsername(
+        dcModalUsername.textContent,
+        dcCopyToast
       );
     }
-  }
-);
-
-dcAddBtn.addEventListener(
-  "click",
-  () => {
-    dcModal.classList.remove(
-      "visible"
-    );
-
-    triggerRedirectPrompt(
-      discordLinkBtn.getAttribute(
-        "data-href"
-      ),
-      discordLinkBtn.getAttribute(
-        "data-name"
-      ),
-      discordLinkBtn.getAttribute(
-        "data-icon"
-      )
-    );
-  }
-);
-
-dcModalUsername.addEventListener(
-  "click",
-  () => {
-    copyUsername(
-      dcModalUsername.textContent,
-      dcCopyToast
-    );
-  }
-);
+  );
+}
 
 async function fetchDiscordStatus() {
   try {
@@ -723,10 +807,17 @@ async function fetchDiscordStatus() {
     const actDesc =
       $("#dcModalActDesc");
 
-    dcModalUsername.textContent =
-      `@${data.discord_user.username}`;
+    if (
+      dcModalUsername &&
+      data.discord_user
+    ) {
+      dcModalUsername.textContent =
+        `@${data.discord_user.username}`;
+    }
 
     if (
+      avatar &&
+      data.discord_user &&
       data.discord_user.avatar
     ) {
       avatar.src =
@@ -737,31 +828,38 @@ async function fetchDiscordStatus() {
       data.discord_status ||
       "offline";
 
-    statusDot.className =
-      `dc-status-indicator ${status}`;
+    if (statusDot) {
+      statusDot.className =
+        `dc-status-indicator ${status}`;
+    }
 
-    statusText.textContent =
-      status === "dnd"
-        ? "Do Not Disturb"
-        : status;
+    if (statusText) {
+      statusText.textContent =
+        status === "dnd"
+          ? "Do Not Disturb"
+          : status;
+    }
 
     if (
-      data.listening_to_spotify
+      data.listening_to_spotify &&
+      data.spotify
     ) {
-      actIcon.style.display =
-        "block";
+      if (actIcon) {
+        actIcon.style.display = "block";
+        actIcon.src =
+          data.spotify.album_art_url;
+      }
 
-      actIcon.src =
-        data.spotify.album_art_url;
+      if (actName) {
+        actName.textContent =
+          data.spotify.song;
+      }
 
-      actName.textContent =
-        data.spotify.song;
-
-      actDesc.style.display =
-        "block";
-
-      actDesc.textContent =
-        `by ${data.spotify.artist}`;
+      if (actDesc) {
+        actDesc.style.display = "block";
+        actDesc.textContent =
+          `by ${data.spotify.artist}`;
+      }
 
       return;
     }
@@ -776,34 +874,29 @@ async function fetchDiscordStatus() {
         ) ||
         data.activities[0];
 
-      if (
-        act &&
-        act.name
-      ) {
-        actName.textContent =
-          act.name;
+      if (act && act.name) {
+        if (actName) {
+          actName.textContent =
+            act.name;
+        }
 
-        if (
-          act.details ||
-          act.state
-        ) {
-          actDesc.style.display =
-            "block";
-
-          actDesc.textContent =
-            act.details ||
-            act.state;
-        } else {
-          actDesc.style.display =
-            "none";
+        if (actDesc) {
+          if (act.details || act.state) {
+            actDesc.style.display = "block";
+            actDesc.textContent =
+              act.details ||
+              act.state;
+          } else {
+            actDesc.style.display = "none";
+          }
         }
 
         if (
+          actIcon &&
           act.assets &&
           act.assets.large_image
         ) {
-          actIcon.style.display =
-            "block";
+          actIcon.style.display = "block";
 
           if (
             act.assets.large_image.startsWith(
@@ -812,27 +905,32 @@ async function fetchDiscordStatus() {
           ) {
             actIcon.src =
               `https://i.scdn.co/image/${act.assets.large_image.replace("spotify:", "")}`;
-          } else {
+          } else if (act.application_id) {
             actIcon.src =
               `https://cdn.discordapp.com/app-assets/${act.application_id}/${act.assets.large_image}.png`;
+          } else {
+            actIcon.style.display = "none";
           }
-        } else {
-          actIcon.style.display =
-            "none";
+        } else if (actIcon) {
+          actIcon.style.display = "none";
         }
 
         return;
       }
     }
 
-    actIcon.style.display =
-      "none";
+    if (actIcon) {
+      actIcon.style.display = "none";
+    }
 
-    actName.textContent =
-      "doing nothing right now...";
+    if (actName) {
+      actName.textContent =
+        "doing nothing right now...";
+    }
 
-    actDesc.style.display =
-      "none";
+    if (actDesc) {
+      actDesc.style.display = "none";
+    }
   } catch (_) {}
 }
 
@@ -854,67 +952,65 @@ const tgModalUsername =
 const tgCopyToast =
   $("#tgCopyToast");
 
-telegramLinkBtn.addEventListener(
-  "click",
-  () => {
-    tgModal.classList.add(
-      "visible"
-    );
-  }
-);
+if (telegramLinkBtn && tgModal) {
+  telegramLinkBtn.addEventListener(
+    "click",
+    () => {
+      tgModal.classList.add("visible");
+    }
+  );
+}
 
-tgModalClose.addEventListener(
-  "click",
-  () => {
-    tgModal.classList.remove(
-      "visible"
-    );
-  }
-);
+if (tgModalClose && tgModal) {
+  tgModalClose.addEventListener(
+    "click",
+    () => {
+      tgModal.classList.remove("visible");
+    }
+  );
+}
 
-tgModal.addEventListener(
-  "click",
-  event => {
-    if (
-      event.target === tgModal
-    ) {
-      tgModal.classList.remove(
-        "visible"
+if (tgModal) {
+  tgModal.addEventListener(
+    "click",
+    event => {
+      if (event.target === tgModal) {
+        tgModal.classList.remove("visible");
+      }
+    }
+  );
+}
+
+if (tgAddBtn) {
+  tgAddBtn.addEventListener(
+    "click",
+    () => {
+      if (tgModal) {
+        tgModal.classList.remove("visible");
+      }
+
+      if (telegramLinkBtn) {
+        triggerRedirectPrompt(
+          telegramLinkBtn.getAttribute("data-href"),
+          telegramLinkBtn.getAttribute("data-name"),
+          telegramLinkBtn.getAttribute("data-icon")
+        );
+      }
+    }
+  );
+}
+
+if (tgModalUsername) {
+  tgModalUsername.addEventListener(
+    "click",
+    () => {
+      copyUsername(
+        tgModalUsername.textContent,
+        tgCopyToast
       );
     }
-  }
-);
-
-tgAddBtn.addEventListener(
-  "click",
-  () => {
-    tgModal.classList.remove(
-      "visible"
-    );
-
-    triggerRedirectPrompt(
-      telegramLinkBtn.getAttribute(
-        "data-href"
-      ),
-      telegramLinkBtn.getAttribute(
-        "data-name"
-      ),
-      telegramLinkBtn.getAttribute(
-        "data-icon"
-      )
-    );
-  }
-);
-
-tgModalUsername.addEventListener(
-  "click",
-  () => {
-    copyUsername(
-      tgModalUsername.textContent,
-      tgCopyToast
-    );
-  }
-);
+  );
+}
 
 const ROBLOX_USER_ID =
   "7626940077";
@@ -974,11 +1070,8 @@ async function loadRobloxData() {
     return;
   }
 
-  rbxFollowersCount.textContent =
-    "…";
-
-  rbxFriendsCount.textContent =
-    "…";
+  rbxFollowersCount.textContent = "…";
+  rbxFriendsCount.textContent = "…";
 
   try {
     const response =
@@ -1044,10 +1137,7 @@ if (
   robloxLinkBtn.addEventListener(
     "click",
     () => {
-      rbxModal.classList.add(
-        "visible"
-      );
-
+      rbxModal.classList.add("visible");
       loadRobloxData();
     }
   );
@@ -1060,9 +1150,7 @@ if (
   rbxModalClose.addEventListener(
     "click",
     () => {
-      rbxModal.classList.remove(
-        "visible"
-      );
+      rbxModal.classList.remove("visible");
     }
   );
 }
@@ -1071,12 +1159,8 @@ if (rbxModal) {
   rbxModal.addEventListener(
     "click",
     event => {
-      if (
-        event.target === rbxModal
-      ) {
-        rbxModal.classList.remove(
-          "visible"
-        );
+      if (event.target === rbxModal) {
+        rbxModal.classList.remove("visible");
       }
     }
   );
@@ -1086,17 +1170,15 @@ if (rbxAddBtn) {
   rbxAddBtn.addEventListener(
     "click",
     () => {
-      rbxModal.classList.remove(
-        "visible"
-      );
+      if (rbxModal) {
+        rbxModal.classList.remove("visible");
+      }
 
       triggerRedirectPrompt(
         ROBLOX_PROFILE_URL,
         "Roblox",
         robloxLinkBtn
-          ? robloxLinkBtn.getAttribute(
-              "data-icon"
-            )
+          ? robloxLinkBtn.getAttribute("data-icon")
           : ""
       );
     }
@@ -1115,76 +1197,86 @@ const ctxAudioLabel =
 const ctxReloadPage =
   $("#ctxReloadPage");
 
-document.addEventListener(
-  "contextmenu",
-  event => {
-    event.preventDefault();
+if (customCtxMenu) {
+  document.addEventListener(
+    "contextmenu",
+    event => {
+      event.preventDefault();
 
-    const x =
-      Math.min(
-        event.clientX,
-        window.innerWidth - 180
-      );
+      const x =
+        Math.min(
+          event.clientX,
+          window.innerWidth - 180
+        );
 
-    const y =
-      Math.min(
-        event.clientY,
-        window.innerHeight - 130
-      );
+      const y =
+        Math.min(
+          event.clientY,
+          window.innerHeight - 130
+        );
 
-    customCtxMenu.style.left =
-      `${x}px`;
+      customCtxMenu.style.left =
+        `${x}px`;
 
-    customCtxMenu.style.top =
-      `${y}px`;
+      customCtxMenu.style.top =
+        `${y}px`;
 
-    ctxAudioLabel.textContent =
-      video.paused
-        ? "Play Audio"
-        : "Pause Audio";
+      if (ctxAudioLabel) {
+        ctxAudioLabel.textContent =
+          video && video.paused
+            ? "Play Audio"
+            : "Pause Audio";
+      }
 
-    customCtxMenu.classList.add(
-      "visible"
-    );
-  }
-);
-
-document.addEventListener(
-  "click",
-  event => {
-    if (
-      !customCtxMenu.contains(
-        event.target
-      )
-    ) {
-      customCtxMenu.classList.remove(
-        "visible"
-      );
+      customCtxMenu.classList.add("visible");
     }
-  }
-);
+  );
 
-ctxToggleAudio.addEventListener(
-  "click",
-  () => {
-    if (video.paused) {
-      video.play();
-    } else {
-      video.pause();
+  document.addEventListener(
+    "click",
+    event => {
+      if (
+        !customCtxMenu.contains(
+          event.target
+        )
+      ) {
+        customCtxMenu.classList.remove(
+          "visible"
+        );
+      }
     }
+  );
+}
 
-    customCtxMenu.classList.remove(
-      "visible"
-    );
-  }
-);
+if (ctxToggleAudio) {
+  ctxToggleAudio.addEventListener(
+    "click",
+    () => {
+      if (video) {
+        if (video.paused) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      }
 
-ctxReloadPage.addEventListener(
-  "click",
-  () => {
-    window.location.reload();
-  }
-);
+      if (customCtxMenu) {
+        customCtxMenu.classList.remove(
+          "visible"
+        );
+      }
+    }
+  );
+}
+
+if (ctxReloadPage) {
+  ctxReloadPage.addEventListener(
+    "click",
+    () => {
+      window.location.reload();
+    }
+  );
+}
 
 function setupTilt(
   selector,
@@ -1199,9 +1291,7 @@ function setupTilt(
   }
 
   const glare =
-    el.querySelector(
-      ".card-glare"
-    );
+    el.querySelector(".card-glare");
 
   let targetX = 0;
   let targetY = 0;
@@ -1263,8 +1353,7 @@ function setupTilt(
         hovered = true;
 
         if (glare) {
-          glare.style.opacity =
-            "1";
+          glare.style.opacity = "1";
 
           glare.style.background =
             `radial-gradient(circle at ${insideX * 100}% ${insideY * 100}%, rgba(255, 255, 255, 0.28), transparent 60%)`;
@@ -1273,8 +1362,7 @@ function setupTilt(
         hovered = false;
 
         if (glare) {
-          glare.style.opacity =
-            "0";
+          glare.style.opacity = "0";
         }
       }
     }
@@ -1288,20 +1376,17 @@ function setupTilt(
       hovered = false;
 
       if (glare) {
-        glare.style.opacity =
-          "0";
+        glare.style.opacity = "0";
       }
     }
   );
 
   function update() {
     currentX +=
-      (targetX - currentX) *
-      0.12;
+      (targetX - currentX) * 0.12;
 
     currentY +=
-      (targetY - currentY) *
-      0.12;
+      (targetY - currentY) * 0.12;
 
     if (entered) {
       const s =
@@ -1313,9 +1398,7 @@ function setupTilt(
         `rotateX(${currentX.toFixed(2)}deg) rotateY(${currentY.toFixed(2)}deg) scale3d(${s}, ${s}, 1)`;
     }
 
-    requestAnimationFrame(
-      update
-    );
+    requestAnimationFrame(update);
   }
 
   update();
@@ -1360,10 +1443,15 @@ const pfpViewerClose =
     "pfpViewerClose"
   );
 
+let pfpScale = 1;
+let pfpStartDistance = 0;
+
 function openPfpViewer(img) {
   if (
     !img ||
-    !img.src
+    !img.src ||
+    !pfpViewer ||
+    !pfpViewerImage
   ) {
     return;
   }
@@ -1386,12 +1474,15 @@ function openPfpViewer(img) {
 }
 
 function closePfpViewer() {
+  if (!pfpViewer || !pfpViewerImage) {
+    return;
+  }
+
   pfpViewer.classList.remove(
     "active"
   );
 
-  pfpViewerImage.src =
-    "";
+  pfpViewerImage.src = "";
 }
 
 [
@@ -1401,117 +1492,136 @@ function closePfpViewer() {
   "rbxAvatarWrap"
 ].forEach(id => {
   const el =
-    document.getElementById(
-      id
-    );
+    document.getElementById(id);
 
   if (el) {
     el.addEventListener(
       "click",
       event => {
         const img =
-          el.querySelector(
-            "img"
-          );
+          el.querySelector("img");
 
         if (img) {
           event.stopPropagation();
 
-          openPfpViewer(
-            img
-          );
+          openPfpViewer(img);
         }
       }
     );
   }
 });
 
-pfpViewerClose.addEventListener(
-  "click",
-  closePfpViewer
-);
+if (pfpViewerClose) {
+  pfpViewerClose.addEventListener(
+    "click",
+    closePfpViewer
+  );
+}
 
-pfpViewer.addEventListener(
-  "click",
-  event => {
-    if (
-      event.target === pfpViewer
-    ) {
-      closePfpViewer();
+if (pfpViewer) {
+  pfpViewer.addEventListener(
+    "click",
+    event => {
+      if (event.target === pfpViewer) {
+        closePfpViewer();
+      }
     }
-  }
-);
+  );
+}
 
 document.addEventListener(
   "keydown",
   event => {
-    if (
-      event.key === "Escape"
-    ) {
+    if (event.key === "Escape") {
       closePfpViewer();
     }
   }
 );
 
-let pfpScale = 1;
-let pfpStartDistance = 0;
-
-pfpViewerImage.addEventListener(
-  "dblclick",
-  () => {
-    pfpViewerImage.classList.toggle(
-      "zoomed"
-    );
-
-    pfpScale =
-      pfpViewerImage.classList.contains(
+if (pfpViewerImage) {
+  pfpViewerImage.addEventListener(
+    "dblclick",
+    () => {
+      pfpViewerImage.classList.toggle(
         "zoomed"
-      )
-        ? 2
-        : 1;
-
-    pfpViewerImage.style.transform =
-      `scale(${pfpScale})`;
-  }
-);
-
-pfpViewerImage.addEventListener(
-  "wheel",
-  event => {
-    event.preventDefault();
-
-    pfpScale =
-      Math.min(
-        4,
-        Math.max(
-          1,
-          pfpScale +
-            (event.deltaY < 0
-              ? .2
-              : -.2)
-        )
       );
 
-    pfpViewerImage.classList.toggle(
-      "zoomed",
-      pfpScale > 1
-    );
+      pfpScale =
+        pfpViewerImage.classList.contains(
+          "zoomed"
+        )
+          ? 2
+          : 1;
 
-    pfpViewerImage.style.transform =
-      `scale(${pfpScale})`;
-  },
-  {
-    passive: false
-  }
-);
+      pfpViewerImage.style.transform =
+        `scale(${pfpScale})`;
+    }
+  );
 
-pfpViewerImage.addEventListener(
-  "touchstart",
-  event => {
-    if (
-      event.touches.length === 2
-    ) {
-      pfpStartDistance =
+  pfpViewerImage.addEventListener(
+    "wheel",
+    event => {
+      event.preventDefault();
+
+      pfpScale =
+        Math.min(
+          4,
+          Math.max(
+            1,
+            pfpScale +
+              (event.deltaY < 0
+                ? 0.2
+                : -0.2)
+          )
+        );
+
+      pfpViewerImage.classList.toggle(
+        "zoomed",
+        pfpScale > 1
+      );
+
+      pfpViewerImage.style.transform =
+        `scale(${pfpScale})`;
+    },
+    {
+      passive: false
+    }
+  );
+
+  pfpViewerImage.addEventListener(
+    "touchstart",
+    event => {
+      if (
+        event.touches.length === 2
+      ) {
+        pfpStartDistance =
+          Math.hypot(
+            event.touches[0].clientX -
+              event.touches[1].clientX,
+
+            event.touches[0].clientY -
+              event.touches[1].clientY
+          );
+      }
+    },
+    {
+      passive: true
+    }
+  );
+
+  pfpViewerImage.addEventListener(
+    "touchmove",
+    event => {
+      if (
+        event.touches.length !== 2 ||
+        !pfpStartDistance
+      ) {
+        return;
+      }
+
+      event.preventDefault();
+
+      const distance =
         Math.hypot(
           event.touches[0].clientX -
             event.touches[1].clientX,
@@ -1519,55 +1629,42 @@ pfpViewerImage.addEventListener(
           event.touches[0].clientY -
             event.touches[1].clientY
         );
-    }
-  }
-);
 
-pfpViewerImage.addEventListener(
-  "touchmove",
-  event => {
-    if (
-      event.touches.length !== 2 ||
-      !pfpStartDistance
-    ) {
-      return;
-    }
+      pfpScale =
+        Math.min(
+          4,
+          Math.max(
+            1,
+            pfpScale *
+              (distance /
+                pfpStartDistance)
+          )
+        );
 
-    event.preventDefault();
+      pfpStartDistance =
+        distance;
 
-    const distance =
-      Math.hypot(
-        event.touches[0].clientX -
-          event.touches[1].clientX,
-
-        event.touches[0].clientY -
-          event.touches[1].clientY
+      pfpViewerImage.classList.toggle(
+        "zoomed",
+        pfpScale > 1
       );
 
-    pfpScale =
-      Math.min(
-        4,
-        Math.max(
-          1,
-          pfpScale *
-            (distance /
-              pfpStartDistance)
-        )
-      );
+      pfpViewerImage.style.transform =
+        `scale(${pfpScale})`;
+    },
+    {
+      passive: false
+    }
+  );
 
-    pfpStartDistance =
-      distance;
+  pfpViewerImage.addEventListener(
+    "touchend",
+    event => {
+      if (event.touches.length < 2) {
+        pfpStartDistance = 0;
+      }
+    }
+  );
+}
 
-    pfpViewerImage.classList.toggle(
-      "zoomed",
-      pfpScale > 1
-    );
-
-    pfpViewerImage.style.transform =
-      `scale(${pfpScale})`;
-  },
-  {
-    passive: false
-  }
-);
-
+startIntroSequence();
