@@ -1866,8 +1866,15 @@ function q138Core(
           ? q141jfiei
           : 1;
 
+      const q109jfiei =
+        q139jfiei === "#card"
+          ? -2
+          : q139jfiei === "#discordPreviewCard"
+            ? -2
+            : 0;
+
       q95jfiei.style.transform =
-        `rotateX(${q99jfiei.toFixed(
+        `rotate(${q109jfiei}deg) rotateX(${q99jfiei.toFixed(
           2
         )}deg) rotateY(${q100jfiei.toFixed(
           2
@@ -1890,6 +1897,12 @@ q138Core(
 
 q138Core(
   "#dcCard",
+  14,
+  1.02
+);
+
+q138Core(
+  "#discordPreviewCard",
   14,
   1.02
 );
