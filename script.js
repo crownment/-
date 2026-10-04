@@ -2184,3 +2184,32 @@ setTimeout(() => {
     })
     .catch(() => {});
 }, 1200);
+
+
+setTimeout(() => {
+  const q166jfiei = blorboquery(".sleek-discord-badges");
+  if (q166jfiei) q166jfiei.remove();
+
+  const q167jfiei = blorboquery("#discordPreviewName");
+  const q168jfiei = blorboquery("#dcModalBadges");
+
+  if (!q167jfiei || !q168jfiei || q167jfiei.parentElement.querySelector(".discord-preview-badges")) {
+    return;
+  }
+
+  const q169jfiei = document.createElement("div");
+  q169jfiei.className = "discord-preview-badges";
+  q169jfiei.style.cssText = "display:flex;align-items:center;gap:3px;flex-shrink:0;margin-left:2px";
+
+  Array.from(q168jfiei.querySelectorAll("img")).slice(0, 2).forEach(q170jfiei => {
+    const q171jfiei = q170jfiei.cloneNode(true);
+    q171jfiei.style.cssText = "width:12px;height:12px;object-fit:contain;display:block";
+    q169jfiei.appendChild(q171jfiei);
+  });
+
+  const q172jfiei = q167jfiei.parentElement;
+  q172jfiei.style.display = "flex";
+  q172jfiei.style.alignItems = "center";
+  q172jfiei.style.gap = "4px";
+  q172jfiei.appendChild(q169jfiei);
+}, 500);
