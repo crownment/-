@@ -537,16 +537,11 @@ function triggerRedirectPrompt(
   );
 }
 
-$("a.link").forEach(link => {
+$$("a.link").forEach(link => {
   link.addEventListener(
     "click",
     event => {
       if (isRedirecting) {
-        return;
-      }
-
-      // GitHub uses its own profile-preview modal instead of the redirect prompt.
-      if (link.id === "githubLinkBtn") {
         return;
       }
 
@@ -2168,43 +2163,4 @@ if (pfpViewerImage) {
    START
    ========================================================= */
 
-/*
- * Start the intro only after the document is fully ready.
- * This prevents the intro sequence from being skipped when
- * the page is opened directly or restored from the browser cache.
- */
-function bootIntro() {
-  if (!intro) {
-    return;
-  }
-
-  entered = false;
-  canEnter = false;
-  index = 0;
-
-  if (typing) {
-    typing.textContent = "";
-  }
-
-  if (fadeText1) {
-    fadeText1.classList.remove("active");
-  }
-
-  if (fadeText2) {
-    fadeText2.classList.remove("active");
-  }
-
-  if (typeWrap) {
-    typeWrap.classList.remove("visible");
-  }
-
-  intro.classList.remove("hidden");
-
-  setTimeout(startIntroSequence, 80);
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", bootIntro, { once: true });
-} else {
-  bootIntro();
-}
+startIntroSequence();
