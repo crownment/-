@@ -1555,7 +1555,29 @@
         transition: none;
       }
     }
-  .profilo-card-side-profile{width:min(700px,calc(100vw - 48px));min-height:380px;padding:34px;position:relative;text-align:left}.profilo-card-side-profile .avatar{position:absolute;right:38px;top:50%;width:190px;height:190px;margin:0;transform:translateY(-50%);z-index:2}.profilo-card-side-profile .name-badge-wrapper{position:absolute;right:38px;top:calc(50% + 105px);width:190px;margin:0}.profilo-card-side-profile .bio{position:absolute;right:38px;top:calc(50% + 137px);width:190px;margin:0;text-align:center;font-size:11px}.profilo-card-side-profile .links{position:absolute;left:38px;top:calc(50% + var(--app-y));width:270px;transform:translateY(-50%)}.profilo-card-side-profile .icon-wrapper{transform:translateY(var(--icon-y))}.profilo-card-side-profile .link{min-height:52px}.profilo-card-side-profile .view-counter,.profilo-card-side-profile .volume-control{display:none}@media(max-width:700px){.profilo-card-side-profile{width:calc(100vw - 28px);min-height:300px;padding:20px}.profilo-card-side-profile .avatar{right:20px;width:120px;height:120px}.profilo-card-side-profile .name-badge-wrapper{right:20px;top:calc(50% + 70px);width:120px}.profilo-card-side-profile .bio{right:20px;top:calc(50% + 100px);width:120px}.profilo-card-side-profile .links{left:20px;width:calc(100% - 160px)}}</style>
+  .profilo-card-classic{border-radius:16px;background:rgba(10,10,10,.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+  .profilo-card-wide{width:min(560px,calc(100vw - 32px))}
+  .profilo-card-minimal{background:rgba(0,0,0,.18);border-color:transparent;box-shadow:none}
+  .profilo-card-sleek{border-radius:12px;background:rgba(12,12,12,.45);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+  .profilo-card-pill{border-radius:38px;background:rgba(255,255,255,.045);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+  .profilo-card-outline{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
+  .profilo-card-floating{box-shadow:0 35px 100px rgba(0,0,0,.7);transform:translateY(-10px) scale(.94)}
+  .profilo-card-floating.visible{transform:translateY(-10px) scale(1)}
+  .profilo-card-compact{width:min(330px,calc(100vw - 42px));padding:24px 22px 19px}
+  .profilo-card-portfolio{width:min(600px,calc(100vw - 32px));text-align:left;padding:30px}
+  .profilo-card-portfolio .avatar{margin-left:0}
+  .profilo-card-portfolio .name-badge-wrapper{justify-content:flex-start}
+  .profilo-card-portfolio .bio{text-align:left;margin-left:0}
+  .profilo-card-side-profile{width:min(680px,calc(100vw - 32px));min-height:260px;padding:28px 30px;position:relative;text-align:left}
+  .profilo-card-side-profile .avatar{position:absolute;right:34px;top:50%;width:158px;height:158px;margin:0;transform:translateY(-50%);z-index:2}
+  .profilo-card-side-profile .name-badge-wrapper{position:absolute;right:34px;top:calc(50% + 82px);width:158px;margin:0}
+  .profilo-card-side-profile .bio{position:absolute;right:34px;top:calc(50% + 108px);width:158px;margin:0;text-align:center;font-size:9px}
+  .profilo-card-side-profile .links{position:absolute;left:30px;top:calc(50% + var(--app-y,0px));width:350px;display:flex;align-items:center;gap:9px;transform:translateY(-50%)}
+  .profilo-card-side-profile .link{min-height:42px;flex:1;padding:0 9px}
+  .profilo-card-side-profile .icon-wrapper{transform:translateY(var(--icon-y,0px))}
+  .profilo-card-side-profile .view-counter,.profilo-card-side-profile .volume-control{display:none}
+  @media(max-width:700px){.profilo-card-side-profile{width:calc(100vw - 28px);min-height:250px;padding:20px}.profilo-card-side-profile .avatar{right:20px;width:112px;height:112px}.profilo-card-side-profile .name-badge-wrapper{right:20px;top:calc(50% + 61px);width:112px}.profilo-card-side-profile .bio{right:20px;top:calc(50% + 82px);width:112px}.profilo-card-side-profile .links{left:18px;width:calc(100% - 150px);gap:5px}.profilo-card-side-profile .link{min-height:38px;padding:0 4px}.profilo-card-portfolio{padding:24px}}
+</style>
 
   <meta name="theme-color" content="#000000">
 </head>
