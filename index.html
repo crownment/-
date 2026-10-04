@@ -1599,6 +1599,8 @@
 .discord-preview-add{height:36px;padding:0 15px;flex-shrink:0;border:1px solid rgba(255,255,255,.15);border-radius:11px;background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:12px;cursor:none!important;transition:background .2s ease,transform .2s ease}
 .discord-preview-add:hover{background:rgba(255,255,255,.14);transform:translateY(-1px)}
 @media(max-width:700px){.card-wrapper{width:calc(100vw - 24px);gap:10px}.sleek-card{min-height:270px;padding:24px 20px 22px}.sleek-profile{min-height:100px}.sleek-profile h1{font-size:25px}.sleek-profile .avatar{flex-basis:86px;width:86px;height:86px}.sleek-links{gap:8px;margin-top:20px}.sleek-links .link{width:48px;min-width:48px;height:48px;min-height:48px;border-radius:13px}.sleek-links .icon-wrapper{width:22px;height:22px}.discord-preview-card{height:70px}.discord-preview-avatar{width:48px;height:48px;flex-basis:48px}.discord-preview-add{height:32px;padding:0 11px}}
+.discord-preview-avatar{position:relative}
+.discord-preview-decoration{position:absolute;inset:-13%;width:126%!important;height:126%!important;object-fit:contain!important;pointer-events:none;display:none}
 </style>
 
   <meta name="theme-color" content="#000000">
@@ -1702,6 +1704,7 @@
   <div class="discord-preview-card" id="discordPreviewCard">
     <div class="discord-preview-avatar">
       <img id="discordPreviewPfp" src="./discordpfp.png" alt="Discord profile">
+      <img id="discordPreviewDecoration" class="discord-preview-decoration" alt="">
     </div>
     <div class="discord-preview-info">
       <div class="discord-preview-name" id="discordPreviewName">Loading...</div>
@@ -2057,6 +2060,7 @@ window.setProfileEffect=renderEffect;
 <script>
 (function(){
 const p=document.getElementById("discordPreviewPfp");
+const d=document.getElementById("discordPreviewDecoration");
 const n=document.getElementById("discordPreviewName");
 const b=document.getElementById("discordPreviewAdd");
 const id="1547303503213367297";
@@ -2071,8 +2075,15 @@ if(b)b.addEventListener("click",function(e){
 fetch("https://api.lanyard.rest/v1/users/"+id).then(r=>r.json()).then(d=>{
   const u=d&&d.data&&d.data.discord_user;
   if(!u)return;
-  if(n)n.textContent=u.global_name||u.username||"Discord";
-  if(p&&u.avatar)p.src="https://cdn.discordapp.com/avatars/"+id+"/"+u.avatar+".png?size=128";
+  if(n)n.textContent=u.username||u.global_name||"Discord";
+  if(p){
+    if(u.avatar)p.src="https://cdn.discordapp.com/avatars/"+id+"/"+u.avatar+".png?size=128";
+    else p.src="https://cdn.discordapp.com/embed/avatars/"+((Number(BigInt(id)>>22n)%6)).toString()+".png";
+  }
+  if(d&&u.avatar_decoration_data&&u.avatar_decoration_data.asset){
+    d.src="https://cdn.discordapp.com/avatar-decoration-presets/"+u.avatar_decoration_data.asset+".png?size=128";
+    d.style.display="block";
+  }
 }).catch(function(){if(n)n.textContent="risk";});
 })();
 </script>
