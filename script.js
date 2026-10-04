@@ -1591,7 +1591,9 @@ async function loadGithubProfile() {
 }
 
 if (githubLinkBtn && ghModal) {
-  githubLinkBtn.addEventListener("click", () => {
+  githubLinkBtn.addEventListener("click", event => {
+    event.preventDefault();
+    event.stopPropagation();
     loadGithubProfile();
     ghModal.classList.add("visible");
   });
