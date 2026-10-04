@@ -34,6 +34,11 @@ const vbnCore = blorboquery("#profileName");
 const fjrCore = blorboquery("#volumeSlider");
 const ieifCore = blorboquery("#volumeWarningIntro");
 
+// Keep the profile name empty until the entry interaction starts its typing animation.
+if (vbnCore) {
+  vbnCore.textContent = "";
+}
+
 // Preload and decode the first frame while the intro is visible; do not start playback.
 if (xjfxCore) {
   try {
