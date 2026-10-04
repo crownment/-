@@ -2168,4 +2168,43 @@ if (pfpViewerImage) {
    START
    ========================================================= */
 
-startIntroSequence();
+/*
+ * Start the intro only after the document is fully ready.
+ * This prevents the intro sequence from being skipped when
+ * the page is opened directly or restored from the browser cache.
+ */
+function bootIntro() {
+  if (!intro) {
+    return;
+  }
+
+  entered = false;
+  canEnter = false;
+  index = 0;
+
+  if (typing) {
+    typing.textContent = "";
+  }
+
+  if (fadeText1) {
+    fadeText1.classList.remove("active");
+  }
+
+  if (fadeText2) {
+    fadeText2.classList.remove("active");
+  }
+
+  if (typeWrap) {
+    typeWrap.classList.remove("visible");
+  }
+
+  intro.classList.remove("hidden");
+
+  setTimeout(startIntroSequence, 80);
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bootIntro, { once: true });
+} else {
+  bootIntro();
+}
