@@ -94,10 +94,9 @@ function q116Core() {
     return;
   }
 
-  setTimeout(() => {
-    jfjfCore.classList.add("visible");
-    q117Core();
-  }, 250);
+  skibidiCore.textContent = jefjri;
+  jfjfCore.classList.add("visible");
+  jfjvbe = true;
 }
 
 function q117Core() {
