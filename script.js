@@ -966,6 +966,9 @@ async function q136Core() {
     const q63jfiei =
       blorboquery("#dcModalAvatar");
 
+    const q63ajfiei =
+      blorboquery("#dcModalAvatarDecoration");
+
     const q64jfiei =
       blorboquery("#dcModalStatusDot");
 
@@ -996,6 +999,21 @@ async function q136Core() {
     ) {
       q63jfiei.src =
         `https://cdn.discordapp.com/avatars/${fjeijq}/${q62jfiei.discord_user.avatar}.png?size=128`;
+    }
+
+    if (q63ajfiei) {
+      const q71jfiei =
+        q62jfiei.discord_user &&
+        q62jfiei.discord_user.avatar_decoration_data;
+
+      if (q71jfiei && q71jfiei.asset) {
+        q63ajfiei.src =
+          `https://cdn.discordapp.com/avatar-decoration-presets/${q71jfiei.asset}.png`;
+        q63ajfiei.style.display = "block";
+      } else {
+        q63ajfiei.removeAttribute("src");
+        q63ajfiei.style.display = "none";
+      }
     }
 
     const q69jfiei =
