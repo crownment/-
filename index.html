@@ -1024,6 +1024,17 @@
       transform: scale(1.2);
     }
 
+    .dc-avatar-decoration {
+      position: absolute;
+      inset: -16%;
+      width: 132%;
+      height: 132%;
+      object-fit: contain;
+      display: none;
+      pointer-events: none;
+      z-index: 3;
+    }
+
     .dc-status-indicator,
     .tg-status-indicator {
       position: absolute;
@@ -1722,6 +1733,13 @@
         class="dc-avatar-img"
         id="dcModalAvatar"
         alt="Discord PFP"
+      >
+      <img
+        src=""
+        class="dc-avatar-decoration"
+        id="dcModalAvatarDecoration"
+        alt=""
+        aria-hidden="true"
       >
       <div
         class="dc-status-indicator offline"
