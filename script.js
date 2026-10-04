@@ -94,9 +94,14 @@ function q116Core() {
     return;
   }
 
-  skibidiCore.textContent = jefjri;
+  fifjei = 0;
+  jfjvbe = false;
+  skibidiCore.textContent = "";
   jfjfCore.classList.add("visible");
-  jfjvbe = true;
+
+  setTimeout(() => {
+    q117Core();
+  }, 120);
 }
 
 function q117Core() {
