@@ -1578,154 +1578,27 @@
   .profilo-card-side-profile .view-counter,.profilo-card-side-profile .volume-control{display:none}
   @media(max-width:700px){.profilo-card-side-profile{width:calc(100vw - 28px);min-height:250px;padding:20px}.profilo-card-side-profile .avatar{right:20px;width:112px;height:112px}.profilo-card-side-profile .name-badge-wrapper{right:20px;top:calc(50% + 61px);width:112px}.profilo-card-side-profile .bio{right:20px;top:calc(50% + 82px);width:112px}.profilo-card-side-profile .links{left:18px;width:calc(100% - 150px);gap:5px}.profilo-card-side-profile .link{min-height:38px;padding:0 4px}.profilo-card-portfolio{padding:24px}}
 
-.sleek-card{
-  width:min(760px,calc(100vw - 32px));
-  min-height:320px;
-  padding:34px 38px 28px;
-  border:1px solid rgba(255,255,255,.2);
-  border-radius:22px;
-  background:rgba(0,0,0,.16);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  box-shadow:0 25px 80px rgba(0,0,0,.22);
-  text-align:left;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-.sleek-profile{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:24px;
-  min-height:125px;
-}
-.sleek-profile-info{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  min-width:0;
-}
-.sleek-profile .name-badge-wrapper{
-  justify-content:flex-start;
-  margin:0;
-  gap:8px;
-}
-.sleek-profile h1{
-  font-size:32px;
-}
-.profile-heart{
-  font-size:16px;
-  color:rgba(255,255,255,.8);
-  transform:translateY(2px);
-}
-.sleek-profile .bio{
-  margin:8px 0 0;
-}
-.sleek-profile .avatar{
-  order:2;
-  flex:0 0 118px;
-  width:118px;
-  height:118px;
-  margin:0;
-}
-.sleek-links{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  margin-top:28px;
-  transform:none;
-}
-.sleek-links .link{
-  width:58px;
-  min-width:58px;
-  height:58px;
-  min-height:58px;
-  padding:0;
-  justify-content:center;
-  border-radius:16px;
-}
-.sleek-links .link-text{
-  display:none;
-}
-.sleek-links .icon-wrapper{
-  width:26px;
-  height:26px;
-  margin:0;
-}
-.discord-preview-card{
-  width:min(760px,calc(100vw - 32px));
-  height:82px;
-  margin-top:12px;
-  padding:10px 16px;
-  display:flex;
-  align-items:center;
-  gap:13px;
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:20px;
-  background:rgba(0,0,0,.14);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  box-shadow:0 18px 55px rgba(0,0,0,.18);
-}
-.discord-preview-avatar{
-  width:58px;
-  height:58px;
-  flex:0 0 58px;
-  border-radius:50%;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.15);
-}
-.discord-preview-avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.discord-preview-info{
-  min-width:0;
-  flex:1;
-}
-.discord-preview-name{
-  font-size:16px;
-  font-weight:650;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.discord-preview-add{
-  height:36px;
-  padding:0 15px;
-  flex-shrink:0;
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:11px;
-  background:rgba(255,255,255,.08);
-  color:#fff;
-  font:inherit;
-  font-size:12px;
-  cursor:none!important;
-  transition:background .2s ease,transform .2s ease;
-}
-.discord-preview-add:hover{
-  background:rgba(255,255,255,.14);
-  transform:translateY(-1px);
-}
-@media(max-width:700px){
-  .sleek-card{
-    width:calc(100vw - 24px);
-    min-height:270px;
-    padding:24px 20px 22px;
-  }
-  .sleek-profile{min-height:100px}
-  .sleek-profile h1{font-size:25px}
-  .sleek-profile .avatar{flex-basis:86px;width:86px;height:86px}
-  .sleek-links{gap:8px;margin-top:20px}
-  .sleek-links .link{width:48px;min-width:48px;height:48px;min-height:48px;border-radius:13px}
-  .sleek-links .icon-wrapper{width:22px;height:22px}
-  .discord-preview-card{width:calc(100vw - 24px);height:70px}
-  .discord-preview-avatar{width:48px;height:48px;flex-basis:48px}
-  .discord-preview-add{height:32px;padding:0 11px}
-}
+.card-wrapper{width:min(760px,calc(100vw - 32px));margin:0 auto;display:flex;flex-direction:column;align-items:stretch;gap:12px}
+.sleek-card{width:100%;min-height:320px;box-sizing:border-box;padding:34px 38px 28px;border:1px solid rgba(255,255,255,.2);border-radius:22px;background:rgba(0,0,0,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 25px 80px rgba(0,0,0,.22);text-align:left;display:flex;flex-direction:column;justify-content:center}
+.sleek-profile{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:125px}
+.sleek-profile-info{display:flex;flex-direction:column;justify-content:center;min-width:0}
+.sleek-profile .name-badge-wrapper{justify-content:flex-start;margin:0;gap:8px}
+.sleek-profile h1{font-size:32px}
+.profile-heart{font-size:16px;color:rgba(255,255,255,.8);transform:translateY(2px)}
+.sleek-profile .bio{margin:8px 0 0}
+.sleek-profile .avatar{order:2;flex:0 0 118px;width:118px;height:118px;margin:0}
+.sleek-links{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:28px;transform:none}
+.sleek-links .link{width:58px;min-width:58px;height:58px;min-height:58px;padding:0;justify-content:center;border-radius:16px}
+.sleek-links .link-text{display:none}
+.sleek-links .icon-wrapper{width:26px;height:26px;margin:0}
+.discord-preview-card{width:100%;height:78px;box-sizing:border-box;margin:0;padding:10px 16px;display:flex;align-items:center;gap:13px;border:1px solid rgba(255,255,255,.16);border-radius:20px;background:rgba(0,0,0,.14);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 18px 55px rgba(0,0,0,.18)}
+.discord-preview-avatar{width:56px;height:56px;flex:0 0 56px;border-radius:50%;overflow:hidden;border:1px solid rgba(255,255,255,.15)}
+.discord-preview-avatar img{width:100%;height:100%;object-fit:cover}
+.discord-preview-info{min-width:0;flex:1}
+.discord-preview-name{font-size:16px;font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.discord-preview-add{height:36px;padding:0 15px;flex-shrink:0;border:1px solid rgba(255,255,255,.15);border-radius:11px;background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:12px;cursor:none!important;transition:background .2s ease,transform .2s ease}
+.discord-preview-add:hover{background:rgba(255,255,255,.14);transform:translateY(-1px)}
+@media(max-width:700px){.card-wrapper{width:calc(100vw - 24px);gap:10px}.sleek-card{min-height:270px;padding:24px 20px 22px}.sleek-profile{min-height:100px}.sleek-profile h1{font-size:25px}.sleek-profile .avatar{flex-basis:86px;width:86px;height:86px}.sleek-links{gap:8px;margin-top:20px}.sleek-links .link{width:48px;min-width:48px;height:48px;min-height:48px;border-radius:13px}.sleek-links .icon-wrapper{width:22px;height:22px}.discord-preview-card{height:70px}.discord-preview-avatar{width:48px;height:48px;flex-basis:48px}.discord-preview-add{height:32px;padding:0 11px}}
 </style>
 
   <meta name="theme-color" content="#000000">
@@ -2187,13 +2060,17 @@ const p=document.getElementById("discordPreviewPfp");
 const n=document.getElementById("discordPreviewName");
 const b=document.getElementById("discordPreviewAdd");
 const id="1547303503213367297";
-if(b)b.addEventListener("click",function(){if(typeof triggerRedirectPrompt==="function"){triggerRedirectPrompt("https://discord.com/users/"+id,"Discord","https://cdn.simpleicons.org/discord/ffffff")}else{window.open("https://discord.com/users/"+id,"_blank")}});
+if(b)b.addEventListener("click",function(){
+  if(typeof triggerRedirectPrompt==="function")triggerRedirectPrompt("https://discord.com/users/"+id,"Discord","https://cdn.simpleicons.org/discord/ffffff");
+  else if(typeof showConfirmOverlay==="function")showConfirmOverlay("https://discord.com/users/"+id,"Discord","https://cdn.simpleicons.org/discord/ffffff");
+  else window.location.href="https://discord.com/users/"+id;
+});
 fetch("https://api.lanyard.rest/v1/users/"+id).then(r=>r.json()).then(d=>{
-const u=d&&d.data&&d.data.discord_user;
-if(!u)return;
-if(n)n.textContent=u.global_name||u.username||"Discord";
-if(p&&u.avatar)p.src="https://cdn.discordapp.com/avatars/"+id+"/"+u.avatar+".png?size=128";
-}).catch(function(){if(n)n.textContent="Discord";});
+  const u=d&&d.data&&d.data.discord_user;
+  if(!u)return;
+  if(n)n.textContent=u.global_name||u.username||"Discord";
+  if(p&&u.avatar)p.src="https://cdn.discordapp.com/avatars/"+id+"/"+u.avatar+".png?size=128";
+}).catch(function(){if(n)n.textContent="risk";});
 })();
 </script>
 </body>
