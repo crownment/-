@@ -1341,17 +1341,9 @@
       visibility: hidden;
       pointer-events: none;
       perspective: 1200px;
-      transition:
-        opacity .6s cubic-bezier(.16,1,.3,1),
-        visibility .6s cubic-bezier(.16,1,.3,1);
+      transition: opacity .6s cubic-bezier(.16,1,.3,1), visibility .6s cubic-bezier(.16,1,.3,1);
     }
-
-    .gh-modal.visible {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-    }
-
+    .gh-modal.visible { opacity: 1; visibility: visible; pointer-events: auto; }
     .gh-card {
       position: relative;
       width: min(380px, calc(100vw - 32px));
@@ -1361,163 +1353,49 @@
       backdrop-filter: blur(50px) saturate(200%);
       -webkit-backdrop-filter: blur(50px) saturate(200%);
       border: 1px solid rgba(255,255,255,.2);
-      box-shadow:
-        0 25px 60px rgba(0,0,0,.6),
-        inset 0 1px 0 rgba(255,255,255,.15);
+      box-shadow: 0 25px 60px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.15);
       opacity: 0;
       transform: scale(.92) translateY(10px);
-      transition:
-        opacity .6s cubic-bezier(.16,1,.3,1),
-        transform .6s cubic-bezier(.16,1,.3,1);
+      transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
       text-align: center;
       overflow: hidden;
     }
-
-    .gh-modal.visible .gh-card {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-
+    .gh-modal.visible .gh-card { opacity: 1; transform: scale(1) translateY(0); }
     .gh-modal-close {
-      position: absolute;
-      top: 13px;
-      right: 15px;
-      z-index: 3;
-      width: 30px;
-      height: 30px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: rgba(255,255,255,.75);
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      font-size: 15px;
-      cursor: none !important;
+      position: absolute; top: 13px; right: 15px; z-index: 3;
+      width: 30px; height: 30px; display: grid; place-items: center;
+      border-radius: 50%; color: rgba(255,255,255,.75);
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      font-size: 15px; cursor: none !important;
       transition: background .25s ease, color .25s ease, transform .25s ease;
     }
-
-    .gh-modal-close:hover {
-      background: rgba(255,255,255,.15);
-      color: #fff;
-      transform: rotate(8deg);
-    }
-
-    .gh-profile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      padding: 4px 34px 0;
-      transform: translateZ(25px);
-    }
-
+    .gh-modal-close:hover { background: rgba(255,255,255,.15); color: #fff; transform: rotate(8deg); }
+    .gh-profile-head { display:flex; flex-direction:column; align-items:center; gap:10px; padding:4px 34px 0; transform:translateZ(25px); }
     .gh-avatar-wrap {
-      width: 76px;
-      height: 76px;
-      flex: 0 0 76px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.2);
-      background: rgba(255,255,255,.05);
-      box-shadow: 0 10px 28px rgba(0,0,0,.4);
+      width:76px; height:76px; flex:0 0 76px; border-radius:50%; overflow:hidden;
+      border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.05);
+      box-shadow:0 10px 28px rgba(0,0,0,.4);
     }
-
-    .gh-avatar {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-    }
-
-    .gh-username {
-      font-size: 20px;
-      font-weight: 700;
-      color: #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-    }
-
-    .gh-meta {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 22px 0 16px;
-      transform: translateZ(15px);
-    }
-
-    .gh-stat {
-      padding: 10px 7px;
-      border-radius: 11px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      text-align: center;
-    }
-
-    .gh-stat-value {
-      display: block;
-      font-size: 14px;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    .gh-stat-label {
-      display: block;
-      margin-top: 3px;
-      font-size: 9px;
-      color: rgba(255,255,255,.48);
-      text-transform: uppercase;
-      letter-spacing: .5px;
-    }
-
+    .gh-avatar { width:100%; height:100%; display:block; object-fit:cover; }
+    .gh-username { font-size:20px; font-weight:700; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; }
+    .gh-meta { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:22px 0 16px; transform:translateZ(15px); }
+    .gh-stat { padding:10px 7px; border-radius:11px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.05); text-align:center; }
+    .gh-stat-value { display:block; font-size:14px; font-weight:700; color:#fff; }
+    .gh-stat-label { display:block; margin-top:3px; font-size:9px; color:rgba(255,255,255,.48); text-transform:uppercase; letter-spacing:.5px; }
     .gh-view-btn {
-      width: 100%;
-      height: 42px;
-      border-radius: 12px;
-      background: rgba(255,255,255,.1);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border: 1px solid rgba(255,255,255,.22);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: none !important;
-      transition:
-        background .25s ease,
-        transform .25s cubic-bezier(.16,1,.3,1),
-        border-color .25s ease;
-      transform: translateZ(15px);
+      width:100%; height:42px; border-radius:12px; background:rgba(255,255,255,.1);
+      backdrop-filter:blur(25px); -webkit-backdrop-filter:blur(25px);
+      border:1px solid rgba(255,255,255,.22); color:#fff; font-size:13px; font-weight:600;
+      cursor:none !important; transition:background .25s ease, transform .25s cubic-bezier(.16,1,.3,1), border-color .25s ease;
+      transform:translateZ(15px);
     }
-
-    .gh-view-btn:hover {
-      background: rgba(255,255,255,.22);
-      border-color: rgba(255,255,255,.35);
-      transform: translateZ(20px) translateY(-1px);
-    }
-
-    .link-github .icon-wrapper img {
-      filter: drop-shadow(0 0 6px rgba(255,255,255,.55));
-    }
-
-    .link-github:hover .icon-wrapper img {
-      filter: drop-shadow(0 0 10px rgba(255,255,255,.9));
-    }
-
+    .gh-view-btn:hover { background:rgba(255,255,255,.22); border-color:rgba(255,255,255,.35); transform:translateZ(20px) translateY(-1px); }
+    .link-github .icon-wrapper img { filter:drop-shadow(0 0 6px rgba(255,255,255,.55)); }
+    .link-github:hover .icon-wrapper img { filter:drop-shadow(0 0 10px rgba(255,255,255,.9)); }
     @media(max-width:500px) {
-      .gh-card {
-        padding: 24px 20px 20px;
-      }
-
-      .gh-avatar-wrap {
-        width: 68px;
-        height: 68px;
-        flex-basis: 68px;
-      }
-
-      .gh-username {
-        font-size: 18px;
-      }
+      .gh-card { padding:24px 20px 20px; }
+      .gh-avatar-wrap { width:68px; height:68px; flex-basis:68px; }
+      .gh-username { font-size:18px; }
     }
 
     .pfp-viewer {
@@ -1945,12 +1823,13 @@
   <div class="gh-card" id="ghCard">
     <div class="gh-modal-close" id="ghModalClose">✕</div>
 
-    <div class="gh-profile">
+    <div class="gh-profile-head">
       <div class="gh-avatar-wrap">
         <img class="gh-avatar" id="ghAvatar" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.svg" alt="GitHub profile">
       </div>
-
-      <div class="gh-username" id="ghUsername">@datacenterproxy</div>
+      <div class="gh-profile-name">
+        <div class="gh-username" id="ghUsername">@datacenterproxy</div>
+      </div>
     </div>
 
     <div class="gh-meta">
@@ -2062,9 +1941,91 @@
 
 </div>
 
-<script src="./script.js"></script>
-
 <div class="page-transition" id="pageTransition"></div>
+
+<script>
+(() => {
+  const intro = document.getElementById("intro");
+  const first = document.getElementById("fadeText1");
+  const second = document.getElementById("fadeText2");
+  const warning = document.getElementById("volumeWarningIntro");
+  const enter = document.getElementById("typeWrap");
+  const typing = document.getElementById("typing");
+  const video = document.getElementById("backgroundVideo");
+  const card = document.getElementById("card");
+
+  if (!intro || !first || !second || !enter || !typing) return;
+
+  window.__standaloneIntroBooted = true;
+  intro.classList.remove("hidden");
+  first.classList.remove("active");
+  second.classList.remove("active");
+  enter.classList.remove("visible");
+  typing.textContent = "";
+
+  const mobile =
+    /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+    window.matchMedia("(max-width: 768px)").matches;
+
+  if (warning) warning.style.display = mobile ? "block" : "none";
+
+  let ready = false;
+
+  setTimeout(() => {
+    first.classList.add("active");
+
+    setTimeout(() => {
+      first.classList.remove("active");
+
+      setTimeout(() => {
+        second.classList.add("active");
+
+        setTimeout(() => {
+          second.classList.remove("active");
+
+          setTimeout(() => {
+            enter.classList.add("visible");
+
+            const message = "click anywhere to enter";
+            let i = 0;
+
+            const type = () => {
+              if (i < message.length) {
+                typing.textContent += message[i++];
+                setTimeout(type, 55);
+              } else {
+                ready = true;
+              }
+            };
+
+            type();
+          }, 500);
+        }, 1600);
+      }, 500);
+    }, 1800);
+  }, 300);
+
+  intro.addEventListener("pointerdown", event => {
+    if (!ready) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    intro.classList.add("hidden");
+
+    if (video) {
+      video.muted = false;
+      video.play().catch(() => {});
+    }
+
+    if (card) {
+      setTimeout(() => card.classList.add("visible"), 150);
+    }
+  }, { passive: false });
+})();
+</script>
+
+<script src="./script.js?v=20261004"></script>
 
 </body>
 </html>
