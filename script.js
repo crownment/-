@@ -537,11 +537,16 @@ function triggerRedirectPrompt(
   );
 }
 
-$$("a.link").forEach(link => {
+$("a.link").forEach(link => {
   link.addEventListener(
     "click",
     event => {
       if (isRedirecting) {
+        return;
+      }
+
+      // GitHub uses its own preview modal instead of the generic redirect prompt.
+      if (link.id === "githubLinkBtn") {
         return;
       }
 
