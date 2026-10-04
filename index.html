@@ -2108,9 +2108,91 @@
 
 </div>
 
-<script src="./script.js"></script>
-
 <div class="page-transition" id="pageTransition"></div>
+
+<script>
+(() => {
+  const intro = document.getElementById("intro");
+  const first = document.getElementById("fadeText1");
+  const second = document.getElementById("fadeText2");
+  const warning = document.getElementById("volumeWarningIntro");
+  const enter = document.getElementById("typeWrap");
+  const typing = document.getElementById("typing");
+  const video = document.getElementById("backgroundVideo");
+  const card = document.getElementById("card");
+
+  if (!intro || !first || !second || !enter || !typing) return;
+
+  window.__standaloneIntroBooted = true;
+  intro.classList.remove("hidden");
+  first.classList.remove("active");
+  second.classList.remove("active");
+  enter.classList.remove("visible");
+  typing.textContent = "";
+
+  const mobile =
+    /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+    window.matchMedia("(max-width: 768px)").matches;
+
+  if (warning) warning.style.display = mobile ? "block" : "none";
+
+  let ready = false;
+
+  setTimeout(() => {
+    first.classList.add("active");
+
+    setTimeout(() => {
+      first.classList.remove("active");
+
+      setTimeout(() => {
+        second.classList.add("active");
+
+        setTimeout(() => {
+          second.classList.remove("active");
+
+          setTimeout(() => {
+            enter.classList.add("visible");
+
+            const message = "click anywhere to enter";
+            let i = 0;
+
+            const type = () => {
+              if (i < message.length) {
+                typing.textContent += message[i++];
+                setTimeout(type, 55);
+              } else {
+                ready = true;
+              }
+            };
+
+            type();
+          }, 500);
+        }, 1600);
+      }, 500);
+    }, 1800);
+  }, 300);
+
+  intro.addEventListener("pointerdown", event => {
+    if (!ready) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    intro.classList.add("hidden");
+
+    if (video) {
+      video.muted = false;
+      video.play().catch(() => {});
+    }
+
+    if (card) {
+      setTimeout(() => card.classList.add("visible"), 150);
+    }
+  }, { passive: false });
+})();
+</script>
+
+<script src="./script.js?v=20261004"></script>
 
 </body>
 </html>
