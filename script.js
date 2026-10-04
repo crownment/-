@@ -1890,12 +1890,6 @@ function q138Core(
 }
 
 q138Core(
-  "#card",
-  16,
-  1.025
-);
-
-q138Core(
   "#dcCard",
   14,
   1.02
@@ -1912,57 +1906,6 @@ q138Core(
   14,
   1.02
 );
-
-(function(){
-  const q144jfiei = blorboquery("#discordPreviewCard");
-  if (!q144jfiei) {
-    return;
-  }
-
-  let q145jfiei = 0;
-  let q146jfiei = 0;
-  let q147jfiei = 0;
-  let q148jfiei = 0;
-  let q149jfiei = false;
-
-  document.addEventListener("mousemove", q150jfiei => {
-    const q151jfiei = q144jfiei.getBoundingClientRect();
-    const q152jfiei =
-      (q150jfiei.clientX - q151jfiei.left) / q151jfiei.width;
-    const q153jfiei =
-      (q150jfiei.clientY - q151jfiei.top) / q151jfiei.height;
-
-    if (
-      q152jfiei >= 0 &&
-      q152jfiei <= 1 &&
-      q153jfiei >= 0 &&
-      q153jfiei <= 1
-    ) {
-      q149jfiei = true;
-      q145jfiei = (0.5 - q153jfiei) * 10;
-      q146jfiei = (q152jfiei - 0.5) * 10;
-    } else {
-      q149jfiei = false;
-      q145jfiei = 0;
-      q146jfiei = 0;
-    }
-  });
-
-  function q154jfiei() {
-    q147jfiei += (q145jfiei - q147jfiei) * 0.16;
-    q148jfiei += (q146jfiei - q148jfiei) * 0.16;
-
-    const q155jfiei = q149jfiei ? 1.02 : 1;
-    q144jfiei.style.transform =
-      `rotate(-4deg) rotateX(${q147jfiei.toFixed(2)}deg) rotateY(${q148jfiei.toFixed(2)}deg) scale3d(${q155jfiei}, ${q155jfiei}, 1)`;
-
-    requestAnimationFrame(q154jfiei);
-  }
-
-  q154jfiei();
-})();
-
-
 
 
 const q108jfiei =
