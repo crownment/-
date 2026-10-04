@@ -442,7 +442,7 @@ function q127jfiei(
       q128jfiei.match(/\/users\/(\d+)/);
 
     if (qiefjr) {
-      return `discord://-/users/${match[1]}`;
+      return `discord://-/users/${qiefjr[1]}`;
     }
   }
 
@@ -453,7 +453,7 @@ function q127jfiei(
       );
 
     if (qiefjr) {
-      return `tg://resolve?domain=${match[1]}`;
+      return `tg://resolve?domain=${qiefjr[1]}`;
     }
   }
 
@@ -462,7 +462,7 @@ function q127jfiei(
       q128jfiei.match(/\/users\/(\d+)/);
 
     if (qiefjr) {
-      return `roblox://navigation/profile?userId=${match[1]}`;
+      return `roblox://navigation/profile?userId=${qiefjr[1]}`;
     }
   }
 
@@ -616,7 +616,7 @@ if (jiefjq) {
 
       if (rjifje) {
         rjifje.textContent =
-          `Redirecting to ${pendingName} in ${currentCountdown}...`;
+          `Redirecting to ${rjfjqe} in ${jfjqei}...`;
       }
 
       if (jfqfie) {
@@ -632,7 +632,7 @@ if (jiefjq) {
           if (jfjqei > 0) {
             if (rjifje) {
               rjifje.textContent =
-                `Redirecting to ${pendingName} in ${currentCountdown}...`;
+                `Redirecting to ${rjfjqe} in ${jfjqei}...`;
             }
           } else {
             clearInterval(
@@ -943,7 +943,7 @@ async function q136jfiei() {
   try {
     const q60jfiei =
       await fetch(
-        `https://api.lanyard.rest/v1/users/${DISCORD_ID}`
+        `https://api.lanyard.rest/v1/users/${fjeijq}`
       );
 
     const q61jfiei =
@@ -979,7 +979,7 @@ async function q136jfiei() {
       q62jfiei.discord_user
     ) {
       jfjqir.textContent =
-        `@${data.discord_user.username}`;
+        `@${q62jfiei.discord_user.username}`;
     }
 
     if (
@@ -988,7 +988,7 @@ async function q136jfiei() {
       q62jfiei.discord_user.avatar
     ) {
       q63jfiei.src =
-        `https://cdn.discordapp.com/avatars/${DISCORD_ID}/${data.discord_user.avatar}.png?size=128`;
+        `https://cdn.discordapp.com/avatars/${fjeijq}/${q62jfiei.discord_user.avatar}.png?size=128`;
     }
 
     const q69jfiei =
@@ -997,7 +997,7 @@ async function q136jfiei() {
 
     if (q64jfiei) {
       q64jfiei.className =
-        `dc-status-indicator ${status}`;
+        `dc-status-indicator ${q69jfiei}`;
     }
 
     if (q65jfiei) {
@@ -1029,7 +1029,7 @@ async function q136jfiei() {
           "block";
 
         q68jfiei.textContent =
-          `by ${data.spotify.artist}`;
+          `by ${q62jfiei.spotify.artist}`;
       }
 
       return;
@@ -1085,7 +1085,7 @@ async function q136jfiei() {
             )
           ) {
             q66jfiei.src =
-              `https://i.scdn.co/image/${act.assets.large_image.replace(
+              `https://i.scdn.co/image/${q70jfiei.assets.large_image.replace(
                 "spotify:",
                 ""
               )}`;
@@ -1093,7 +1093,7 @@ async function q136jfiei() {
             q70jfiei.application_id
           ) {
             q66jfiei.src =
-              `https://cdn.discordapp.com/app-assets/${act.application_id}/${act.assets.large_image}.png`;
+              `https://cdn.discordapp.com/app-assets/${q70jfiei.application_id}/${q70jfiei.assets.large_image}.png`;
           } else {
             q66jfiei.style.display =
               "none";
@@ -1310,7 +1310,7 @@ async function q137jfiei() {
 
     if (!q60jfiei.ok) {
       throw new Error(
-        `Worker HTTP ${response.status}`
+        `Worker HTTP ${q60jfiei.status}`
       );
     }
 
@@ -1329,7 +1329,7 @@ async function q137jfiei() {
 
     q86jfiei.textContent =
       q62jfiei.username
-        ? `@${data.username}`
+        ? `@${q62jfiei.username}`
         : "@80vcv";
 
     q87jfiei.textContent =
@@ -1459,10 +1459,10 @@ if (q89jfiei) {
         );
 
       q89jfiei.style.left =
-        `${x}px`;
+        `${q93jfiei}px`;
 
       q89jfiei.style.top =
-        `${y}px`;
+        `${q94jfiei}px`;
 
       if (q91jfiei) {
         q91jfiei.textContent =
@@ -1610,9 +1610,9 @@ function q138jfiei(
 
           q96jfiei.style.background =
             `radial-gradient(circle at ${
-              insideX * 100
+              q105jfiei * 100
             }% ${
-              insideY * 100
+              q106jfiei * 100
             }%, rgba(255, 255, 255, 0.28), transparent 60%)`;
         }
       } else {
@@ -1656,11 +1656,11 @@ function q138jfiei(
           : 1;
 
       q95jfiei.style.transform =
-        `rotateX(${currentX.toFixed(
+        `rotateX(${q99jfiei.toFixed(
           2
-        )}deg) rotateY(${currentY.toFixed(
+        )}deg) rotateY(${q100jfiei.toFixed(
           2
-        )}deg) scale3d(${s}, ${s}, 1)`;
+        )}deg) scale3d(${q107jfiei}, ${q107jfiei}, 1)`;
     }
 
     requestAnimationFrame(
@@ -1833,7 +1833,7 @@ if (q109jfiei) {
           : 1;
 
       q109jfiei.style.transform =
-        `scale(${pfpScale})`;
+        `scale(${q111jfiei})`;
     }
   );
 
@@ -1860,7 +1860,7 @@ if (q109jfiei) {
       );
 
       q109jfiei.style.transform =
-        `scale(${pfpScale})`;
+        `scale(${q111jfiei})`;
     },
     {
       passive: false
@@ -1929,7 +1929,7 @@ if (q109jfiei) {
       );
 
       q109jfiei.style.transform =
-        `scale(${pfpScale})`;
+        `scale(${q111jfiei})`;
     },
     {
       passive: false
