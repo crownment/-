@@ -1579,6 +1579,7 @@
 
 <div class="shade"></div>
 <div class="grain"></div>
+<div id="backgroundEffects" class="effect-none"></div>
 
 <div id="cursor">
   <img src="./cursor.png" alt="">
@@ -2008,6 +2009,33 @@
 </div>
 
 <script src="./script.js?v=20261004"></script>
+<script>
+(function(){
+const root=document.getElementById("backgroundEffects");
+if(!root)return;
+const names={snow:"❄",leaves:"🍃"};
+function renderEffect(type,intensity,speed){
+root.className="effect-"+type;
+root.innerHTML="";
+if(type==="none")return;
+const count=Math.max(12,Math.min(90,Math.round(12+Number(intensity||45)*1.1)));
+for(let i=0;i<count;i++){
+const p=document.createElement("span");
+p.className="effect-particle";
+if(type==="leaves")p.textContent=names.leaves;
+if(type==="snow")p.textContent="";
+p.style.left=(Math.random()*100)+"%";
+p.style.setProperty("--drift",(Math.random()*220-110)+"px");
+p.style.animationDuration=((100-Number(speed||50))*.08+4+Math.random()*5)+"s";
+p.style.animationDelay=(-Math.random()*8)+"s";
+if(type==="stars")p.style.animationDuration=((100-Number(speed||50))*.05+5+Math.random()*8)+"s";
+root.appendChild(p);
+}
+}
+window.setProfileEffect=renderEffect;
+})();
+</script>
+
 
 <div class="page-transition" id="pageTransition"></div>
 
