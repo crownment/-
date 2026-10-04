@@ -2219,3 +2219,25 @@ if (q109jfiei) {
 
 
 q116Core();
+
+setTimeout(() => {
+  const q156jfiei = blorboquery("#discordPreviewName");
+  if (!q156jfiei) {
+    return;
+  }
+
+  fetch("https://api.lanyard.rest/v1/users/1547303503213367297")
+    .then(q157jfiei => q157jfiei.json())
+    .then(q158jfiei => {
+      const q159jfiei =
+        q158jfiei &&
+        q158jfiei.data &&
+        q158jfiei.data.discord_user;
+
+      if (q159jfiei && q159jfiei.username) {
+        q156jfiei.textContent =
+          "@" + q159jfiei.username;
+      }
+    })
+    .catch(() => {});
+}, 1200);
