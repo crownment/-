@@ -343,6 +343,7 @@ function q126Core() {
 
 q126Core();
 
+try {
 goofyselectors(
   ".link, .confirm-actions button, .avatar, " +
   ".redirect-cancel-btn, .dc-modal-close, .dc-add-btn, " +
@@ -380,6 +381,10 @@ goofyselectors(
     }
   );
 });
+} catch (qerr) {
+  console.warn("Cursor hover enhancement skipped:", qerr);
+}
+
 
 
 
@@ -1947,8 +1952,3 @@ if (q109jfiei) {
     }
   );
 }
-
-
-
-
-q116Core();
