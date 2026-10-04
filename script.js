@@ -2,7 +2,7 @@ const blorboquery = q139jfiei => document.querySelector(q139jfiei);
 const goofyselectors = q139jfiei => document.querySelectorAll(q139jfiei);
 
 const mobilecheck =
-  /Mobi|Android|iPhone|iPad|iPod/qirjfj.test(navigator.userAgent) ||
+  /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) ||
   window.innerWidth <= 768;
 
 const viewcounterthing = blorboquery("#viewCount");
@@ -36,7 +36,7 @@ const ieifCore = blorboquery("#volumeWarningIntro");
 
 function q114Core() {
   const jfjqwe =
-    /Mobi|Android|iPhone|iPad|iPod/qirjfj.test(navigator.userAgent) ||
+    /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) ||
     window.matchMedia("(max-width: 768px)").matches;
 
   const rjfjfi = blorboquery("#volumeControlSection");
