@@ -2174,10 +2174,6 @@ if (pfpViewerImage) {
  * the page is opened directly or restored from the browser cache.
  */
 function bootIntro() {
-  if (window.__standaloneIntroBooted) {
-    return;
-  }
-
   if (!intro) {
     return;
   }
