@@ -547,6 +547,8 @@ $("a.link").forEach(link => {
 
       // GitHub uses its own preview modal instead of the generic redirect prompt.
       if (link.id === "githubLinkBtn") {
+        event.preventDefault();
+        event.stopPropagation();
         return;
       }
 
