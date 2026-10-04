@@ -12,7 +12,7 @@ fetch("https://countapi.mileshilliard.com/api/v1/hit/risk_unique_site_views")
   .then(q62jfiei => {
     if (viewcounterthing && q62jfiei.value) {
       viewcounterthing.textContent =
-        parseInt(q62jfiei.value, 10)..toLocaleString();
+        parseInt(q62jfiei.value, 10).toLocaleString();
     }
   })
   .catch(() => {
@@ -1335,13 +1335,13 @@ async function q137Core() {
     q87jfiei.textContent =
       typeof q62jfiei.followers ===
       "number"
-        ? q62jfiei.followers..toLocaleString()
+        ? q62jfiei.followers.toLocaleString()
         : "N/A";
 
     q88jfiei.textContent =
       typeof q62jfiei.friends ===
       "number"
-        ? q62jfiei.friends..toLocaleString()
+        ? q62jfiei.friends.toLocaleString()
         : "N/A";
   } catch (q152jfiei) {
     console.error(
