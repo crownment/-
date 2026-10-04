@@ -537,18 +537,11 @@ function triggerRedirectPrompt(
   );
 }
 
-$("a.link").forEach(link => {
+$$("a.link").forEach(link => {
   link.addEventListener(
     "click",
     event => {
       if (isRedirecting) {
-        return;
-      }
-
-      // GitHub uses its own preview modal instead of the generic redirect prompt.
-      if (link.id === "githubLinkBtn") {
-        event.preventDefault();
-        event.stopPropagation();
         return;
       }
 
@@ -1473,169 +1466,6 @@ if (rbxAddBtn) {
       );
     }
   );
-}
-
-
-
-/* =========================================================
-   GITHUB
-   ========================================================= */
-
-const GITHUB_USERNAME = "datacenterproxy";
-const GITHUB_PROFILE_URL = "https://github.com/datacenterproxy";
-
-const githubLinkBtn = $("#githubLinkBtn");
-const ghModal = $("#ghModal");
-const ghCard = $("#ghCard");
-const ghModalClose = $("#ghModalClose");
-const ghViewBtn = $("#ghViewBtn");
-
-const ghAvatar = $("#ghAvatar");
-const ghDisplayName = $("#ghDisplayName");
-const ghUsername = $("#ghUsername");
-const ghBio = $("#ghBio");
-const ghRepos = $("#ghRepos");
-const ghFollowers = $("#ghFollowers");
-const ghFollowing = $("#ghFollowing");
-const ghLocation = $("#ghLocation");
-const ghCompany = $("#ghCompany");
-const ghJoined = $("#ghJoined");
-
-async function loadGithubProfile() {
-  try {
-    const response = await fetch(
-      `https://api.github.com/users/${GITHUB_USERNAME}`,
-      { cache: "no-store" }
-    );
-
-    if (!response.ok) {
-      throw new Error(`GitHub HTTP ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    if (ghAvatar && data.avatar_url) {
-      ghAvatar.src = data.avatar_url;
-    }
-
-    if (ghDisplayName) {
-      ghDisplayName.textContent =
-        data.name || data.login || GITHUB_USERNAME;
-    }
-
-    if (ghUsername) {
-      ghUsername.textContent =
-        `@${data.login || GITHUB_USERNAME}`;
-    }
-
-    if (ghBio) {
-      ghBio.textContent =
-        data.bio || "No GitHub bio set.";
-    }
-
-    if (ghRepos) {
-      ghRepos.textContent =
-        Number(data.public_repos || 0).toLocaleString();
-    }
-
-    if (ghFollowers) {
-      ghFollowers.textContent =
-        Number(data.followers || 0).toLocaleString();
-    }
-
-    if (ghFollowing) {
-      ghFollowing.textContent =
-        Number(data.following || 0).toLocaleString();
-    }
-
-    if (ghLocation) {
-      if (data.location) {
-        ghLocation.textContent = `📍 ${data.location}`;
-        ghLocation.style.display = "block";
-      } else {
-        ghLocation.style.display = "none";
-      }
-    }
-
-    if (ghCompany) {
-      if (data.company) {
-        ghCompany.textContent = `🏢 ${data.company}`;
-        ghCompany.style.display = "block";
-      } else {
-        ghCompany.style.display = "none";
-      }
-    }
-
-    if (ghJoined) {
-      if (data.created_at) {
-        const date = new Date(data.created_at);
-        ghJoined.textContent =
-          `Joined GitHub ${date.toLocaleDateString(undefined, {
-            month: "long",
-            year: "numeric"
-          })}`;
-      } else {
-        ghJoined.textContent = "";
-      }
-    }
-  } catch (_) {
-    if (ghDisplayName) {
-      ghDisplayName.textContent = GITHUB_USERNAME;
-    }
-
-    if (ghUsername) {
-      ghUsername.textContent = `@${GITHUB_USERNAME}`;
-    }
-
-    if (ghBio) {
-      ghBio.textContent = "GitHub profile preview unavailable.";
-    }
-
-    if (ghRepos) ghRepos.textContent = "—";
-    if (ghFollowers) ghFollowers.textContent = "—";
-    if (ghFollowing) ghFollowing.textContent = "—";
-  }
-}
-
-if (githubLinkBtn && ghModal) {
-  // GitHub is a preview button, not a normal navigation link.
-  githubLinkBtn.addEventListener("click", event => {
-    event.preventDefault();
-    event.stopImmediatePropagation();
-
-    loadGithubProfile();
-    ghModal.classList.add("visible");
-  });
-}
-
-if (ghModalClose && ghModal) {
-  ghModalClose.addEventListener("click", () => {
-    ghModal.classList.remove("visible");
-  });
-}
-
-if (ghModal) {
-  ghModal.addEventListener("click", event => {
-    if (event.target === ghModal) {
-      ghModal.classList.remove("visible");
-    }
-  });
-}
-
-if (ghViewBtn) {
-  ghViewBtn.addEventListener("click", () => {
-    if (ghModal) {
-      ghModal.classList.remove("visible");
-    }
-
-    triggerRedirectPrompt(
-      GITHUB_PROFILE_URL,
-      "GitHub",
-      githubLinkBtn
-        ? githubLinkBtn.getAttribute("data-icon")
-        : ""
-    );
-  });
 }
 
 
