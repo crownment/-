@@ -148,6 +148,9 @@ function q117Core() {
   jfjvbe = true;
 }
 
+// Start the intro before optional page features initialize.
+q116Core();
+
 function q118Core(q119jfiei, q120jfiei) {
   if (!vbnCore) {
     if (q120jfiei) {
