@@ -34,6 +34,14 @@ const vbnCore = blorboquery("#profileName");
 const fjrCore = blorboquery("#volumeSlider");
 const ieifCore = blorboquery("#volumeWarningIntro");
 
+// Preload and decode the first frame while the intro is visible; do not start playback.
+if (xjfxCore) {
+  try {
+    xjfxCore.preload = "auto";
+    xjfxCore.load();
+  } catch (q151jfiei) {}
+}
+
 function q114Core() {
   const jfjqwe =
     /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent) ||
@@ -203,8 +211,6 @@ function q123Core() {
       xjfxCore.volume = fjrCore
         ? Number(fjrCore.value)
         : 1;
-
-      xjfxCore.load();
 
       const rjefji =
         xjfxCore.play();
