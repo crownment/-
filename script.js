@@ -1489,15 +1489,10 @@ const ghModalClose = $("#ghModalClose");
 const ghViewBtn = $("#ghViewBtn");
 
 const ghAvatar = $("#ghAvatar");
-const ghDisplayName = $("#ghDisplayName");
 const ghUsername = $("#ghUsername");
-const ghBio = $("#ghBio");
 const ghRepos = $("#ghRepos");
 const ghFollowers = $("#ghFollowers");
 const ghFollowing = $("#ghFollowing");
-const ghLocation = $("#ghLocation");
-const ghCompany = $("#ghCompany");
-const ghJoined = $("#ghJoined");
 
 async function loadGithubProfile() {
   try {
@@ -1516,79 +1511,23 @@ async function loadGithubProfile() {
       ghAvatar.src = data.avatar_url;
     }
 
-    if (ghDisplayName) {
-      ghDisplayName.textContent =
-        data.name || data.login || GITHUB_USERNAME;
-    }
-
     if (ghUsername) {
-      ghUsername.textContent =
-        `@${data.login || GITHUB_USERNAME}`;
-    }
-
-    if (ghBio) {
-      ghBio.textContent =
-        data.bio || "No GitHub bio set.";
+      ghUsername.textContent = `@${data.login || GITHUB_USERNAME}`;
     }
 
     if (ghRepos) {
-      ghRepos.textContent =
-        Number(data.public_repos || 0).toLocaleString();
+      ghRepos.textContent = Number(data.public_repos || 0).toLocaleString();
     }
 
     if (ghFollowers) {
-      ghFollowers.textContent =
-        Number(data.followers || 0).toLocaleString();
+      ghFollowers.textContent = Number(data.followers || 0).toLocaleString();
     }
 
     if (ghFollowing) {
-      ghFollowing.textContent =
-        Number(data.following || 0).toLocaleString();
-    }
-
-    if (ghLocation) {
-      if (data.location) {
-        ghLocation.textContent = `📍 ${data.location}`;
-        ghLocation.style.display = "block";
-      } else {
-        ghLocation.style.display = "none";
-      }
-    }
-
-    if (ghCompany) {
-      if (data.company) {
-        ghCompany.textContent = `🏢 ${data.company}`;
-        ghCompany.style.display = "block";
-      } else {
-        ghCompany.style.display = "none";
-      }
-    }
-
-    if (ghJoined) {
-      if (data.created_at) {
-        const date = new Date(data.created_at);
-        ghJoined.textContent =
-          `Joined GitHub ${date.toLocaleDateString(undefined, {
-            month: "long",
-            year: "numeric"
-          })}`;
-      } else {
-        ghJoined.textContent = "";
-      }
+      ghFollowing.textContent = Number(data.following || 0).toLocaleString();
     }
   } catch (_) {
-    if (ghDisplayName) {
-      ghDisplayName.textContent = GITHUB_USERNAME;
-    }
-
-    if (ghUsername) {
-      ghUsername.textContent = `@${GITHUB_USERNAME}`;
-    }
-
-    if (ghBio) {
-      ghBio.textContent = "GitHub profile preview unavailable.";
-    }
-
+    if (ghUsername) ghUsername.textContent = `@${GITHUB_USERNAME}`;
     if (ghRepos) ghRepos.textContent = "—";
     if (ghFollowers) ghFollowers.textContent = "—";
     if (ghFollowing) ghFollowing.textContent = "—";
@@ -1627,9 +1566,7 @@ if (ghViewBtn) {
     triggerRedirectPrompt(
       GITHUB_PROFILE_URL,
       "GitHub",
-      githubLinkBtn
-        ? githubLinkBtn.getAttribute("data-icon")
-        : ""
+      "https://github.githubassets.com/favicons/favicon.svg"
     );
   });
 }
