@@ -506,6 +506,12 @@ goofyselectors("a.link").forEach(q147jfiei => {
   q147jfiei.addEventListener(
     "click",
     q125jfiei => {
+      if (
+        q147jfiei.getAttribute("data-name") === "GitHub"
+      ) {
+        return;
+      }
+
       if (qjifje) {
         return;
       }
@@ -1126,6 +1132,211 @@ async function q136Core() {
 
 
 
+
+const q153jfiei =
+  "https://github.com/datacenterproxy";
+
+const q154jfiei =
+  blorboquery("#ghModal");
+
+const q155jfiei =
+  blorboquery("#ghModalClose");
+
+const q156jfiei =
+  blorboquery("#ghCard");
+
+const q157jfiei =
+  blorboquery("#ghAvatarWrap");
+
+const q158jfiei =
+  blorboquery("#ghModalAvatar");
+
+const q159jfiei =
+  blorboquery("#ghModalUsername");
+
+const q160jfiei =
+  blorboquery("#ghModalName");
+
+const q161jfiei =
+  blorboquery("#ghFollowersCount");
+
+const q162jfiei =
+  blorboquery("#ghFollowingCount");
+
+const q163jfiei =
+  blorboquery("#ghReposCount");
+
+const q164jfiei =
+  blorboquery("#ghOpenBtn");
+
+const q165jfiei =
+  blorboquery(".link-github");
+
+async function q166Core() {
+  if (
+    !q158jfiei ||
+    !q159jfiei ||
+    !q160jfiei ||
+    !q161jfiei ||
+    !q162jfiei ||
+    !q163jfiei
+  ) {
+    return;
+  }
+
+  q158jfiei.src = "";
+  q159jfiei.textContent = "@datacenterproxy";
+  q160jfiei.textContent = "Loading...";
+  q161jfiei.textContent = "…";
+  q162jfiei.textContent = "…";
+  q163jfiei.textContent = "…";
+
+  try {
+    const q167jfiei =
+      await fetch(
+        "https://api.github.com/users/datacenterproxy",
+        {
+          cache: "no-store",
+          headers: {
+            "Accept": "application/vnd.github+json"
+          }
+        }
+      );
+
+    if (!q167jfiei.ok) {
+      throw new Error(
+        `GitHub API HTTP ${q167jfiei.status}`
+      );
+    }
+
+    const q168jfiei =
+      await q167jfiei.json();
+
+    if (q168jfiei.avatar_url) {
+      q158jfiei.src =
+        q168jfiei.avatar_url;
+    }
+
+    q159jfiei.textContent =
+      q168jfiei.login
+        ? `@${q168jfiei.login}`
+        : "@datacenterproxy";
+
+    q160jfiei.textContent =
+      q168jfiei.name ||
+      q168jfiei.bio ||
+      "GitHub";
+
+    q161jfiei.textContent =
+      typeof q168jfiei.followers === "number"
+        ? q168jfiei.followers.toLocaleString()
+        : "N/A";
+
+    q162jfiei.textContent =
+      typeof q168jfiei.following === "number"
+        ? q168jfiei.following.toLocaleString()
+        : "N/A";
+
+    q163jfiei.textContent =
+      typeof q168jfiei.public_repos === "number"
+        ? q168jfiei.public_repos.toLocaleString()
+        : "N/A";
+  } catch (q169jfiei) {
+    console.error(
+      "GitHub profile error:",
+      q169jfiei
+    );
+
+    q160jfiei.textContent = "GitHub profile";
+    q161jfiei.textContent = "N/A";
+    q162jfiei.textContent = "N/A";
+    q163jfiei.textContent = "N/A";
+  }
+}
+
+if (
+  q165jfiei &&
+  q154jfiei
+) {
+  q165jfiei.addEventListener(
+    "click",
+    q125jfiei => {
+      q125jfiei.preventDefault();
+      q125jfiei.stopPropagation();
+
+      q166Core();
+
+      q154jfiei.classList.add(
+        "visible"
+      );
+    }
+  );
+}
+
+if (
+  q155jfiei &&
+  q154jfiei
+) {
+  q155jfiei.addEventListener(
+    "click",
+    () => {
+      q154jfiei.classList.remove(
+        "visible"
+      );
+    }
+  );
+}
+
+if (q154jfiei) {
+  q154jfiei.addEventListener(
+    "click",
+    q125jfiei => {
+      if (
+        q125jfiei.target === q154jfiei
+      ) {
+        q154jfiei.classList.remove(
+          "visible"
+        );
+      }
+    }
+  );
+}
+
+if (q164jfiei) {
+  q164jfiei.addEventListener(
+    "click",
+    () => {
+      q154jfiei.classList.remove(
+        "visible"
+      );
+
+      q129Core(
+        q153jfiei,
+        "GitHub",
+        q165jfiei
+          ? q165jfiei.getAttribute(
+              "data-icon"
+            )
+          : ""
+      );
+    }
+  );
+}
+
+if (q157jfiei) {
+  q157jfiei.addEventListener(
+    "click",
+    q125jfiei => {
+      const q170jfiei =
+        q157jfiei.querySelector("img");
+
+      if (q170jfiei) {
+        q125jfiei.stopPropagation();
+        q143Core(q170jfiei);
+      }
+    }
+  );
+}
 
 const q71jfiei =
   blorboquery("#telegramLinkBtn");
