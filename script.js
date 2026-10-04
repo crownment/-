@@ -1867,9 +1867,9 @@ function q138Core(
           : 1;
 
       const q109jfiei =
-        q139jfiei === "#card"
-          ? -2
-          : q139jfiei === "#discordPreviewCard"
+        q139jfiei === "#discordPreviewCard"
+          ? -4
+          : q139jfiei === "#card"
             ? -2
             : 0;
 
