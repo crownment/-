@@ -290,29 +290,7 @@
         white-space: nowrap;
       }
     }
-
-    .volume-warning-intro {
-      position: absolute;
-      left: 50%;
-      top: calc(50% + 32px);
-      transform: translateX(-50%);
-      width: max-content;
-      max-width: 88vw;
-      text-align: center;
-      font-size: 14px;
-      letter-spacing: .5px;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 4px;
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .volume-warning-intro {
-        display: block;
-      }
-    }
-
-    .typing {
+.typing {
       display: inline-block;
       white-space: nowrap;
       word-break: normal;
@@ -1615,20 +1593,7 @@
 <div class="cursor-glow" id="cursorGlow"></div>
 
 <div id="intro">
-  <div class="enter-wrapper">
-    <div class="intro-fade-text" id="fadeText1">
-      thank you for visiting my page
-    </div>
-
-    <div class="intro-fade-text" id="fadeText2">
-      this page is still in development,<br>so expect some bugs
-    </div>
-
-    <div class="volume-warning-intro" id="volumeWarningIntro">
-      you may need to lower your volume
-    </div>
-
-    <div class="enter-text" id="typeWrap">
+  <div class="enter-wrapper"><div class="enter-text" id="typeWrap">
       <span class="typing" id="typing"></span>
     </div>
   </div>
