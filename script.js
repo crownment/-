@@ -1134,7 +1134,7 @@ async function q136Core() {
 
 
 const q153jfiei =
-  "https://github.com/datacenterproxy";
+  "https://github.com/crownment";
 
 const q154jfiei =
   blorboquery("#ghModal");
@@ -1185,7 +1185,7 @@ async function q166Core() {
   }
 
   q158jfiei.src = "";
-  q159jfiei.textContent = "@datacenterproxy";
+  q159jfiei.textContent = "@crownment";
   q160jfiei.textContent = "Loading...";
   q161jfiei.textContent = "…";
   q162jfiei.textContent = "…";
@@ -1194,7 +1194,7 @@ async function q166Core() {
   try {
     const q167jfiei =
       await fetch(
-        "https://api.github.com/users/datacenterproxy",
+        "https://api.github.com/users/crownment",
         {
           cache: "no-store",
           headers: {
@@ -1220,7 +1220,7 @@ async function q166Core() {
     q159jfiei.textContent =
       q168jfiei.login
         ? `@${q168jfiei.login}`
-        : "@datacenterproxy";
+        : "@crownment";
 
     q160jfiei.textContent =
       q168jfiei.name ||
