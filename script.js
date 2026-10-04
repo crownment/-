@@ -90,38 +90,14 @@ let xqjfjf = false;
 let jfjvbe = false;
 
 function q116Core() {
-  if (
-    !femboyCore ||
-    !jfjieCore ||
-    !jfjfCore ||
-    !skibidiCore
-  ) {
+  if (!jfjfCore || !skibidiCore) {
     return;
   }
 
   setTimeout(() => {
-    femboyCore.classList.add("active");
-
-    setTimeout(() => {
-      femboyCore.classList.remove("active");
-
-      setTimeout(() => {
-        jfjieCore.classList.add("active");
-
-        setTimeout(() => {
-          jfjieCore.classList.remove("active");
-
-          setTimeout(() => {
-            jfjfCore.classList.add("visible");
-
-            
-            
-            q117Core();
-          }, 600);
-        }, 1600);
-      }, 600);
-    }, 1800);
-  }, 400);
+    jfjfCore.classList.add("visible");
+    q117Core();
+  }, 250);
 }
 
 function q117Core() {
