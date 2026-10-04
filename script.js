@@ -148,9 +148,6 @@ function q117Core() {
   jfjvbe = true;
 }
 
-// Start the intro before optional page features initialize.
-q116Core();
-
 function q118Core(q119jfiei, q120jfiei) {
   if (!vbnCore) {
     if (q120jfiei) {
@@ -346,7 +343,6 @@ function q126Core() {
 
 q126Core();
 
-try {
 goofyselectors(
   ".link, .confirm-actions button, .avatar, " +
   ".redirect-cancel-btn, .dc-modal-close, .dc-add-btn, " +
@@ -384,10 +380,6 @@ goofyselectors(
     }
   );
 });
-} catch (qerr) {
-  console.warn("Cursor hover enhancement skipped:", qerr);
-}
-
 
 
 
@@ -1955,3 +1947,8 @@ if (q109jfiei) {
     }
   );
 }
+
+
+
+
+q116Core();
