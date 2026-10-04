@@ -1096,14 +1096,39 @@ async function q136Core() {
           }
         }
 
+        if (q66jfiei) {
+          q66jfiei.style.display =
+            "none";
+        }
+
+        if (q70jfiei.application_id) {
+          try {
+            const q73jfiei =
+              await fetch(
+                `https://discord.com/api/v10/applications/${q70jfiei.application_id}/rpc`
+              );
+
+            if (q73jfiei.ok) {
+              const q74jfiei =
+                await q73jfiei.json();
+
+              if (q74jfiei.icon) {
+                q66jfiei.src =
+                  `https://cdn.discordapp.com/app-icons/${q70jfiei.application_id}/${q74jfiei.icon}.png?size=64`;
+
+                q66jfiei.style.display =
+                  "block";
+              }
+            }
+          } catch (q75jfiei) {}
+        }
+
         if (
           q66jfiei &&
+          q66jfiei.style.display === "none" &&
           q70jfiei.assets &&
           q70jfiei.assets.large_image
         ) {
-          q66jfiei.style.display =
-            "block";
-
           if (
             q70jfiei.assets.large_image.startsWith(
               "spotify:"
@@ -1114,18 +1139,18 @@ async function q136Core() {
                 "spotify:",
                 ""
               )}`;
+
+            q66jfiei.style.display =
+              "block";
           } else if (
             q70jfiei.application_id
           ) {
             q66jfiei.src =
               `https://cdn.discordapp.com/app-assets/${q70jfiei.application_id}/${q70jfiei.assets.large_image}.png`;
-          } else {
+
             q66jfiei.style.display =
-              "none";
+              "block";
           }
-        } else if (q66jfiei) {
-          q66jfiei.style.display =
-            "none";
         }
 
         return;
