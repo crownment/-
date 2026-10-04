@@ -204,6 +204,8 @@ function q123Core() {
         ? Number(fjrCore.value)
         : 1;
 
+      xjfxCore.load();
+
       const rjefji =
         xjfxCore.play();
 
@@ -211,7 +213,9 @@ function q123Core() {
         rjefji &&
         typeof rjefji.catch === "function"
       ) {
-        rjefji.catch(() => {});
+        rjefji.catch(() => {
+          console.warn("Background video failed to play:", xjfxCore.error);
+        });
       }
     } catch (q151jfiei) {}
   }
