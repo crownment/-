@@ -1106,90 +1106,79 @@ async function q136Core() {
           q66jfiei.removeAttribute("src");
         }
 
-        if (
-          q66jfiei &&
-          q70jfiei &&
-          q70jfiei.application_id
-        ) {
-          const q73jfiei =
-            q70jfiei.application_id;
+        const q73jfiei = q70jfiei.application_id;
+        const q74jfiei = q70jfiei.assets || {};
+        const q75jfiei = [];
 
-          // Lanyard gives us the application ID, but the activity
-          // asset key is NOT the application's icon hash.
-          // Discord exposes an unauthenticated RPC application
-          // endpoint that returns the application's icon hash.
+        const q76jfiei = q77jfiei => {
+          if (!q77jfiei || typeof q77jfiei !== "string") {
+            return;
+          }
+
+          if (q77jfiei.startsWith("mp:")) {
+            q75jfiei.push(
+              `https://media.discordapp.net/${q77jfiei.slice(3)}`
+            );
+          } else {
+            q75jfiei.push(
+              `https://cdn.discordapp.com/app-assets/${q73jfiei}/${q77jfiei}.png?size=128`
+            );
+          }
+        };
+
+        q76jfiei(q74jfiei.large_image);
+        q76jfiei(q74jfiei.small_image);
+
+        if (q66jfiei && q73jfiei) {
           fetch(
             `https://discord.com/api/v10/applications/${q73jfiei}/rpc`,
             {
               cache: "no-store"
             }
           )
-            .then(q74jfiei => {
-              if (!q74jfiei.ok) {
+            .then(q78jfiei => {
+              if (!q78jfiei.ok) {
                 throw new Error("Application lookup failed");
               }
 
-              return q74jfiei.json();
+              return q78jfiei.json();
             })
-            .then(q75jfiei => {
-              if (
-                q75jfiei &&
-                q75jfiei.icon
-              ) {
-                const q76jfiei =
-                  `https://cdn.discordapp.com/app-icons/${q73jfiei}/${q75jfiei.icon}.png?size=128`;
+            .then(q79jfiei => {
+              if (!q79jfiei || !q79jfiei.icon) {
+                throw new Error("No application icon");
+              }
+
+              q75jfiei.unshift(
+                `https://cdn.discordapp.com/app-icons/${q73jfiei}/${q79jfiei.icon}.png?size=128`
+              );
+
+              throw new Error("Try activity assets");
+            })
+            .catch(() => {
+              let q80jfiei = 0;
+
+              const q81jfiei = () => {
+                if (
+                  !q66jfiei ||
+                  q80jfiei >= q75jfiei.length
+                ) {
+                  return;
+                }
+
+                const q82jfiei = q75jfiei[q80jfiei++];
 
                 q66jfiei.onload = () => {
                   q66jfiei.style.display = "block";
                 };
 
-                q66jfiei.onerror = () => {
-                  q66jfiei.style.display = "none";
-                };
-
-                q66jfiei.src = q76jfiei;
-              } else {
-                throw new Error("No application icon");
-              }
-            })
-            .catch(() => {
-              // If the application has no public icon, fall back
-              // to the Rich Presence artwork supplied by Lanyard.
-              const q77jfiei =
-                q70jfiei.assets &&
-                (
-                  q70jfiei.assets.large_image ||
-                  q70jfiei.assets.small_image
-                );
-
-              if (!q77jfiei) {
-                return;
-              }
-
-              let q78jfiei = "";
-
-              if (q77jfiei.startsWith("mp:")) {
-                q78jfiei =
-                  `https://media.discordapp.net/${q77jfiei.replace(
-                    "mp:",
-                    ""
-                  )}`;
-              } else {
-                q78jfiei =
-                  `https://cdn.discordapp.com/app-assets/${q73jfiei}/${q77jfiei}.png`;
-              }
-
-              q66jfiei.onload = () => {
-                q66jfiei.style.display = "block";
+                q66jfiei.onerror = q81jfiei;
+                q66jfiei.src = q82jfiei;
               };
 
-              q66jfiei.onerror = () => {
-                q66jfiei.style.display = "none";
-              };
-
-              q66jfiei.src = q78jfiei;
+              q81jfiei();
             });
         }
+
         return;
       }
     }
