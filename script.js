@@ -1596,9 +1596,11 @@ async function loadGithubProfile() {
 }
 
 if (githubLinkBtn && ghModal) {
+  // GitHub is a preview button, not a normal navigation link.
   githubLinkBtn.addEventListener("click", event => {
     event.preventDefault();
-    event.stopPropagation();
+    event.stopImmediatePropagation();
+
     loadGithubProfile();
     ghModal.classList.add("visible");
   });
