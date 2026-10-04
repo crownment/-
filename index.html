@@ -513,6 +513,7 @@
       height: 100%;
       object-fit: contain;
       display: block;
+      filter: grayscale(1) brightness(0) invert(1);
       transition: filter 0.3s ease;
     }
 
@@ -522,21 +523,7 @@
       line-height: 1;
     }
 
-    .link-discord .icon-wrapper svg {
-      filter: drop-shadow(0 0 6px rgba(88, 101, 242, 0.8));
-    }
 
-    .link-telegram .icon-wrapper svg {
-      filter: drop-shadow(0 0 6px rgba(36, 161, 222, 0.8));
-    }
-
-    .link-roblox .icon-wrapper img {
-      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
-    }
-
-    .link-github .icon-wrapper svg {
-      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.65));
-    }
 
     .link::before {
       content: "";
@@ -559,18 +546,6 @@
       background: rgba(255,255,255,.12);
       border-color: rgba(255,255,255,.25);
       box-shadow: 0 12px 35px rgba(0,0,0,0.3);
-    }
-
-    .link-discord:hover .icon-wrapper svg {
-      filter: drop-shadow(0 0 10px rgba(88, 101, 242, 1));
-    }
-
-    .link-telegram:hover .icon-wrapper svg {
-      filter: drop-shadow(0 0 10px rgba(36, 161, 222, 1));
-    }
-
-    .link-roblox:hover .icon-wrapper img {
-      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 1));
     }
 
     .link:hover::before {
@@ -1662,10 +1637,6 @@
         <div class="name-badge-wrapper">
           <h1 id="profileName">risk</h1>
           <span class="profile-heart">&lt;3</span>
-        </div>
-        <div class="sleek-discord-badges" aria-label="Discord profile badges">
-          <img class="sleek-discord-badge" src="https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/png/nitro.png" alt="Discord Nitro">
-          <img class="sleek-discord-badge" src="https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/png/game_variety_adventurer.png" alt="Game Variety">
         </div>
         <div class="bio"></div>
       </div>
