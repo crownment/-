@@ -1101,58 +1101,34 @@ async function q136Core() {
             "none";
         }
 
-        if (q70jfiei.application_id) {
-          try {
-            const q73jfiei =
-              await fetch(
-                `https://discord.com/api/v10/applications/${q70jfiei.application_id}/rpc`
-              );
-
-            if (q73jfiei.ok) {
-              const q74jfiei =
-                await q73jfiei.json();
-
-              if (q74jfiei.icon) {
-                q66jfiei.src =
-                  `https://cdn.discordapp.com/app-icons/${q70jfiei.application_id}/${q74jfiei.icon}.png?size=64`;
-
-                q66jfiei.style.display =
-                  "block";
-              }
-            }
-          } catch (q75jfiei) {}
-        }
-
         if (
           q66jfiei &&
-          q66jfiei.style.display === "none" &&
           q70jfiei.assets &&
           q70jfiei.assets.large_image
         ) {
-          if (
-            q70jfiei.assets.large_image.startsWith(
-              "spotify:"
-            )
-          ) {
+          const q73jfiei =
+            q70jfiei.assets.large_image;
+
+          if (q73jfiei.startsWith("spotify:")) {
             q66jfiei.src =
-              `https://i.scdn.co/image/${q70jfiei.assets.large_image.replace(
+              `https://i.scdn.co/image/${q73jfiei.replace(
                 "spotify:",
                 ""
               )}`;
-
-            q66jfiei.style.display =
-              "block";
-          } else if (
-            q70jfiei.application_id
-          ) {
+          } else if (q73jfiei.startsWith("mp:")) {
             q66jfiei.src =
-              `https://cdn.discordapp.com/app-assets/${q70jfiei.application_id}/${q70jfiei.assets.large_image}.png`;
-
-            q66jfiei.style.display =
-              "block";
+              `https://media.discordapp.net/${q73jfiei.replace(
+                "mp:",
+                ""
+              )}`;
+          } else if (q70jfiei.application_id) {
+            q66jfiei.src =
+              `https://cdn.discordapp.com/app-assets/${q70jfiei.application_id}/${q73jfiei}.png`;
           }
-        }
 
+          q66jfiei.style.display =
+            "block";
+        }
         return;
       }
     }
