@@ -1101,55 +1101,94 @@ async function q136Core() {
           q66jfiei.removeAttribute("src");
         }
 
-        if (q66jfiei && q70jfiei && q70jfiei.assets) {
+        if (q66jfiei) {
+          q66jfiei.style.display = "none";
+          q66jfiei.removeAttribute("src");
+        }
+
+        if (
+          q66jfiei &&
+          q70jfiei &&
+          q70jfiei.application_id
+        ) {
           const q73jfiei =
-            q70jfiei.assets.large_image ||
-            q70jfiei.assets.small_image ||
-            "";
+            q70jfiei.application_id;
 
-          if (q73jfiei) {
-            let q74jfiei = "";
-
-            if (q73jfiei.startsWith("spotify:")) {
-              q74jfiei =
-                `https://i.scdn.co/image/${q73jfiei.replace(
-                  "spotify:",
-                  ""
-                )}`;
-            } else if (q73jfiei.startsWith("mp:")) {
-              q74jfiei =
-                `https://media.discordapp.net/${q73jfiei.replace(
-                  "mp:",
-                  ""
-                )}`;
-            } else if (q70jfiei.application_id) {
-              q74jfiei =
-                `https://cdn.discordapp.com/app-assets/${q70jfiei.application_id}/${q73jfiei}.webp`;
+          // Lanyard gives us the application ID, but the activity
+          // asset key is NOT the application's icon hash.
+          // Discord exposes an unauthenticated RPC application
+          // endpoint that returns the application's icon hash.
+          fetch(
+            `https://discord.com/api/v10/applications/${q73jfiei}/rpc`,
+            {
+              cache: "no-store"
             }
+          )
+            .then(q74jfiei => {
+              if (!q74jfiei.ok) {
+                throw new Error("Application lookup failed");
+              }
 
-            if (q74jfiei) {
+              return q74jfiei.json();
+            })
+            .then(q75jfiei => {
+              if (
+                q75jfiei &&
+                q75jfiei.icon
+              ) {
+                const q76jfiei =
+                  `https://cdn.discordapp.com/app-icons/${q73jfiei}/${q75jfiei.icon}.png?size=128`;
+
+                q66jfiei.onload = () => {
+                  q66jfiei.style.display = "block";
+                };
+
+                q66jfiei.onerror = () => {
+                  q66jfiei.style.display = "none";
+                };
+
+                q66jfiei.src = q76jfiei;
+              } else {
+                throw new Error("No application icon");
+              }
+            })
+            .catch(() => {
+              // If the application has no public icon, fall back
+              // to the Rich Presence artwork supplied by Lanyard.
+              const q77jfiei =
+                q70jfiei.assets &&
+                (
+                  q70jfiei.assets.large_image ||
+                  q70jfiei.assets.small_image
+                );
+
+              if (!q77jfiei) {
+                return;
+              }
+
+              let q78jfiei = "";
+
+              if (q77jfiei.startsWith("mp:")) {
+                q78jfiei =
+                  `https://media.discordapp.net/${q77jfiei.replace(
+                    "mp:",
+                    ""
+                  )}`;
+              } else {
+                q78jfiei =
+                  `https://cdn.discordapp.com/app-assets/${q73jfiei}/${q77jfiei}.png`;
+              }
+
               q66jfiei.onload = () => {
                 q66jfiei.style.display = "block";
               };
 
               q66jfiei.onerror = () => {
-                if (
-                  q70jfiei.application_id &&
-                  !q74jfiei.endsWith(".png")
-                ) {
-                  q66jfiei.onerror = () => {
-                    q66jfiei.style.display = "none";
-                  };
-                  q66jfiei.src =
-                    `https://cdn.discordapp.com/app-assets/${q70jfiei.application_id}/${q73jfiei}.png`;
-                } else {
-                  q66jfiei.style.display = "none";
-                }
+                q66jfiei.style.display = "none";
               };
 
-              q66jfiei.src = q74jfiei;
-            }
-          }
+              q66jfiei.src = q78jfiei;
+            });
         }
         return;
       }
