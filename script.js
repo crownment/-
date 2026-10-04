@@ -1097,37 +1097,59 @@ async function q136Core() {
         }
 
         if (q66jfiei) {
-          q66jfiei.style.display =
-            "none";
+          q66jfiei.style.display = "none";
+          q66jfiei.removeAttribute("src");
         }
 
-        if (
-          q66jfiei &&
-          q70jfiei.assets &&
-          q70jfiei.assets.large_image
-        ) {
+        if (q66jfiei && q70jfiei && q70jfiei.assets) {
           const q73jfiei =
-            q70jfiei.assets.large_image;
+            q70jfiei.assets.large_image ||
+            q70jfiei.assets.small_image ||
+            "";
 
-          if (q73jfiei.startsWith("spotify:")) {
-            q66jfiei.src =
-              `https://i.scdn.co/image/${q73jfiei.replace(
-                "spotify:",
-                ""
-              )}`;
-          } else if (q73jfiei.startsWith("mp:")) {
-            q66jfiei.src =
-              `https://media.discordapp.net/${q73jfiei.replace(
-                "mp:",
-                ""
-              )}`;
-          } else if (q70jfiei.application_id) {
-            q66jfiei.src =
-              `https://cdn.discordapp.com/app-assets/${q70jfiei.application_id}/${q73jfiei}.png`;
+          if (q73jfiei) {
+            let q74jfiei = "";
+
+            if (q73jfiei.startsWith("spotify:")) {
+              q74jfiei =
+                `https://i.scdn.co/image/${q73jfiei.replace(
+                  "spotify:",
+                  ""
+                )}`;
+            } else if (q73jfiei.startsWith("mp:")) {
+              q74jfiei =
+                `https://media.discordapp.net/${q73jfiei.replace(
+                  "mp:",
+                  ""
+                )}`;
+            } else if (q70jfiei.application_id) {
+              q74jfiei =
+                `https://cdn.discordapp.com/app-assets/${q70jfiei.application_id}/${q73jfiei}.webp`;
+            }
+
+            if (q74jfiei) {
+              q66jfiei.onload = () => {
+                q66jfiei.style.display = "block";
+              };
+
+              q66jfiei.onerror = () => {
+                if (
+                  q70jfiei.application_id &&
+                  !q74jfiei.endsWith(".png")
+                ) {
+                  q66jfiei.onerror = () => {
+                    q66jfiei.style.display = "none";
+                  };
+                  q66jfiei.src =
+                    `https://cdn.discordapp.com/app-assets/${q70jfiei.application_id}/${q73jfiei}.png`;
+                } else {
+                  q66jfiei.style.display = "none";
+                }
+              };
+
+              q66jfiei.src = q74jfiei;
+            }
           }
-
-          q66jfiei.style.display =
-            "block";
         }
         return;
       }
