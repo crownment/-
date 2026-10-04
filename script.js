@@ -1,128 +1,122 @@
-const $ = selector => document.querySelector(selector);
-const $$ = selector => document.querySelectorAll(selector);
+const ilikefemboys = q139jfiei => document.querySelector(q139jfiei);
+const ffiefjefi = q139jfiei => document.querySelectorAll(q139jfiei);
 
-const isMobile =
-  /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+const ejejfie =
+  /Mobi|Android|iPhone|iPad|iPod/qirjfj.test(navigator.userAgent) ||
   window.innerWidth <= 768;
 
-const viewCount = $("#viewCount");
+const fjeifjei = ilikefemboys("#viewCount");
 
 fetch("https://countapi.mileshilliard.com/api/v1/hit/risk_unique_site_views")
-  .then(res => res.json())
-  .then(data => {
-    if (viewCount && data.value) {
-      viewCount.textContent =
-        parseInt(data.value, 10).toLocaleString();
+  .then(q145jfiei => q145jfiei.json())
+  .then(q62jfiei => {
+    if (fjeifjei && q62jfiei.value) {
+      fjeifjei.textContent =
+        parseInt(q62jfiei.value, 10).toLocaleString();
     }
   })
   .catch(() => {
-    if (viewCount) {
-      viewCount.textContent = "1";
+    if (fjeifjei) {
+      fjeifjei.textContent = "1";
     }
   });
 
-const intro = $("#intro");
-const typing = $("#typing");
-const typeWrap = $("#typeWrap");
-const fadeText1 = $("#fadeText1");
-const fadeText2 = $("#fadeText2");
-const card = $("#card");
-const video = $("#backgroundVideo");
-const cursor = $("#cursor");
-const cursorGlow = $("#cursorGlow");
-const profileName = $("#profileName");
-const volumeSlider = $("#volumeSlider");
-const volumeWarningIntro = $("#volumeWarningIntro");
+const yurkrandom = ilikefemboys("#intro");
+const skibidiq = ilikefemboys("#typing");
+const qjfjfjq = ilikefemboys("#typeWrap");
+const femboyzz = ilikefemboys("#fadeText1");
+const jfjfiee = ilikefemboys("#fadeText2");
+const rizzlmao = ilikefemboys("#card");
+const xjfjxj = ilikefemboys("#backgroundVideo");
+const qweifje = ilikefemboys("#cursor");
+const zjfjrj = ilikefemboys("#cursorGlow");
+const vbnfiei = ilikefemboys("#profileName");
+const fjrjei = ilikefemboys("#volumeSlider");
+const ieifjfj = ilikefemboys("#volumeWarningIntro");
 
-function updateMobileOnlyIntroUI() {
-  const mobile =
-    /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+function q114jfiei() {
+  const jfjqwe =
+    /Mobi|Android|iPhone|iPad|iPod/qirjfj.test(navigator.userAgent) ||
     window.matchMedia("(max-width: 768px)").matches;
 
-  const volumeControl = $("#volumeControlSection");
+  const rjfjfi = ilikefemboys("#volumeControlSection");
 
-  if (volumeControl) {
-    volumeControl.style.display = mobile ? "none" : "";
+  if (rjfjfi) {
+    rjfjfi.style.display = jfjqwe ? "none" : "";
   }
 
-  if (volumeWarningIntro) {
-    volumeWarningIntro.style.display =
-      mobile ? "block" : "none";
+  if (ieifjfj) {
+    ieifjfj.style.display =
+      jfjqwe ? "block" : "none";
   }
 }
 
-updateMobileOnlyIntroUI();
+q114jfiei();
 
 window.addEventListener(
   "resize",
-  updateMobileOnlyIntroUI
+  q114jfiei
 );
 
-const pageTransition = $("#pageTransition");
+const qfjeif = ilikefemboys("#pageTransition");
 
-function runPageTransition() {
-  if (!pageTransition) {
+function q115jfiei() {
+  if (!qfjeif) {
     return Promise.resolve();
   }
 
-  pageTransition.classList.add("active");
+  qfjeif.classList.add("active");
 
-  return new Promise(resolve => {
-    setTimeout(resolve, 430);
+  return new Promise(q146jfiei => {
+    setTimeout(q146jfiei, 430);
   });
 }
 
 window.addEventListener("pageshow", () => {
-  if (pageTransition) {
-    pageTransition.classList.remove("active");
+  if (qfjeif) {
+    qfjeif.classList.remove("active");
   }
 });
 
 
-/* =========================================================
-   INTRO / CLICK TO ENTER
-   ========================================================= */
 
-const text = "click anywhere to enter";
 
-let index = 0;
-let entered = false;
+const jefjri = "click anywhere to enter";
 
-/*
- * IMPORTANT:
- * This stays false until every character of
- * "click anywhere to enter" has been displayed.
- */
-let canEnter = false;
+let fifjei = 0;
+let xqjfjf = false;
 
-function startIntroSequence() {
+
+let jfjvbe = false;
+
+function q116jfiei() {
   if (
-    !fadeText1 ||
-    !fadeText2 ||
-    !typeWrap ||
-    !typing
+    !femboyzz ||
+    !jfjfiee ||
+    !qjfjfjq ||
+    !skibidiq
   ) {
     return;
   }
 
   setTimeout(() => {
-    fadeText1.classList.add("active");
+    femboyzz.classList.add("active");
 
     setTimeout(() => {
-      fadeText1.classList.remove("active");
+      femboyzz.classList.remove("active");
 
       setTimeout(() => {
-        fadeText2.classList.add("active");
+        jfjfiee.classList.add("active");
 
         setTimeout(() => {
-          fadeText2.classList.remove("active");
+          jfjfiee.classList.remove("active");
 
           setTimeout(() => {
-            typeWrap.classList.add("visible");
+            qjfjfjq.classList.add("visible");
 
-            // Start typing only after the
-            // previous intro text has finished.
-            typeText();
+            
+            
+            q117jfiei();
           }, 600);
         }, 1600);
       }, 600);
@@ -130,177 +124,154 @@ function startIntroSequence() {
   }, 400);
 }
 
-function typeText() {
-  if (!typing) {
+function q117jfiei() {
+  if (!skibidiq) {
     return;
   }
 
-  /*
-   * Keep typing until every character has
-   * actually been added to the element.
-   */
-  if (index < text.length) {
-    typing.textContent =
-      text.substring(0, index + 1);
+  
+  if (fifjei < jefjri.length) {
+    skibidiq.textContent =
+      jefjri.substring(0, fifjei + 1);
 
-    index++;
+    fifjei++;
 
     setTimeout(
-      typeText,
+      q117jfiei,
       65 + Math.random() * 55
     );
 
     return;
   }
 
-  /*
-   * The COMPLETE text is now visible.
-   * Only from this point onward can the
-   * user enter the site.
-   */
-  canEnter = true;
+  
+  jfjvbe = true;
 }
 
-function typeProfileName(name, done) {
-  if (!profileName) {
-    if (done) {
-      done();
+function q118jfiei(q119jfiei, q120jfiei) {
+  if (!vbnfiei) {
+    if (q120jfiei) {
+      q120jfiei();
     }
 
     return;
   }
 
-  let i = 0;
+  let qirjfj = 0;
 
-  profileName.classList.add(
+  vbnfiei.classList.add(
     "typing-active"
   );
 
-  function step() {
-    if (i <= name.length) {
-      profileName.textContent =
-        name.substring(0, i++);
+  function q121jfiei() {
+    if (qirjfj <= q119jfiei.length) {
+      vbnfiei.textContent =
+        q119jfiei.substring(0, qirjfj++);
 
       setTimeout(
-        step,
+        q121jfiei,
         110 + Math.random() * 60
       );
 
       return;
     }
 
-    profileName.classList.remove(
+    vbnfiei.classList.remove(
       "typing-active"
     );
 
-    if (done) {
-      done();
+    if (q120jfiei) {
+      q120jfiei();
     }
   }
 
-  step();
+  q121jfiei();
 }
 
-function revealButtons() {
-  const items =
-    $$(".links .link, .view-counter, .volume-control");
+function q122jfiei() {
+  const fjeiqx =
+    ffiefjefi(".links .link, .view-counter, .volume-control");
 
-  items.forEach((item, i) => {
+  fjeiqx.forEach((q150jfiei, qirjfj) => {
     setTimeout(() => {
-      item.classList.add(
+      q150jfiei.classList.add(
         "item-visible"
       );
-    }, i * 110);
+    }, qirjfj * 110);
   });
 }
 
-function enterSite() {
-  /*
-   * Hard safety check.
-   *
-   * Even if enterSite() gets called from somewhere else,
-   * it will refuse to enter until typing has completed.
-   */
-  if (entered || !canEnter) {
+function q123jfiei() {
+  
+  if (xqjfjf || !jfjvbe) {
     return;
   }
 
-  entered = true;
+  xqjfjf = true;
 
-  /*
-   * Disable intro entry immediately after
-   * the first valid interaction.
-   */
-  canEnter = false;
+  
+  jfjvbe = false;
 
-  if (intro) {
-    intro.classList.add("hidden");
+  if (yurkrandom) {
+    yurkrandom.classList.add("hidden");
   }
 
-  if (video) {
+  if (xjfjxj) {
     try {
-      video.muted = false;
+      xjfjxj.muted = false;
 
-      video.volume = volumeSlider
-        ? Number(volumeSlider.value)
+      xjfjxj.volume = fjrjei
+        ? Number(fjrjei.value)
         : 1;
 
-      const playPromise =
-        video.play();
+      const rjefji =
+        xjfjxj.play();
 
       if (
-        playPromise &&
-        typeof playPromise.catch === "function"
+        rjefji &&
+        typeof rjefji.catch === "function"
       ) {
-        playPromise.catch(() => {});
+        rjefji.catch(() => {});
       }
-    } catch (_) {}
+    } catch (q151jfiei) {}
   }
 
   setTimeout(() => {
-    if (!card) {
+    if (!rizzlmao) {
       return;
     }
 
-    card.classList.add("visible");
+    rizzlmao.classList.add("visible");
 
     setTimeout(() => {
-      typeProfileName(
+      q118jfiei(
         "risk",
-        revealButtons
+        q122jfiei
       );
     }, 250);
   }, 150);
 }
 
-function handleIntroEnter(event) {
-  /*
-   * Before the typing animation is complete,
-   * EVERY pointer interaction is ignored.
-   */
-  if (!canEnter || entered) {
-    event.preventDefault();
-    event.stopPropagation();
+function q124jfiei(q125jfiei) {
+  
+  if (!jfjvbe || xqjfjf) {
+    q125jfiei.preventDefault();
+    q125jfiei.stopPropagation();
 
     return;
   }
 
-  event.preventDefault();
-  event.stopPropagation();
+  q125jfiei.preventDefault();
+  q125jfiei.stopPropagation();
 
-  enterSite();
+  q123jfiei();
 }
 
-/*
- * Use one pointer event instead of separately
- * listening for pointerdown + click + touchstart.
- *
- * This prevents duplicate entry events on phones.
- */
-if (intro) {
-  intro.addEventListener(
+
+if (yurkrandom) {
+  yurkrandom.addEventListener(
     "pointerdown",
-    handleIntroEnter,
+    q124jfiei,
     {
       passive: false
     }
@@ -308,252 +279,246 @@ if (intro) {
 }
 
 
-/* =========================================================
-   CUSTOM CURSOR
-   ========================================================= */
 
-let mouseX =
+
+let jfieqq =
   window.innerWidth / 2;
 
-let mouseY =
+let qjfiee =
   window.innerHeight / 2;
 
-let cursorX =
+let zjfjie =
   window.innerWidth / 2;
 
-let cursorY =
+let fjqjri =
   window.innerHeight / 2;
 
-let glowX =
+let eifjfj =
   window.innerWidth / 2;
 
-let glowY =
+let jfjxqe =
   window.innerHeight / 2;
 
 document.addEventListener(
   "mousemove",
-  event => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
+  q125jfiei => {
+    jfieqq = q125jfiei.clientX;
+    qjfiee = q125jfiei.clientY;
   }
 );
 
-function animateCursor() {
-  cursorX +=
-    (mouseX - cursorX) * 0.35;
+function q126jfiei() {
+  zjfjie +=
+    (jfieqq - zjfjie) * 0.35;
 
-  cursorY +=
-    (mouseY - cursorY) * 0.35;
+  fjqjri +=
+    (qjfiee - fjqjri) * 0.35;
 
-  glowX +=
-    (mouseX - glowX) * 0.12;
+  eifjfj +=
+    (jfieqq - eifjfj) * 0.12;
 
-  glowY +=
-    (mouseY - glowY) * 0.12;
+  jfjxqe +=
+    (qjfiee - jfjxqe) * 0.12;
 
-  if (cursor) {
-    cursor.style.left =
-      cursorX + "px";
+  if (qweifje) {
+    qweifje.style.left =
+      zjfjie + "px";
 
-    cursor.style.top =
-      cursorY + "px";
+    qweifje.style.top =
+      fjqjri + "px";
   }
 
-  if (cursorGlow) {
-    cursorGlow.style.left =
-      glowX + "px";
+  if (zjfjrj) {
+    zjfjrj.style.left =
+      eifjfj + "px";
 
-    cursorGlow.style.top =
-      glowY + "px";
+    zjfjrj.style.top =
+      jfjxqe + "px";
   }
 
   requestAnimationFrame(
-    animateCursor
+    q126jfiei
   );
 }
 
-animateCursor();
+q126jfiei();
 
-$$(
+ffiefjefi(
   ".link, .confirm-actions button, .avatar, " +
   ".redirect-cancel-btn, .dc-modal-close, .dc-add-btn, " +
   ".tg-modal-close, .tg-add-btn, .tg-avatar-wrap, " +
   ".dc-avatar-wrap, .dc-modal-username, .tg-modal-username, " +
   ".rbx-modal-close, .rbx-avatar-wrap, .rbx-add-btn, .ctx-item"
-).forEach(el => {
-  el.addEventListener(
+).forEach(q95jfiei => {
+  q95jfiei.addEventListener(
     "mouseenter",
     () => {
-      if (!cursor) {
+      if (!qweifje) {
         return;
       }
 
-      cursor.style.width = "24px";
-      cursor.style.height = "24px";
+      qweifje.style.width = "24px";
+      qweifje.style.height = "24px";
 
-      cursor.style.filter =
+      qweifje.style.filter =
         "drop-shadow(0 0 6px rgba(255,255,255,.25))";
     }
   );
 
-  el.addEventListener(
+  q95jfiei.addEventListener(
     "mouseleave",
     () => {
-      if (!cursor) {
+      if (!qweifje) {
         return;
       }
 
-      cursor.style.width = "20px";
-      cursor.style.height = "20px";
+      qweifje.style.width = "20px";
+      qweifje.style.height = "20px";
 
-      cursor.style.filter =
+      qweifje.style.filter =
         "drop-shadow(0 0 3px rgba(255,255,255,.15))";
     }
   );
 });
 
 
-/* =========================================================
-   VOLUME
-   ========================================================= */
 
-if (volumeSlider && video) {
-  volumeSlider.addEventListener(
+
+if (fjrjei && xjfjxj) {
+  fjrjei.addEventListener(
     "input",
     () => {
-      video.volume =
-        Number(volumeSlider.value);
+      xjfjxj.volume =
+        Number(fjrjei.value);
     }
   );
 }
 
 
-/* =========================================================
-   REDIRECT CONFIRMATION
-   ========================================================= */
 
-const confirmOverlay =
-  $("#confirmOverlay");
 
-const confirmBox =
-  $("#confirmBox");
+const qjeifi =
+  ilikefemboys("#confirmOverlay");
 
-const redirectWrapper =
-  $("#redirectWrapper");
+const fijrje =
+  ilikefemboys("#confirmBox");
 
-const redirectText =
-  $("#redirectText");
+const jfqfie =
+  ilikefemboys("#redirectWrapper");
 
-const redirectIcon =
-  $("#redirectIcon");
+const rjifje =
+  ilikefemboys("#redirectText");
 
-const redirectCancelBtn =
-  $("#redirectCancelBtn");
+const fjeqji =
+  ilikefemboys("#redirectIcon");
 
-const cancelButton =
-  $("#cancelButton");
+const xjfiei =
+  ilikefemboys("#redirectCancelBtn");
 
-const continueButton =
-  $("#continueButton");
+const qfjjri =
+  ilikefemboys("#cancelButton");
 
-let pendingUrl = null;
-let pendingName = "";
-let pendingIcon = "";
+const jiefjq =
+  ilikefemboys("#continueButton");
 
-let isRedirecting = false;
-let countdownInterval = null;
-let currentCountdown = 3;
+let fjeiqq = null;
+let rjfjqe = "";
+let jfievr = "";
 
-function getOptimizedUrl(
-  url,
-  name
+let qjifje = false;
+let fjeirj = null;
+let jfjqei = 3;
+
+function q127jfiei(
+  q128jfiei,
+  q119jfiei
 ) {
-  if (!isMobile || !url) {
-    return url;
+  if (!ejejfie || !q128jfiei) {
+    return q128jfiei;
   }
 
-  if (name === "Discord") {
-    const match =
-      url.match(/\/users\/(\d+)/);
+  if (q119jfiei === "Discord") {
+    const qiefjr =
+      q128jfiei.match(/\/users\/(\d+)/);
 
-    if (match) {
+    if (qiefjr) {
       return `discord://-/users/${match[1]}`;
     }
   }
 
-  if (name === "Telegram") {
-    const match =
-      url.match(
-        /t\.me\/([a-zA-Z0-9_]+)/
+  if (q119jfiei === "Telegram") {
+    const qiefjr =
+      q128jfiei.match(
+        /t\.me\/([q148jfiei-zA-Z0-9q151jfiei]+)/
       );
 
-    if (match) {
+    if (qiefjr) {
       return `tg://resolve?domain=${match[1]}`;
     }
   }
 
-  if (name === "Roblox") {
-    const match =
-      url.match(/\/users\/(\d+)/);
+  if (q119jfiei === "Roblox") {
+    const qiefjr =
+      q128jfiei.match(/\/users\/(\d+)/);
 
-    if (match) {
+    if (qiefjr) {
       return `roblox://navigation/profile?userId=${match[1]}`;
     }
   }
 
-  return url;
+  return q128jfiei;
 }
 
-function triggerRedirectPrompt(
-  url,
-  name,
-  icon
+function q129jfiei(
+  q128jfiei,
+  q119jfiei,
+  q130jfiei
 ) {
-  if (!confirmOverlay || !confirmBox) {
+  if (!qjeifi || !fijrje) {
     return;
   }
 
-  pendingUrl =
-    getOptimizedUrl(
-      url,
-      name
+  fjeiqq =
+    q127jfiei(
+      q128jfiei,
+      q119jfiei
     );
 
-  pendingName = name || "";
-  pendingIcon = icon || "";
+  rjfjqe = q119jfiei || "";
+  jfievr = q130jfiei || "";
 
-  confirmBox.style.opacity = "1";
-  confirmBox.style.pointerEvents =
+  fijrje.style.opacity = "1";
+  fijrje.style.pointerEvents =
     "auto";
 
-  if (redirectWrapper) {
-    redirectWrapper.classList.remove(
+  if (jfqfie) {
+    jfqfie.classList.remove(
       "visible"
     );
   }
 
-  confirmOverlay.classList.add(
+  qjeifi.classList.add(
     "visible"
   );
 }
 
-$$("a.link").forEach(link => {
-  link.addEventListener(
+ffiefjefi("a.link").forEach(q147jfiei => {
+  q147jfiei.addEventListener(
     "click",
-    event => {
-      if (isRedirecting) {
+    q125jfiei => {
+      if (qjifje) {
         return;
       }
 
-      event.preventDefault();
-      event.stopPropagation();
+      q125jfiei.preventDefault();
+      q125jfiei.stopPropagation();
 
-      triggerRedirectPrompt(
-        link.href,
-        link.getAttribute(
+      q129jfiei(
+        q147jfiei.href,
+        q147jfiei.getAttribute(
           "data-name"
         ),
-        link.getAttribute(
+        q147jfiei.getAttribute(
           "data-icon"
         )
       );
@@ -561,151 +526,149 @@ $$("a.link").forEach(link => {
   );
 });
 
-function resetConfirmationState() {
-  isRedirecting = false;
-  pendingUrl = null;
-  pendingName = "";
-  pendingIcon = "";
+function q131jfiei() {
+  qjifje = false;
+  fjeiqq = null;
+  rjfjqe = "";
+  jfievr = "";
 
   clearInterval(
-    countdownInterval
+    fjeirj
   );
 
-  currentCountdown = 3;
+  jfjqei = 3;
 
-  if (redirectWrapper) {
-    redirectWrapper.classList.remove(
+  if (jfqfie) {
+    jfqfie.classList.remove(
       "visible"
     );
   }
 
-  if (confirmOverlay) {
-    confirmOverlay.classList.remove(
+  if (qjeifi) {
+    qjeifi.classList.remove(
       "visible"
     );
   }
 
-  if (redirectIcon) {
-    redirectIcon.src = "";
-    redirectIcon.style.display =
+  if (fjeqji) {
+    fjeqji.src = "";
+    fjeqji.style.display =
       "none";
   }
 
-  if (confirmBox) {
+  if (fijrje) {
     setTimeout(() => {
-      confirmBox.style.opacity = "1";
-      confirmBox.style.pointerEvents =
+      fijrje.style.opacity = "1";
+      fijrje.style.pointerEvents =
         "auto";
     }, 200);
   }
 }
 
-if (cancelButton) {
-  cancelButton.addEventListener(
+if (qfjjri) {
+  qfjjri.addEventListener(
     "click",
     () => {
-      if (!isRedirecting) {
-        resetConfirmationState();
+      if (!qjifje) {
+        q131jfiei();
       }
     }
   );
 }
 
-if (redirectCancelBtn) {
-  redirectCancelBtn.addEventListener(
+if (xjfiei) {
+  xjfiei.addEventListener(
     "click",
-    resetConfirmationState
+    q131jfiei
   );
 }
 
-if (continueButton) {
-  continueButton.addEventListener(
+if (jiefjq) {
+  jiefjq.addEventListener(
     "click",
     () => {
       if (
-        !pendingUrl ||
-        isRedirecting
+        !fjeiqq ||
+        qjifje
       ) {
         return;
       }
 
-      isRedirecting = true;
+      qjifje = true;
 
-      if (confirmBox) {
-        confirmBox.style.opacity = "0";
-        confirmBox.style.pointerEvents =
+      if (fijrje) {
+        fijrje.style.opacity = "0";
+        fijrje.style.pointerEvents =
           "none";
       }
 
-      currentCountdown = 3;
+      jfjqei = 3;
 
-      if (redirectIcon) {
-        redirectIcon.src =
-          pendingIcon || "";
+      if (fjeqji) {
+        fjeqji.src =
+          jfievr || "";
 
-        redirectIcon.style.display =
-          pendingIcon
+        fjeqji.style.display =
+          jfievr
             ? "block"
             : "none";
       }
 
-      if (redirectText) {
-        redirectText.textContent =
+      if (rjifje) {
+        rjifje.textContent =
           `Redirecting to ${pendingName} in ${currentCountdown}...`;
       }
 
-      if (redirectWrapper) {
-        redirectWrapper.classList.add(
+      if (jfqfie) {
+        jfqfie.classList.add(
           "visible"
         );
       }
 
-      countdownInterval =
+      fjeirj =
         setInterval(() => {
-          currentCountdown--;
+          jfjqei--;
 
-          if (currentCountdown > 0) {
-            if (redirectText) {
-              redirectText.textContent =
+          if (jfjqei > 0) {
+            if (rjifje) {
+              rjifje.textContent =
                 `Redirecting to ${pendingName} in ${currentCountdown}...`;
             }
           } else {
             clearInterval(
-              countdownInterval
+              fjeirj
             );
 
             window.location.href =
-              pendingUrl;
+              fjeiqq;
           }
         }, 1000);
     }
   );
 }
 
-if (confirmOverlay) {
-  confirmOverlay.addEventListener(
+if (qjeifi) {
+  qjeifi.addEventListener(
     "click",
-    event => {
+    q125jfiei => {
       if (
-        event.target === confirmOverlay &&
-        !isRedirecting
+        q125jfiei.target === qjeifi &&
+        !qjifje
       ) {
-        resetConfirmationState();
+        q131jfiei();
       }
     }
   );
 }
 
 
-/* =========================================================
-   COPY USERNAME
-   ========================================================= */
 
-function copyUsername(
-  text,
-  toast
+
+function q132jfiei(
+  jefjri,
+  q133jfiei
 ) {
-  if (!text || !toast) {
+  if (!jefjri || !q133jfiei) {
     return;
   }
 
@@ -718,15 +681,15 @@ function copyUsername(
 
   navigator.clipboard
     .writeText(
-      text.replace(/^@/, "")
+      jefjri.replace(/^@/, "")
     )
     .then(() => {
-      toast.classList.add(
+      q133jfiei.classList.add(
         "show"
       );
 
       setTimeout(() => {
-        toast.classList.remove(
+        q133jfiei.classList.remove(
           "show"
         );
       }, 1800);
@@ -735,35 +698,33 @@ function copyUsername(
 }
 
 
-/* =========================================================
-   DISCORD
-   ========================================================= */
 
-const DISCORD_ID =
+
+const fjeijq =
   "1547303503213367297";
 
-const discordLinkBtn =
-  $("#discordLinkBtn");
+const rjqeif =
+  ilikefemboys("#discordLinkBtn");
 
-const dcModal =
-  $("#dcModal");
+const jfjire =
+  ilikefemboys("#dcModal");
 
-const dcModalClose =
-  $("#dcModalClose");
+const qjfeij =
+  ilikefemboys("#dcModalClose");
 
-const dcAddBtn =
-  $("#dcAddBtn");
+const fieqjr =
+  ilikefemboys("#dcAddBtn");
 
-const dcModalUsername =
-  $("#dcModalUsername");
+const jfjqir =
+  ilikefemboys("#dcModalUsername");
 
-const dcCopyToast =
-  $("#dcCopyToast");
+const eifjqr =
+  ilikefemboys("#dcCopyToast");
 
-const dcModalBadges =
-  $("#dcModalBadges");
+const qjfjer =
+  ilikefemboys("#dcModalBadges");
 
-const DISCORD_BADGE_DEFS = [
+const fjrieq = [
   [
     1 << 0,
     "Discord Staff",
@@ -826,16 +787,16 @@ const DISCORD_BADGE_DEFS = [
   ]
 ];
 
-function renderDiscordBadges(
-  publicFlags
+function q134jfiei(
+  q135jfiei
 ) {
-  if (!dcModalBadges) {
+  if (!qjfjer) {
     return;
   }
 
-  dcModalBadges.replaceChildren();
+  qjfjer.replaceChildren();
 
-  const currentBadges = [
+  const jfeirq = [
     [
       "Discord Nitro",
       "https://raw.githubusercontent.com/dev-hoehle/discord-badges/main/png/nitro.png"
@@ -846,48 +807,48 @@ function renderDiscordBadges(
     ]
   ];
 
-  currentBadges.forEach(
-    ([name, icon]) => {
-      const img =
+  jfeirq.forEach(
+    ([q119jfiei, q130jfiei]) => {
+      const q58jfiei =
         document.createElement(
           "img"
         );
 
-      img.className =
+      q58jfiei.className =
         "dc-badge";
 
-      img.src = icon;
-      img.alt = "";
-      img.title = name;
-      img.loading = "lazy";
+      q58jfiei.src = q130jfiei;
+      q58jfiei.alt = "";
+      q58jfiei.title = q119jfiei;
+      q58jfiei.loading = "lazy";
 
-      dcModalBadges.appendChild(
-        img
+      qjfjer.appendChild(
+        q58jfiei
       );
     }
   );
 
-  const flags =
-    Number(publicFlags) || 0;
+  const q59jfiei =
+    Number(q135jfiei) || 0;
 
-  DISCORD_BADGE_DEFS.forEach(
-    ([flag, name, icon]) => {
-      if ((flags & flag) !== 0) {
-        const img =
+  fjrieq.forEach(
+    ([flag, q119jfiei, q130jfiei]) => {
+      if ((q59jfiei & flag) !== 0) {
+        const q58jfiei =
           document.createElement(
             "img"
           );
 
-        img.className =
+        q58jfiei.className =
           "dc-badge";
 
-        img.src = icon;
-        img.alt = "";
-        img.title = name;
-        img.loading = "lazy";
+        q58jfiei.src = q130jfiei;
+        q58jfiei.alt = "";
+        q58jfiei.title = q119jfiei;
+        q58jfiei.loading = "lazy";
 
-        dcModalBadges.appendChild(
-          img
+        qjfjer.appendChild(
+          q58jfiei
         );
       }
     }
@@ -895,15 +856,15 @@ function renderDiscordBadges(
 }
 
 if (
-  discordLinkBtn &&
-  dcModal
+  rjqeif &&
+  jfjire
 ) {
-  discordLinkBtn.addEventListener(
+  rjqeif.addEventListener(
     "click",
     () => {
-      fetchDiscordStatus();
+      q136jfiei();
 
-      dcModal.classList.add(
+      jfjire.classList.add(
         "visible"
       );
     }
@@ -911,27 +872,27 @@ if (
 }
 
 if (
-  dcModalClose &&
-  dcModal
+  qjfeij &&
+  jfjire
 ) {
-  dcModalClose.addEventListener(
+  qjfeij.addEventListener(
     "click",
     () => {
-      dcModal.classList.remove(
+      jfjire.classList.remove(
         "visible"
       );
     }
   );
 }
 
-if (dcModal) {
-  dcModal.addEventListener(
+if (jfjire) {
+  jfjire.addEventListener(
     "click",
-    event => {
+    q125jfiei => {
       if (
-        event.target === dcModal
+        q125jfiei.target === jfjire
       ) {
-        dcModal.classList.remove(
+        jfjire.classList.remove(
           "visible"
         );
       }
@@ -939,25 +900,25 @@ if (dcModal) {
   );
 }
 
-if (dcAddBtn) {
-  dcAddBtn.addEventListener(
+if (fieqjr) {
+  fieqjr.addEventListener(
     "click",
     () => {
-      if (dcModal) {
-        dcModal.classList.remove(
+      if (jfjire) {
+        jfjire.classList.remove(
           "visible"
         );
       }
 
-      if (discordLinkBtn) {
-        triggerRedirectPrompt(
-          discordLinkBtn.getAttribute(
+      if (rjqeif) {
+        q129jfiei(
+          rjqeif.getAttribute(
             "data-href"
           ),
-          discordLinkBtn.getAttribute(
+          rjqeif.getAttribute(
             "data-name"
           ),
-          discordLinkBtn.getAttribute(
+          rjqeif.getAttribute(
             "data-icon"
           )
         );
@@ -966,108 +927,108 @@ if (dcAddBtn) {
   );
 }
 
-if (dcModalUsername) {
-  dcModalUsername.addEventListener(
+if (jfjqir) {
+  jfjqir.addEventListener(
     "click",
     () => {
-      copyUsername(
-        dcModalUsername.textContent,
-        dcCopyToast
+      q132jfiei(
+        jfjqir.textContent,
+        eifjqr
       );
     }
   );
 }
 
-async function fetchDiscordStatus() {
+async function q136jfiei() {
   try {
-    const response =
+    const q60jfiei =
       await fetch(
         `https://api.lanyard.rest/v1/users/${DISCORD_ID}`
       );
 
-    const result =
-      await response.json();
+    const q61jfiei =
+      await q60jfiei.json();
 
-    if (!result.success) {
+    if (!q61jfiei.success) {
       return;
     }
 
-    const data =
-      result.data;
+    const q62jfiei =
+      q61jfiei.data;
 
-    const avatar =
-      $("#dcModalAvatar");
+    const q63jfiei =
+      ilikefemboys("#dcModalAvatar");
 
-    const statusDot =
-      $("#dcModalStatusDot");
+    const q64jfiei =
+      ilikefemboys("#dcModalStatusDot");
 
-    const statusText =
-      $("#dcModalStatusText");
+    const q65jfiei =
+      ilikefemboys("#dcModalStatusText");
 
-    const actIcon =
-      $("#dcModalActIcon");
+    const q66jfiei =
+      ilikefemboys("#dcModalActIcon");
 
-    const actName =
-      $("#dcModalActName");
+    const q67jfiei =
+      ilikefemboys("#dcModalActName");
 
-    const actDesc =
-      $("#dcModalActDesc");
+    const q68jfiei =
+      ilikefemboys("#dcModalActDesc");
 
     if (
-      dcModalUsername &&
-      data.discord_user
+      jfjqir &&
+      q62jfiei.discord_user
     ) {
-      dcModalUsername.textContent =
+      jfjqir.textContent =
         `@${data.discord_user.username}`;
     }
 
     if (
-      avatar &&
-      data.discord_user &&
-      data.discord_user.avatar
+      q63jfiei &&
+      q62jfiei.discord_user &&
+      q62jfiei.discord_user.avatar
     ) {
-      avatar.src =
+      q63jfiei.src =
         `https://cdn.discordapp.com/avatars/${DISCORD_ID}/${data.discord_user.avatar}.png?size=128`;
     }
 
-    const status =
-      data.discord_status ||
+    const q69jfiei =
+      q62jfiei.discord_status ||
       "offline";
 
-    if (statusDot) {
-      statusDot.className =
+    if (q64jfiei) {
+      q64jfiei.className =
         `dc-status-indicator ${status}`;
     }
 
-    if (statusText) {
-      statusText.textContent =
-        status === "dnd"
+    if (q65jfiei) {
+      q65jfiei.textContent =
+        q69jfiei === "dnd"
           ? "Do Not Disturb"
-          : status;
+          : q69jfiei;
     }
 
     if (
-      data.listening_to_spotify &&
-      data.spotify
+      q62jfiei.listening_to_spotify &&
+      q62jfiei.spotify
     ) {
-      if (actIcon) {
-        actIcon.style.display =
+      if (q66jfiei) {
+        q66jfiei.style.display =
           "block";
 
-        actIcon.src =
-          data.spotify.album_art_url;
+        q66jfiei.src =
+          q62jfiei.spotify.album_art_url;
       }
 
-      if (actName) {
-        actName.textContent =
-          data.spotify.song;
+      if (q67jfiei) {
+        q67jfiei.textContent =
+          q62jfiei.spotify.song;
       }
 
-      if (actDesc) {
-        actDesc.style.display =
+      if (q68jfiei) {
+        q68jfiei.style.display =
           "block";
 
-        actDesc.textContent =
+        q68jfiei.textContent =
           `by ${data.spotify.artist}`;
       }
 
@@ -1075,70 +1036,70 @@ async function fetchDiscordStatus() {
     }
 
     if (
-      data.activities &&
-      data.activities.length
+      q62jfiei.activities &&
+      q62jfiei.activities.length
     ) {
-      const act =
-        data.activities.find(
-          a => a.type !== 4
+      const q70jfiei =
+        q62jfiei.activities.find(
+          q148jfiei => q148jfiei.type !== 4
         ) ||
-        data.activities[0];
+        q62jfiei.activities[0];
 
       if (
-        act &&
-        act.name
+        q70jfiei &&
+        q70jfiei.name
       ) {
-        if (actName) {
-          actName.textContent =
-            act.name;
+        if (q67jfiei) {
+          q67jfiei.textContent =
+            q70jfiei.name;
         }
 
-        if (actDesc) {
+        if (q68jfiei) {
           if (
-            act.details ||
-            act.state
+            q70jfiei.details ||
+            q70jfiei.state
           ) {
-            actDesc.style.display =
+            q68jfiei.style.display =
               "block";
 
-            actDesc.textContent =
-              act.details ||
-              act.state;
+            q68jfiei.textContent =
+              q70jfiei.details ||
+              q70jfiei.state;
           } else {
-            actDesc.style.display =
+            q68jfiei.style.display =
               "none";
           }
         }
 
         if (
-          actIcon &&
-          act.assets &&
-          act.assets.large_image
+          q66jfiei &&
+          q70jfiei.assets &&
+          q70jfiei.assets.large_image
         ) {
-          actIcon.style.display =
+          q66jfiei.style.display =
             "block";
 
           if (
-            act.assets.large_image.startsWith(
+            q70jfiei.assets.large_image.startsWith(
               "spotify:"
             )
           ) {
-            actIcon.src =
+            q66jfiei.src =
               `https://i.scdn.co/image/${act.assets.large_image.replace(
                 "spotify:",
                 ""
               )}`;
           } else if (
-            act.application_id
+            q70jfiei.application_id
           ) {
-            actIcon.src =
+            q66jfiei.src =
               `https://cdn.discordapp.com/app-assets/${act.application_id}/${act.assets.large_image}.png`;
           } else {
-            actIcon.style.display =
+            q66jfiei.style.display =
               "none";
           }
-        } else if (actIcon) {
-          actIcon.style.display =
+        } else if (q66jfiei) {
+          q66jfiei.style.display =
             "none";
         }
 
@@ -1146,54 +1107,52 @@ async function fetchDiscordStatus() {
       }
     }
 
-    if (actIcon) {
-      actIcon.style.display =
+    if (q66jfiei) {
+      q66jfiei.style.display =
         "none";
     }
 
-    if (actName) {
-      actName.textContent =
+    if (q67jfiei) {
+      q67jfiei.textContent =
         "doing nothing right now...";
     }
 
-    if (actDesc) {
-      actDesc.style.display =
+    if (q68jfiei) {
+      q68jfiei.style.display =
         "none";
     }
-  } catch (_) {}
+  } catch (q151jfiei) {}
 }
 
 
-/* =========================================================
-   TELEGRAM
-   ========================================================= */
 
-const telegramLinkBtn =
-  $("#telegramLinkBtn");
 
-const tgModal =
-  $("#tgModal");
+const q71jfiei =
+  ilikefemboys("#telegramLinkBtn");
 
-const tgModalClose =
-  $("#tgModalClose");
+const q72jfiei =
+  ilikefemboys("#tgModal");
 
-const tgAddBtn =
-  $("#tgAddBtn");
+const q73jfiei =
+  ilikefemboys("#tgModalClose");
 
-const tgModalUsername =
-  $("#tgModalUsername");
+const q74jfiei =
+  ilikefemboys("#tgAddBtn");
 
-const tgCopyToast =
-  $("#tgCopyToast");
+const q75jfiei =
+  ilikefemboys("#tgModalUsername");
+
+const q76jfiei =
+  ilikefemboys("#tgCopyToast");
 
 if (
-  telegramLinkBtn &&
-  tgModal
+  q71jfiei &&
+  q72jfiei
 ) {
-  telegramLinkBtn.addEventListener(
+  q71jfiei.addEventListener(
     "click",
     () => {
-      tgModal.classList.add(
+      q72jfiei.classList.add(
         "visible"
       );
     }
@@ -1201,27 +1160,27 @@ if (
 }
 
 if (
-  tgModalClose &&
-  tgModal
+  q73jfiei &&
+  q72jfiei
 ) {
-  tgModalClose.addEventListener(
+  q73jfiei.addEventListener(
     "click",
     () => {
-      tgModal.classList.remove(
+      q72jfiei.classList.remove(
         "visible"
       );
     }
   );
 }
 
-if (tgModal) {
-  tgModal.addEventListener(
+if (q72jfiei) {
+  q72jfiei.addEventListener(
     "click",
-    event => {
+    q125jfiei => {
       if (
-        event.target === tgModal
+        q125jfiei.target === q72jfiei
       ) {
-        tgModal.classList.remove(
+        q72jfiei.classList.remove(
           "visible"
         );
       }
@@ -1229,25 +1188,25 @@ if (tgModal) {
   );
 }
 
-if (tgAddBtn) {
-  tgAddBtn.addEventListener(
+if (q74jfiei) {
+  q74jfiei.addEventListener(
     "click",
     () => {
-      if (tgModal) {
-        tgModal.classList.remove(
+      if (q72jfiei) {
+        q72jfiei.classList.remove(
           "visible"
         );
       }
 
-      if (telegramLinkBtn) {
-        triggerRedirectPrompt(
-          telegramLinkBtn.getAttribute(
+      if (q71jfiei) {
+        q129jfiei(
+          q71jfiei.getAttribute(
             "data-href"
           ),
-          telegramLinkBtn.getAttribute(
+          q71jfiei.getAttribute(
             "data-name"
           ),
-          telegramLinkBtn.getAttribute(
+          q71jfiei.getAttribute(
             "data-icon"
           )
         );
@@ -1256,188 +1215,186 @@ if (tgAddBtn) {
   );
 }
 
-if (tgModalUsername) {
-  tgModalUsername.addEventListener(
+if (q75jfiei) {
+  q75jfiei.addEventListener(
     "click",
     () => {
-      copyUsername(
-        tgModalUsername.textContent,
-        tgCopyToast
+      q132jfiei(
+        q75jfiei.textContent,
+        q76jfiei
       );
     }
   );
 }
 
 
-/* =========================================================
-   ROBLOX
-   ========================================================= */
 
-const ROBLOX_USER_ID =
+
+const q77jfiei =
   "7626940077";
 
-const ROBLOX_PROFILE_URL =
+const q78jfiei =
   "https://www.roblox.com/users/7626940077/profile";
 
-const ROBLOX_API =
+const q79jfiei =
   "https://robloxapilmao.yukiriskingitfs.workers.dev/roblox/7626940077";
 
-const robloxLinkBtn =
-  $("#robloxLinkBtn");
+const q80jfiei =
+  ilikefemboys("#robloxLinkBtn");
 
-const rbxModal =
-  $("#rbxModal");
+const q81jfiei =
+  ilikefemboys("#rbxModal");
 
-const rbxModalClose =
-  $("#rbxModalClose");
+const q82jfiei =
+  ilikefemboys("#rbxModalClose");
 
-const rbxAddBtn =
-  $("#rbxAddBtn");
+const q83jfiei =
+  ilikefemboys("#rbxAddBtn");
 
-const rbxAvatar =
-  $("#rbxAvatar");
+const q84jfiei =
+  ilikefemboys("#rbxAvatar");
 
-const rbxModalUsername =
-  $("#rbxModalUsername");
+const q85jfiei =
+  ilikefemboys("#rbxModalUsername");
 
-const rbxModalStatusText =
-  $("#rbxModalStatusText");
+const q86jfiei =
+  ilikefemboys("#rbxModalStatusText");
 
-const rbxFollowersCount =
-  $("#rbxFollowerCount") ||
-  $("#rbxFollowersCount");
+const q87jfiei =
+  ilikefemboys("#rbxFollowerCount") ||
+  ilikefemboys("#rbxFollowersCount");
 
-const rbxFriendsCount =
-  $("#rbxFriendCount") ||
-  $("#rbxFriendsCount");
+const q88jfiei =
+  ilikefemboys("#rbxFriendCount") ||
+  ilikefemboys("#rbxFriendsCount");
 
 if (
-  isMobile &&
-  rbxModalClose
+  ejejfie &&
+  q82jfiei
 ) {
-  rbxModalClose.style.top =
+  q82jfiei.style.top =
     "10px";
 
-  rbxModalClose.style.right =
+  q82jfiei.style.right =
     "10px";
 
-  rbxModalClose.style.zIndex =
+  q82jfiei.style.zIndex =
     "20";
 }
 
-async function loadRobloxData() {
+async function q137jfiei() {
   if (
-    !rbxAvatar ||
-    !rbxModalUsername ||
-    !rbxModalStatusText ||
-    !rbxFollowersCount ||
-    !rbxFriendsCount
+    !q84jfiei ||
+    !q85jfiei ||
+    !q86jfiei ||
+    !q87jfiei ||
+    !q88jfiei
   ) {
     return;
   }
 
-  rbxFollowersCount.textContent =
+  q87jfiei.textContent =
     "…";
 
-  rbxFriendsCount.textContent =
+  q88jfiei.textContent =
     "…";
 
   try {
-    const response =
+    const q60jfiei =
       await fetch(
-        ROBLOX_API,
+        q79jfiei,
         {
           cache: "no-store"
         }
       );
 
-    if (!response.ok) {
+    if (!q60jfiei.ok) {
       throw new Error(
         `Worker HTTP ${response.status}`
       );
     }
 
-    const data =
-      await response.json();
+    const q62jfiei =
+      await q60jfiei.json();
 
-    if (data.avatar) {
-      rbxAvatar.src =
-        data.avatar;
+    if (q62jfiei.avatar) {
+      q84jfiei.src =
+        q62jfiei.avatar;
     }
 
-    rbxModalUsername.textContent =
-      data.displayName ||
-      data.username ||
+    q85jfiei.textContent =
+      q62jfiei.displayName ||
+      q62jfiei.username ||
       "80vcv";
 
-    rbxModalStatusText.textContent =
-      data.username
+    q86jfiei.textContent =
+      q62jfiei.username
         ? `@${data.username}`
         : "@80vcv";
 
-    rbxFollowersCount.textContent =
-      typeof data.followers ===
+    q87jfiei.textContent =
+      typeof q62jfiei.followers ===
       "number"
-        ? data.followers.toLocaleString()
+        ? q62jfiei.followers.toLocaleString()
         : "N/A";
 
-    rbxFriendsCount.textContent =
-      typeof data.friends ===
+    q88jfiei.textContent =
+      typeof q62jfiei.friends ===
       "number"
-        ? data.friends.toLocaleString()
+        ? q62jfiei.friends.toLocaleString()
         : "N/A";
-  } catch (error) {
+  } catch (q152jfiei) {
     console.error(
       "Roblox Worker error:",
-      error
+      q152jfiei
     );
 
-    rbxFollowersCount.textContent =
+    q87jfiei.textContent =
       "N/A";
 
-    rbxFriendsCount.textContent =
+    q88jfiei.textContent =
       "N/A";
   }
 }
 
 if (
-  robloxLinkBtn &&
-  rbxModal
+  q80jfiei &&
+  q81jfiei
 ) {
-  robloxLinkBtn.addEventListener(
+  q80jfiei.addEventListener(
     "click",
     () => {
-      rbxModal.classList.add(
+      q81jfiei.classList.add(
         "visible"
       );
 
-      loadRobloxData();
+      q137jfiei();
     }
   );
 }
 
 if (
-  rbxModalClose &&
-  rbxModal
+  q82jfiei &&
+  q81jfiei
 ) {
-  rbxModalClose.addEventListener(
+  q82jfiei.addEventListener(
     "click",
     () => {
-      rbxModal.classList.remove(
+      q81jfiei.classList.remove(
         "visible"
       );
     }
   );
 }
 
-if (rbxModal) {
-  rbxModal.addEventListener(
+if (q81jfiei) {
+  q81jfiei.addEventListener(
     "click",
-    event => {
+    q125jfiei => {
       if (
-        event.target === rbxModal
+        q125jfiei.target === q81jfiei
       ) {
-        rbxModal.classList.remove(
+        q81jfiei.classList.remove(
           "visible"
         );
       }
@@ -1445,21 +1402,21 @@ if (rbxModal) {
   );
 }
 
-if (rbxAddBtn) {
-  rbxAddBtn.addEventListener(
+if (q83jfiei) {
+  q83jfiei.addEventListener(
     "click",
     () => {
-      if (rbxModal) {
-        rbxModal.classList.remove(
+      if (q81jfiei) {
+        q81jfiei.classList.remove(
           "visible"
         );
       }
 
-      triggerRedirectPrompt(
-        ROBLOX_PROFILE_URL,
+      q129jfiei(
+        q78jfiei,
         "Roblox",
-        robloxLinkBtn
-          ? robloxLinkBtn.getAttribute(
+        q80jfiei
+          ? q80jfiei.getAttribute(
               "data-icon"
             )
           : ""
@@ -1469,54 +1426,52 @@ if (rbxAddBtn) {
 }
 
 
-/* =========================================================
-   CUSTOM CONTEXT MENU
-   ========================================================= */
 
-const customCtxMenu =
-  $("#customCtxMenu");
 
-const ctxToggleAudio =
-  $("#ctxToggleAudio");
+const q89jfiei =
+  ilikefemboys("#customCtxMenu");
 
-const ctxAudioLabel =
-  $("#ctxAudioLabel");
+const q90jfiei =
+  ilikefemboys("#ctxToggleAudio");
 
-const ctxReloadPage =
-  $("#ctxReloadPage");
+const q91jfiei =
+  ilikefemboys("#ctxAudioLabel");
 
-if (customCtxMenu) {
+const q92jfiei =
+  ilikefemboys("#ctxReloadPage");
+
+if (q89jfiei) {
   document.addEventListener(
     "contextmenu",
-    event => {
-      event.preventDefault();
+    q125jfiei => {
+      q125jfiei.preventDefault();
 
-      const x =
+      const q93jfiei =
         Math.min(
-          event.clientX,
+          q125jfiei.clientX,
           window.innerWidth - 180
         );
 
-      const y =
+      const q94jfiei =
         Math.min(
-          event.clientY,
+          q125jfiei.clientY,
           window.innerHeight - 130
         );
 
-      customCtxMenu.style.left =
+      q89jfiei.style.left =
         `${x}px`;
 
-      customCtxMenu.style.top =
+      q89jfiei.style.top =
         `${y}px`;
 
-      if (ctxAudioLabel) {
-        ctxAudioLabel.textContent =
-          video && video.paused
+      if (q91jfiei) {
+        q91jfiei.textContent =
+          xjfjxj && xjfjxj.paused
             ? "Play Audio"
             : "Pause Audio";
       }
 
-      customCtxMenu.classList.add(
+      q89jfiei.classList.add(
         "visible"
       );
     }
@@ -1524,13 +1479,13 @@ if (customCtxMenu) {
 
   document.addEventListener(
     "click",
-    event => {
+    q125jfiei => {
       if (
-        !customCtxMenu.contains(
-          event.target
+        !q89jfiei.contains(
+          q125jfiei.target
         )
       ) {
-        customCtxMenu.classList.remove(
+        q89jfiei.classList.remove(
           "visible"
         );
       }
@@ -1538,20 +1493,20 @@ if (customCtxMenu) {
   );
 }
 
-if (ctxToggleAudio) {
-  ctxToggleAudio.addEventListener(
+if (q90jfiei) {
+  q90jfiei.addEventListener(
     "click",
     () => {
-      if (video) {
-        if (video.paused) {
-          video.play().catch(() => {});
+      if (xjfjxj) {
+        if (xjfjxj.paused) {
+          xjfjxj.play().catch(() => {});
         } else {
-          video.pause();
+          xjfjxj.pause();
         }
       }
 
-      if (customCtxMenu) {
-        customCtxMenu.classList.remove(
+      if (q89jfiei) {
+        q89jfiei.classList.remove(
           "visible"
         );
       }
@@ -1559,8 +1514,8 @@ if (ctxToggleAudio) {
   );
 }
 
-if (ctxReloadPage) {
-  ctxReloadPage.addEventListener(
+if (q92jfiei) {
+  q92jfiei.addEventListener(
     "click",
     () => {
       window.location.reload();
@@ -1569,93 +1524,91 @@ if (ctxReloadPage) {
 }
 
 
-/* =========================================================
-   CARD TILT
-   ========================================================= */
 
-function setupTilt(
-  selector,
-  maxTilt,
-  scale
+
+function q138jfiei(
+  q139jfiei,
+  q140jfiei,
+  q141jfiei
 ) {
-  const el =
-    $(selector);
+  const q95jfiei =
+    ilikefemboys(q139jfiei);
 
-  if (!el) {
+  if (!q95jfiei) {
     return;
   }
 
-  const glare =
-    el.querySelector(
+  const q96jfiei =
+    q95jfiei.querySelector(
       ".card-glare"
     );
 
-  let targetX = 0;
-  let targetY = 0;
+  let q97jfiei = 0;
+  let q98jfiei = 0;
 
-  let currentX = 0;
-  let currentY = 0;
+  let q99jfiei = 0;
+  let q100jfiei = 0;
 
-  let hovered = false;
+  let q101jfiei = false;
 
-  el.style.transformStyle =
+  q95jfiei.style.transformStyle =
     "preserve-3d";
 
   window.addEventListener(
     "mousemove",
-    event => {
-      if (!entered) {
+    q125jfiei => {
+      if (!xqjfjf) {
         return;
       }
 
-      const rect =
-        el.getBoundingClientRect();
+      const q102jfiei =
+        q95jfiei.getBoundingClientRect();
 
-      const centerX =
-        rect.left +
-        rect.width / 2;
+      const q103jfiei =
+        q102jfiei.left +
+        q102jfiei.width / 2;
 
-      const centerY =
-        rect.top +
-        rect.height / 2;
+      const q104jfiei =
+        q102jfiei.top +
+        q102jfiei.height / 2;
 
-      const x =
-        (event.clientX - centerX) /
+      const q93jfiei =
+        (q125jfiei.clientX - q103jfiei) /
         (window.innerWidth / 2);
 
-      const y =
-        (event.clientY - centerY) /
+      const q94jfiei =
+        (q125jfiei.clientY - q104jfiei) /
         (window.innerHeight / 2);
 
-      targetX =
-        y * -maxTilt;
+      q97jfiei =
+        q94jfiei * -q140jfiei;
 
-      targetY =
-        x * maxTilt;
+      q98jfiei =
+        q93jfiei * q140jfiei;
 
-      const insideX =
-        (event.clientX -
-          rect.left) /
-        rect.width;
+      const q105jfiei =
+        (q125jfiei.clientX -
+          q102jfiei.left) /
+        q102jfiei.width;
 
-      const insideY =
-        (event.clientY -
-          rect.top) /
-        rect.height;
+      const q106jfiei =
+        (q125jfiei.clientY -
+          q102jfiei.top) /
+        q102jfiei.height;
 
       if (
-        insideX >= 0 &&
-        insideX <= 1 &&
-        insideY >= 0 &&
-        insideY <= 1
+        q105jfiei >= 0 &&
+        q105jfiei <= 1 &&
+        q106jfiei >= 0 &&
+        q106jfiei <= 1
       ) {
-        hovered = true;
+        q101jfiei = true;
 
-        if (glare) {
-          glare.style.opacity =
+        if (q96jfiei) {
+          q96jfiei.style.opacity =
             "1";
 
-          glare.style.background =
+          q96jfiei.style.background =
             `radial-gradient(circle at ${
               insideX * 100
             }% ${
@@ -1663,10 +1616,10 @@ function setupTilt(
             }%, rgba(255, 255, 255, 0.28), transparent 60%)`;
         }
       } else {
-        hovered = false;
+        q101jfiei = false;
 
-        if (glare) {
-          glare.style.opacity =
+        if (q96jfiei) {
+          q96jfiei.style.opacity =
             "0";
         }
       }
@@ -1676,33 +1629,33 @@ function setupTilt(
   document.addEventListener(
     "mouseleave",
     () => {
-      targetX = 0;
-      targetY = 0;
-      hovered = false;
+      q97jfiei = 0;
+      q98jfiei = 0;
+      q101jfiei = false;
 
-      if (glare) {
-        glare.style.opacity =
+      if (q96jfiei) {
+        q96jfiei.style.opacity =
           "0";
       }
     }
   );
 
-  function update() {
-    currentX +=
-      (targetX - currentX) *
+  function q142jfiei() {
+    q99jfiei +=
+      (q97jfiei - q99jfiei) *
       0.12;
 
-    currentY +=
-      (targetY - currentY) *
+    q100jfiei +=
+      (q98jfiei - q100jfiei) *
       0.12;
 
-    if (entered) {
-      const s =
-        hovered
-          ? scale
+    if (xqjfjf) {
+      const q107jfiei =
+        q101jfiei
+          ? q141jfiei
           : 1;
 
-      el.style.transform =
+      q95jfiei.style.transform =
         `rotateX(${currentX.toFixed(
           2
         )}deg) rotateY(${currentY.toFixed(
@@ -1711,100 +1664,98 @@ function setupTilt(
     }
 
     requestAnimationFrame(
-      update
+      q142jfiei
     );
   }
 
-  update();
+  q142jfiei();
 }
 
-setupTilt(
+q138jfiei(
   "#card",
   16,
   1.025
 );
 
-setupTilt(
+q138jfiei(
   "#dcCard",
   14,
   1.02
 );
 
-setupTilt(
+q138jfiei(
   "#tgCard",
   14,
   1.02
 );
 
-setupTilt(
+q138jfiei(
   "#rbxCard",
   14,
   1.02
 );
 
 
-/* =========================================================
-   PROFILE PICTURE VIEWER
-   ========================================================= */
 
-const pfpViewer =
+
+const q108jfiei =
   document.getElementById(
     "pfpViewer"
   );
 
-const pfpViewerImage =
+const q109jfiei =
   document.getElementById(
     "pfpViewerImage"
   );
 
-const pfpViewerClose =
+const q110jfiei =
   document.getElementById(
     "pfpViewerClose"
   );
 
-let pfpScale = 1;
-let pfpStartDistance = 0;
+let q111jfiei = 1;
+let q112jfiei = 0;
 
-function openPfpViewer(img) {
+function q143jfiei(q58jfiei) {
   if (
-    !img ||
-    !img.src ||
-    !pfpViewer ||
-    !pfpViewerImage
+    !q58jfiei ||
+    !q58jfiei.src ||
+    !q108jfiei ||
+    !q109jfiei
   ) {
     return;
   }
 
-  pfpViewerImage.src =
-    img.src;
+  q109jfiei.src =
+    q58jfiei.src;
 
-  pfpViewerImage.classList.remove(
+  q109jfiei.classList.remove(
     "zoomed"
   );
 
-  pfpScale = 1;
+  q111jfiei = 1;
 
-  pfpViewerImage.style.transform =
+  q109jfiei.style.transform =
     "scale(1)";
 
-  pfpViewer.classList.add(
+  q108jfiei.classList.add(
     "active"
   );
 }
 
-function closePfpViewer() {
+function q144jfiei() {
   if (
-    !pfpViewer ||
-    !pfpViewerImage
+    !q108jfiei ||
+    !q109jfiei
   ) {
     return;
   }
 
-  pfpViewer.classList.remove(
+  q108jfiei.classList.remove(
     "active"
   );
 
-  pfpViewerImage.src = "";
+  q109jfiei.src = "";
 }
 
 [
@@ -1812,46 +1763,46 @@ function closePfpViewer() {
   "dcAvatarWrap",
   "tgAvatarBtn",
   "rbxAvatarWrap"
-].forEach(id => {
-  const el =
+].forEach(q149jfiei => {
+  const q95jfiei =
     document.getElementById(
-      id
+      q149jfiei
     );
 
-  if (el) {
-    el.addEventListener(
+  if (q95jfiei) {
+    q95jfiei.addEventListener(
       "click",
-      event => {
-        const img =
-          el.querySelector(
+      q125jfiei => {
+        const q58jfiei =
+          q95jfiei.querySelector(
             "img"
           );
 
-        if (img) {
-          event.stopPropagation();
+        if (q58jfiei) {
+          q125jfiei.stopPropagation();
 
-          openPfpViewer(img);
+          q143jfiei(q58jfiei);
         }
       }
     );
   }
 });
 
-if (pfpViewerClose) {
-  pfpViewerClose.addEventListener(
+if (q110jfiei) {
+  q110jfiei.addEventListener(
     "click",
-    closePfpViewer
+    q144jfiei
   );
 }
 
-if (pfpViewer) {
-  pfpViewer.addEventListener(
+if (q108jfiei) {
+  q108jfiei.addEventListener(
     "click",
-    event => {
+    q125jfiei => {
       if (
-        event.target === pfpViewer
+        q125jfiei.target === q108jfiei
       ) {
-        closePfpViewer();
+        q144jfiei();
       }
     }
   );
@@ -1859,56 +1810,56 @@ if (pfpViewer) {
 
 document.addEventListener(
   "keydown",
-  event => {
-    if (event.key === "Escape") {
-      closePfpViewer();
+  q125jfiei => {
+    if (q125jfiei.key === "Escape") {
+      q144jfiei();
     }
   }
 );
 
-if (pfpViewerImage) {
-  pfpViewerImage.addEventListener(
+if (q109jfiei) {
+  q109jfiei.addEventListener(
     "dblclick",
     () => {
-      pfpViewerImage.classList.toggle(
+      q109jfiei.classList.toggle(
         "zoomed"
       );
 
-      pfpScale =
-        pfpViewerImage.classList.contains(
+      q111jfiei =
+        q109jfiei.classList.contains(
           "zoomed"
         )
           ? 2
           : 1;
 
-      pfpViewerImage.style.transform =
+      q109jfiei.style.transform =
         `scale(${pfpScale})`;
     }
   );
 
-  pfpViewerImage.addEventListener(
+  q109jfiei.addEventListener(
     "wheel",
-    event => {
-      event.preventDefault();
+    q125jfiei => {
+      q125jfiei.preventDefault();
 
-      pfpScale =
+      q111jfiei =
         Math.min(
           4,
           Math.max(
             1,
-            pfpScale +
-              (event.deltaY < 0
+            q111jfiei +
+              (q125jfiei.deltaY < 0
                 ? 0.2
                 : -0.2)
           )
         );
 
-      pfpViewerImage.classList.toggle(
+      q109jfiei.classList.toggle(
         "zoomed",
-        pfpScale > 1
+        q111jfiei > 1
       );
 
-      pfpViewerImage.style.transform =
+      q109jfiei.style.transform =
         `scale(${pfpScale})`;
     },
     {
@@ -1916,19 +1867,19 @@ if (pfpViewerImage) {
     }
   );
 
-  pfpViewerImage.addEventListener(
+  q109jfiei.addEventListener(
     "touchstart",
-    event => {
+    q125jfiei => {
       if (
-        event.touches.length === 2
+        q125jfiei.touches.length === 2
       ) {
-        pfpStartDistance =
+        q112jfiei =
           Math.hypot(
-            event.touches[0].clientX -
-              event.touches[1].clientX,
+            q125jfiei.touches[0].clientX -
+              q125jfiei.touches[1].clientX,
 
-            event.touches[0].clientY -
-              event.touches[1].clientY
+            q125jfiei.touches[0].clientY -
+              q125jfiei.touches[1].clientY
           );
       }
     },
@@ -1937,47 +1888,47 @@ if (pfpViewerImage) {
     }
   );
 
-  pfpViewerImage.addEventListener(
+  q109jfiei.addEventListener(
     "touchmove",
-    event => {
+    q125jfiei => {
       if (
-        event.touches.length !== 2 ||
-        !pfpStartDistance
+        q125jfiei.touches.length !== 2 ||
+        !q112jfiei
       ) {
         return;
       }
 
-      event.preventDefault();
+      q125jfiei.preventDefault();
 
-      const distance =
+      const q113jfiei =
         Math.hypot(
-          event.touches[0].clientX -
-            event.touches[1].clientX,
+          q125jfiei.touches[0].clientX -
+            q125jfiei.touches[1].clientX,
 
-          event.touches[0].clientY -
-            event.touches[1].clientY
+          q125jfiei.touches[0].clientY -
+            q125jfiei.touches[1].clientY
         );
 
-      pfpScale =
+      q111jfiei =
         Math.min(
           4,
           Math.max(
             1,
-            pfpScale *
-              (distance /
-                pfpStartDistance)
+            q111jfiei *
+              (q113jfiei /
+                q112jfiei)
           )
         );
 
-      pfpStartDistance =
-        distance;
+      q112jfiei =
+        q113jfiei;
 
-      pfpViewerImage.classList.toggle(
+      q109jfiei.classList.toggle(
         "zoomed",
-        pfpScale > 1
+        q111jfiei > 1
       );
 
-      pfpViewerImage.style.transform =
+      q109jfiei.style.transform =
         `scale(${pfpScale})`;
     },
     {
@@ -1985,21 +1936,19 @@ if (pfpViewerImage) {
     }
   );
 
-  pfpViewerImage.addEventListener(
+  q109jfiei.addEventListener(
     "touchend",
-    event => {
+    q125jfiei => {
       if (
-        event.touches.length < 2
+        q125jfiei.touches.length < 2
       ) {
-        pfpStartDistance = 0;
+        q112jfiei = 0;
       }
     }
   );
 }
 
 
-/* =========================================================
-   START
-   ========================================================= */
 
-startIntroSequence();
+
+q116jfiei();
