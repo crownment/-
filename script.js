@@ -905,9 +905,7 @@ if (
 ) {
   discordLinkBtn.addEventListener(
     "click",
-    event => {
-      event.preventDefault();
-      event.stopPropagation();
+    () => {
       fetchDiscordStatus();
 
       dcModal.classList.add(
@@ -1199,9 +1197,7 @@ if (
 ) {
   telegramLinkBtn.addEventListener(
     "click",
-    event => {
-      event.preventDefault();
-      event.stopPropagation();
+    () => {
       tgModal.classList.add(
         "visible"
       );
@@ -1415,9 +1411,7 @@ if (
 ) {
   robloxLinkBtn.addEventListener(
     "click",
-    event => {
-      event.preventDefault();
-      event.stopPropagation();
+    () => {
       rbxModal.classList.add(
         "visible"
       );
@@ -2180,10 +2174,6 @@ if (pfpViewerImage) {
  * the page is opened directly or restored from the browser cache.
  */
 function bootIntro() {
-  if (window.__standaloneIntroBooted) {
-    return;
-  }
-
   if (!intro) {
     return;
   }
