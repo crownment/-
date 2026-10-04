@@ -243,12 +243,6 @@ function q123Core() {
 
     rizzCore.classList.add("visible");
 
-    const q153jfiei = blorboquery("#discordPreviewCard");
-    if (q153jfiei) {
-      setTimeout(() => {
-        q153jfiei.classList.add("visible");
-      }, 420);
-    }
 
     setTimeout(() => {
       q118Core(
