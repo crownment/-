@@ -23,6 +23,11 @@ self.addEventListener("fetch", event => {
     return;
   }
 
+  const pathname = new URL(request.url).pathname.toLowerCase();
+  if (/\.(mp4|mov|webm)$/.test(pathname)) {
+    return;
+  }
+
   event.respondWith(
     fetch(request, { cache: "no-store" })
       .then(response => {
