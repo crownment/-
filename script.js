@@ -27,6 +27,11 @@ const jfjfCore = blorboquery("#typeWrap");
 const femboyCore = blorboquery("#fadeText1");
 const jfjieCore = blorboquery("#fadeText2");
 const rizzCore = blorboquery("#card");
+
+// Keep all profile controls completely non-interactive until entry.
+if (rizzCore) {
+  rizzCore.inert = true;
+}
 const xjfxCore = blorboquery("#backgroundVideo");
 const qweCore = blorboquery("#cursor");
 const zjfjCore = blorboquery("#cursorGlow");
@@ -202,7 +207,10 @@ function q123Core() {
 
   xqjfjf = true;
 
-  
+  if (rizzCore) {
+    rizzCore.inert = false;
+  }
+
   jfjvbe = false;
 
   if (yurklol) {
