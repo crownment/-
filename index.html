@@ -1652,17 +1652,14 @@
       overflow: visible !important;
     }
 
-    .card-wrapper .sleek-profile {
-      position: static !important;
-    }
-
     .card-wrapper .sleek-profile .avatar {
-      position: absolute !important;
-      left: -23.35% !important;
-      top: 83.1% !important;
+      flex: 0 0 clamp(45px, 10.5vw, 87px) !important;
+      width: clamp(45px, 10.5vw, 87px) !important;
+      height: clamp(45px, 10.5vw, 87px) !important;
       margin: 0 !important;
-      transform: translate(-50%, -50%) !important;
-      z-index: 5 !important;
+      border: 1px solid rgba(255,255,255,.25) !important;
+      box-shadow: none !important;
+      transform: none !important;
     }
 
     .card-wrapper .sleek-links {
