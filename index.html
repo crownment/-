@@ -62,16 +62,16 @@
 
     @media (max-width: 500px) and (orientation: portrait) {
       #backgroundVideo {
-        width: 100%;
-        height: 100%;
-        min-width: 100%;
-        min-height: 100%;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        object-fit: cover;
-        transform: scale(1.03);
+        width: 100vh;
+        height: 100vw;
+        min-width: 0;
+        min-height: 0;
+        left: 50%;
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        object-fit: contain;
+        transform: translate(-50%, -50%) rotate(90deg);
       }
     }
 
@@ -346,8 +346,6 @@
       transform-style: preserve-3d;
       overflow: hidden;
       margin: 0 auto;
-      left: 35px;
-      background: rgba(0,0,0,0);
     }
 
     .card.visible {
@@ -1565,198 +1563,6 @@
 @media(max-width:700px){.card-wrapper{width:calc(100vw - 24px);gap:10px}.sleek-card{min-height:270px;padding:24px 20px 22px}.sleek-profile{min-height:100px}.sleek-profile h1{font-size:25px}.sleek-profile .avatar{flex-basis:86px;width:86px;height:86px}.sleek-links{gap:8px;margin-top:20px}.sleek-links .link{width:48px;min-width:48px;height:48px;min-height:48px;border-radius:13px}.sleek-links .icon-wrapper{width:22px;height:22px}}
 
 .card{border:none!important;background:rgba(0,0,0,.16)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;box-shadow:0 25px 80px rgba(0,0,0,.22)!important;opacity:1!important;transform:none!important;transition:none!important;}
-    
-    .card-wrapper {
-      position: fixed !important;
-      inset: auto !important;
-      left: 50% !important;
-      top: 50% !important;
-      width: min(1020px, 147vw) !important;
-      height: auto !important;
-      aspect-ratio: 1 / 1 !important;
-      margin: 0 !important;
-      transform: translate(-50%, -50%) !important;
-      perspective: none !important;
-      z-index: 10 !important;
-      display: block !important;
-      background: url("./ak47.png") center / contain no-repeat !important;
-    }
-
-    .card-wrapper .card {
-      position: absolute !important;
-      left: 26.7% !important;
-      top: 31.8% !important;
-      width: 44.2% !important;
-      height: 33.4% !important;
-      min-height: 0 !important;
-      margin: 0 !important;
-      padding: 7% 6% 5% !important;
-      border: 0 !important;
-      border-radius: 4px !important;
-      background: transparent !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      box-shadow: none !important;
-      overflow: hidden !important;
-      text-align: center !important;
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: center !important;
-      transform: none !important;
-    }
-
-    .card-wrapper .sleek-profile {
-      min-height: 0 !important;
-      height: auto !important;
-      gap: 5% !important;
-      align-items: center !important;
-    }
-
-    .card-wrapper .sleek-profile-info {
-      min-width: 0 !important;
-      overflow: hidden !important;
-    }
-
-    .card-wrapper .sleek-profile h1,
-    .card-wrapper .profile-heart {
-      color: #fff !important;
-    }
-
-    .card-wrapper .sleek-links .icon-wrapper svg,
-    .card-wrapper .sleek-links .icon-wrapper img {
-      filter: none !important;
-    }
-
-    .card-wrapper .sleek-profile h1 {
-      font-size: clamp(16px, 4.2vw, 33px) !important;
-      line-height: 1 !important;
-      letter-spacing: -.5px !important;
-      min-height: 0 !important;
-    }
-
-    .card-wrapper .profile-heart {
-      display: none !important;
-    }
-
-    .card-wrapper .sleek-profile .avatar {
-      flex: 0 0 clamp(45px, 10.5vw, 87px) !important;
-      width: clamp(45px, 10.5vw, 87px) !important;
-      height: clamp(45px, 10.5vw, 87px) !important;
-      margin: 0 !important;
-      border: 1px solid rgba(255,255,255,.25) !important;
-      box-shadow: none !important;
-      transform: none !important;
-    }
-
-    .card-wrapper .card {
-      overflow: visible !important;
-    }
-
-    .card-wrapper .sleek-profile {
-      position: static !important;
-    }
-
-    .card-wrapper .sleek-profile .avatar {
-      position: absolute !important;
-      left: -42.5% !important;
-      top: 0.5% !important;
-      margin: 0 !important;
-      transform: translate(-50%, -50%) !important;
-      z-index: 20 !important;
-    }
-
-    .card-wrapper .card {
-      overflow: visible !important;
-    }
-
-    .card-wrapper .sleek-profile .avatar {
-      position: absolute !important;
-      left: -40.5% !important;
-      top: -1.5% !important;
-      flex: 0 0 clamp(45px, 11vw, 90px) !important;
-      width: clamp(45px, 11vw, 90px) !important;
-      height: clamp(45px, 11vw, 90px) !important;
-      margin: 0 !important;
-      border: 1px solid rgba(255,255,255,.25) !important;
-      box-shadow: none !important;
-      transform: translate(-50%, -50%) !important;
-    }
-
-    .card-wrapper .sleek-links {
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: clamp(3px, .8vw, 8px) !important;
-      margin-top: clamp(5px, 1vw, 10px) !important;
-    }
-
-    .card-wrapper .sleek-links .link {
-      flex: 0 0 clamp(38px, 9vw, 72px) !important;
-      width: clamp(38px, 9vw, 72px) !important;
-      min-width: 0 !important;
-      height: clamp(38px, 9vw, 72px) !important;
-      min-height: 0 !important;
-      padding: 0 !important;
-      border-radius: 4px !important;
-      background: rgba(255,255,255,.08) !important;
-      border: 1px solid rgba(255,255,255,.12) !important;
-      justify-content: center !important;
-    }
-
-    .card-wrapper .sleek-links .icon-wrapper {
-      width: clamp(18px, 5.25vw, 38px) !important;
-      height: clamp(18px, 5.25vw, 38px) !important;
-      margin: 0 !important;
-    }
-
-    .card-wrapper .sleek-links .link-text,
-    .card-wrapper .view-counter,
-    .card-wrapper .volume-control {
-      display: none !important;
-    }
-
-    @media (max-width: 500px) {
-      .card-wrapper {
-        width: 98vw !important;
-      }
-
-      .card-wrapper .card {
-        padding: 5% 4% 4% !important;
-      }
-
-      .card-wrapper .sleek-profile .avatar {
-        left: -23.5% !important;
-        top: 83% !important;
-      }
-
-      .card-wrapper .sleek-profile h1 {
-        font-size: clamp(9px, 3.2vw, 15px) !important;
-      }
-
-      .card-wrapper .sleek-profile .avatar {
-        flex-basis: clamp(27px, 8.5vw, 45px) !important;
-        width: clamp(27px, 8.5vw, 45px) !important;
-        height: clamp(27px, 8.5vw, 45px) !important;
-      }
-
-      .card-wrapper .sleek-links {
-        gap: 3px !important;
-        margin-top: 4px !important;
-      }
-
-      .card-wrapper .sleek-links .link {
-        flex-basis: clamp(22px, 7vw, 34px) !important;
-        width: clamp(22px, 7vw, 34px) !important;
-        height: clamp(22px, 7vw, 34px) !important;
-        border-radius: 3px !important;
-      }
-
-      .card-wrapper .sleek-links .icon-wrapper {
-        width: clamp(11px, 4.5vw, 18px) !important;
-        height: clamp(11px, 4.5vw, 18px) !important;
-      }
-    }
-
 </style>
 
   <meta name="theme-color" content="#000000">
