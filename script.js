@@ -1029,6 +1029,8 @@ async function q136Core() {
     }
 
     if (q65jfiei) {
+      q65jfiei.className =
+        `dc-modal-status-text ${q69jfiei}`;
       q65jfiei.textContent =
         q69jfiei === "dnd"
           ? "Do Not Disturb"
