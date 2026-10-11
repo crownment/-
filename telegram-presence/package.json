@@ -10,8 +10,8 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@telegram-apps/telegram-mtproto": "latest",
+    
     "express": "^4.21.2",
-    "gramjs": "^2.26.21"
+    "telegram": "^2.26.21"
   }
 }
