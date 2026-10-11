@@ -1,0 +1,17 @@
+{
+  "name": "telegram-presence-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@telegram-apps/telegram-mtproto": "latest",
+    "express": "^4.21.2",
+    "gramjs": "^2.26.21"
+  }
+}
