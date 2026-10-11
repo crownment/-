@@ -2258,3 +2258,44 @@ setTimeout(() => {
 }, 1200);
 
 
+
+
+async function refreshTelegramCard() {
+  const apiBase = String(window.TELEGRAM_API_BASE || "").replace(/\/+$/, "");
+  if (!apiBase) return;
+
+  const avatar = document.getElementById("tgModalAvatar");
+  const statusText = document.getElementById("tgModalStatusText");
+  const indicator = document.querySelector("#tgAvatarBtn .tg-status-indicator");
+  if (!statusText || !indicator) return;
+
+  try {
+    const response = await fetch(apiBase + "/api/telegram", { cache: "no-store" });
+    if (!response.ok) throw new Error("Telegram API unavailable");
+    const data = await response.json();
+
+    if (data.username) {
+      const username = document.getElementById("tgModalUsername");
+      if (username) username.textContent = data.username;
+    }
+
+    if (data.status) statusText.textContent = data.status;
+
+    const isOnline = data.status === "online";
+    indicator.style.background = isOnline ? "#23a55a" : "#747f8d";
+    statusText.style.color = isOnline ? "#23a55a" : "rgba(255,255,255,.65)";
+  } catch {
+    statusText.textContent = "status temporarily unavailable";
+    indicator.style.background = "#747f8d";
+    statusText.style.color = "rgba(255,255,255,.65)";
+  }
+
+  if (avatar) {
+    avatar.src = apiBase + "/api/telegram/photo?v=" + Date.now();
+  }
+}
+
+if (window.TELEGRAM_API_BASE) {
+  refreshTelegramCard();
+  setInterval(refreshTelegramCard, 60000);
+}
