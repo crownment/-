@@ -10,10 +10,10 @@ Telegram profile-photo retrieval can be refreshed by an authenticated client. Th
 
 Deploy this folder as a Node.js web service on a host with private environment variables. Use `npm install` and `npm start`. Configure these values privately on the host:
 
-- `TELEGRAM_API_ID`
-- `TELEGRAM_API_HASH`
-- `TELEGRAM_SESSION`
-- `ALLOWED_ORIGIN=https://v.pntr.dev`
+- TELEGRAM_API_ID
+- TELEGRAM_API_HASH
+- TELEGRAM_SESSION
+- ALLOWED_ORIGIN=https://v.pntr.dev
 
 Obtain API credentials from Telegram's official developer tools. Never place API credentials or a session string in frontend JavaScript, a public repository, or chat. Do not share your Telegram password or login code with anyone. This repository intentionally does not include an interactive login utility; the account authorization step must be handled locally and securely before the backend can run.
 
