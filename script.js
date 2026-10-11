@@ -1428,6 +1428,58 @@ const q75jfiei =
 const q76jfiei =
   blorboquery("#tgCopyToast");
 
+const telegramStatusText = blorboquery("#tgModalStatusText");
+const telegramAvatar = blorboquery("#tgModalAvatar");
+const telegramStatusIndicator = q72jfiei
+  ? q72jfiei.querySelector(".tg-status-indicator")
+  : null;
+
+async function loadTelegramProfile() {
+  try {
+    const response = await fetch(
+      "https://teleahhahfahf.onrender.com/api/telegram",
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error("Telegram profile request failed.");
+    }
+
+    const profile = await response.json();
+
+    if (profile.username && q75jfiei) {
+      q75jfiei.textContent = profile.username;
+    }
+
+    if (telegramStatusText) {
+      telegramStatusText.textContent =
+        profile.status || "status unavailable";
+    }
+
+    if (telegramStatusIndicator) {
+      telegramStatusIndicator.style.backgroundColor =
+        profile.status === "online"
+          ? "#23a55a"
+          : profile.status === "status unavailable"
+            ? "#747f8d"
+            : "#229ED9";
+    }
+
+    if (telegramAvatar) {
+      telegramAvatar.onerror = () => {
+        telegramAvatar.onerror = null;
+        telegramAvatar.src = "./telegrampfp.png";
+      };
+      telegramAvatar.src =
+        "https://teleahhahfahf.onrender.com/api/telegram/photo";
+    }
+  } catch {
+    if (telegramStatusText) {
+      telegramStatusText.textContent = "status unavailable";
+    }
+  }
+}
+
 if (
   q71jfiei &&
   q72jfiei
@@ -1438,6 +1490,7 @@ if (
       q72jfiei.classList.add(
         "visible"
       );
+      loadTelegramProfile();
     }
   );
 }
