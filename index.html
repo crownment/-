@@ -62,16 +62,17 @@
 
     @media (max-width: 500px) and (orientation: portrait) {
       #backgroundVideo {
-        width: 100vw;
-        height: 100vh;
-        min-width: 100vw;
-        min-height: 100vh;
-        left: 0;
-        top: 0;
+        width: 100vh;
+        height: 100vw;
+        min-width: 100vh;
+        min-height: 100vw;
+        left: 50%;
+        top: 50%;
         right: auto;
         bottom: auto;
-        object-fit: fill;
-        transform: none;
+        object-fit: cover;
+        transform: translate(-50%, -50%) rotate(90deg) scaleX(2);
+        transform-origin: center;
       }
     }
 
