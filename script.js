@@ -27,6 +27,7 @@ const jfjfCore = blorboquery("#typeWrap");
 const femboyCore = blorboquery("#fadeText1");
 const jfjieCore = blorboquery("#fadeText2");
 const rizzCore = blorboquery("#card");
+const xjfxCore = blorboquery("#backgroundVideo");
 const musicCard = blorboquery("#musicCard");
 const musicSeekSlider = blorboquery("#musicSeekSlider");
 const musicCurrentTime = blorboquery("#musicCurrentTime");
@@ -65,7 +66,6 @@ if (xjfxCore && musicSeekSlider) {
 if (rizzCore) {
   rizzCore.inert = true;
 }
-const xjfxCore = blorboquery("#backgroundVideo");
 const qweCore = blorboquery("#cursor");
 const zjfjCore = blorboquery("#cursorGlow");
 const vbnCore = blorboquery("#profileName");
