@@ -1452,8 +1452,18 @@ async function loadTelegramProfile() {
     }
 
     if (telegramStatusText) {
+      const status = profile.status || "status unavailable";
+      const checkedAt = profile.updatedAt
+        ? new Date(profile.updatedAt).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit"
+          })
+        : "";
+
       telegramStatusText.textContent =
-        profile.status || "status unavailable";
+        status === "last seen recently" && checkedAt
+          ? `${status} · checked at ${checkedAt}`
+          : status;
     }
 
     if (telegramStatusIndicator) {
