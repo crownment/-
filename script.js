@@ -1297,10 +1297,7 @@ async function q166Core() {
         ? `@${q168jfiei.login}`
         : "@commmercial";
 
-    q160jfiei.textContent =
-      q168jfiei.name ||
-      q168jfiei.bio ||
-      "";
+    q160jfiei.textContent = "";
 
     q161jfiei.textContent =
       typeof q168jfiei.followers === "number"
