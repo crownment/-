@@ -27,6 +27,39 @@ const jfjfCore = blorboquery("#typeWrap");
 const femboyCore = blorboquery("#fadeText1");
 const jfjieCore = blorboquery("#fadeText2");
 const rizzCore = blorboquery("#card");
+const musicCard = blorboquery("#musicCard");
+const musicSeekSlider = blorboquery("#musicSeekSlider");
+const musicCurrentTime = blorboquery("#musicCurrentTime");
+const musicDuration = blorboquery("#musicDuration");
+if (musicCard) musicCard.inert = true;
+
+function formatMusicTime(value) {
+  if (!Number.isFinite(value) || value < 0) return "0:00";
+  const total = Math.floor(value);
+  return Math.floor(total / 60) + ":" + String(total % 60).padStart(2, "0");
+}
+
+if (xjfxCore && musicSeekSlider) {
+  const syncMusicDuration = () => {
+    const duration = Number.isFinite(xjfxCore.duration) ? xjfxCore.duration : 0;
+    musicSeekSlider.max = String(duration);
+    if (musicDuration) musicDuration.textContent = formatMusicTime(duration);
+  };
+  xjfxCore.addEventListener("loadedmetadata", syncMusicDuration);
+  xjfxCore.addEventListener("durationchange", syncMusicDuration);
+  xjfxCore.addEventListener("timeupdate", () => {
+    if (musicCurrentTime) musicCurrentTime.textContent = formatMusicTime(xjfxCore.currentTime);
+    if (!musicSeekSlider.matches(":active")) musicSeekSlider.value = String(xjfxCore.currentTime || 0);
+  });
+  musicSeekSlider.addEventListener("input", () => {
+    const targetTime = Number(musicSeekSlider.value);
+    if (Number.isFinite(targetTime)) {
+      xjfxCore.currentTime = targetTime;
+      if (musicCurrentTime) musicCurrentTime.textContent = formatMusicTime(targetTime);
+    }
+  });
+  syncMusicDuration();
+}
 
 // Keep all profile controls completely non-interactive until entry.
 if (rizzCore) {
@@ -210,6 +243,9 @@ function q123Core() {
   if (rizzCore) {
     rizzCore.inert = false;
   }
+  if (musicCard) {
+    musicCard.inert = false;
+  }
 
   jfjvbe = false;
 
@@ -245,7 +281,7 @@ function q123Core() {
     }
 
     rizzCore.classList.add("visible");
-
+    if (musicCard) musicCard.classList.add("visible");
 
     setTimeout(() => {
       q118Core(
