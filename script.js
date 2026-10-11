@@ -1207,7 +1207,7 @@ async function q136Core() {
 
 
 const q153jfiei =
-  "https://github.com/crownment";
+  "https://github.com/commmercial";
 
 const q154jfiei =
   blorboquery("#ghModal");
@@ -1258,7 +1258,7 @@ async function q166Core() {
   }
 
   q158jfiei.src = "";
-  q159jfiei.textContent = "@crownment";
+  q159jfiei.textContent = "@commmercial";
   q160jfiei.textContent = "Loading...";
   q161jfiei.textContent = "…";
   q162jfiei.textContent = "…";
@@ -1267,7 +1267,7 @@ async function q166Core() {
   try {
     const q167jfiei =
       await fetch(
-        "https://api.github.com/users/crownment",
+        "https://api.github.com/users/commmercial",
         {
           cache: "no-store",
           headers: {
@@ -1293,7 +1293,7 @@ async function q166Core() {
     q159jfiei.textContent =
       q168jfiei.login
         ? `@${q168jfiei.login}`
-        : "@crownment";
+        : "@commmercial";
 
     q160jfiei.textContent =
       q168jfiei.name ||
