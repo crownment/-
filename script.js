@@ -1298,7 +1298,7 @@ async function q166Core() {
     q160jfiei.textContent =
       q168jfiei.name ||
       q168jfiei.bio ||
-      "GitHub";
+      "";
 
     q161jfiei.textContent =
       typeof q168jfiei.followers === "number"
@@ -1320,7 +1320,7 @@ async function q166Core() {
       q169jfiei
     );
 
-    q160jfiei.textContent = "GitHub profile";
+    q160jfiei.textContent = "";
     q161jfiei.textContent = "N/A";
     q162jfiei.textContent = "N/A";
     q163jfiei.textContent = "N/A";
